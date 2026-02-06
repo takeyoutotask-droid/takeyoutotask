@@ -98,8 +98,8 @@
 
   <!-- STEP 1: CODE LOGIN -->
   <div class="container" id="loginBox">
-    <h1>Notes Access</h1>
-    <p>Enter the secret code</p>
+    <h1>TakeYouToTask Notes Access</h1>
+    <p>Please enter the Access Code</p>
 
     <input type="password" id="codeInput" placeholder="Enter access code" />
     <button onclick="checkCode()">Next</button>
@@ -134,9 +134,9 @@
     <h1>My Notes</h1>
     <p>Select a subject 📚</p>
 
-    <button onclick="openPDF('notes_math.pdf')">Math</button>
-    <button onclick="openPDF('notes_science.pdf')">Science</button>
-    <button onclick="openPDF('notes_english.pdf')">English</button>
+    <button onclick="openPDF('notes_lscience.pdf')">Life Science</button>
+    <button onclick="openPDF('notes_pscience.pdf')">Physical Science</button>
+    <button onclick="openPDF('notes_studyguide.pdf')">Study Guide</button>
 
     <iframe id="pdfViewer" style="display:none;"></iframe>
 
@@ -147,7 +147,7 @@
 
   <script>
     // CHANGE YOUR SECRET CODE HERE
-    const SECRET_CODE = "12345";
+    const SECRET_CODE = "TakeYouToTask001";
 
     function checkCode() {
       const input = document.getElementById("codeInput").value;
@@ -183,6 +183,7 @@
 
 </body>
 </html>
+
 
 
 
