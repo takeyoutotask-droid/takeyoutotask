@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,15 +17,17 @@
 
     .container {
       background: white;
-      padding: 30px;
+      padding: 25px;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 320px;
+      width: 350px;
       text-align: center;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     h1 {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     input {
@@ -46,9 +48,15 @@
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 10px;
     }
 
-    button:hover {
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    button:hover:enabled {
       background: #1e4fd8;
     }
 
@@ -58,8 +66,22 @@
       display: none;
     }
 
-    .pdf-container {
+    .hidden {
       display: none;
+    }
+
+    .rules {
+      text-align: left;
+      font-size: 14px;
+      margin: 15px 0;
+    }
+
+    .rules h2 {
+      text-align: center;
+    }
+
+    .rules ul {
+      padding-left: 18px;
     }
 
     iframe {
@@ -68,53 +90,99 @@
       border: none;
       margin-top: 15px;
     }
+
+    
   </style>
 </head>
 <body>
 
-  <!-- Login Section -->
+  <!-- STEP 1: CODE LOGIN -->
   <div class="container" id="loginBox">
     <h1>Notes Access</h1>
-    <p>Please enter Access Code to view the Documents</p>
+    <p>Enter the secret code</p>
 
     <input type="password" id="codeInput" placeholder="Enter access code" />
-    <button onclick="checkCode()">Unlock</button>
+    <button onclick="checkCode()">Next</button>
 
     <p class="error" id="errorMsg">Wrong code. Try again.</p>
   </div>
 
-  <!-- PDF Section -->
-  <div class="container pdf-container" id="pdfBox">
+  <!-- STEP 2: RULES -->
+  <div class="container hidden" id="rulesBox">
+    <h1>📘 Rules & Regulations</h1>
+
+    <div class="rules">
+      <ul>
+        <li><b>No Redistribution</b><br>These notes are for personal use only. Do not send, forward, or share them.</li><br>
+        <li><b>No Photocopying or Printing</b><br>You are not allowed to photocopy, scan, or print.</li><br>
+        <li><b>No Online Uploading</b><br>Do not upload to WhatsApp, Google Drive, Telegram, or any platform.</li><br>
+        <li><b>No Claiming as Your Own Work</b><br>Do not say these notes are yours.</li><br>
+        <li><b>No Editing Without Permission</b><br>Do not change or rewrite and share.</li><br>
+        <li><b>For Study Purposes Only</b><br>Only for learning, not selling.</li><br>
+        <li><b>Respect the Effort</b><br>Please respect my hard work.</li><br>
+        <li><b>Ask Before Sharing</b><br>Tell others to ask me directly.</li>
+      </ul>
+    </div>
+
+    
+
+    <button id="continueBtn" onclick="goToNotes()">Continue</button>
+  </div>
+
+    <!-- STEP 3: NOTES -->
+  <div class="container hidden" id="pdfBox">
     <h1>My Notes</h1>
-    <p>You have access to the Notes.</p>
+    <p>Select a subject 📚</p>
 
-    <!-- Replace notes.pdf with your real PDF file name -->
-    <iframe src="https://docs.google.com/document/d/1NrqzK7nMC_HlsOOyaF7_CYC3ej93orVgxV6pGsTvMaA/edit?usp=preview"
-        width="100%" height="400px"></iframe>
+    <button onclick="openPDF('notes_math.pdf')">Math</button>
+    <button onclick="openPDF('notes_science.pdf')">Science</button>
+    <button onclick="openPDF('notes_english.pdf')">English</button>
 
+    <iframe id="pdfViewer" style="display:none;"></iframe>
 
-    <a href="notes.pdf" download>
-      <button style="margin-top:15px;">Download PDF</button>
+    <a id="downloadLink" target="_blank" download>
+      <button id="downloadBtn" style="display:none;">Download PDF</button>
     </a>
   </div>
 
   <script>
-    // CHANGE THIS TO YOUR SECRET CODE
-    const SECRET_CODE = "12345"; // Example: "BIO2026"
+    // CHANGE YOUR SECRET CODE HERE
+    const SECRET_CODE = "12345";
 
     function checkCode() {
       const input = document.getElementById("codeInput").value;
       const error = document.getElementById("errorMsg");
 
       if (input === SECRET_CODE) {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("pdfBox").style.display = "block";
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("rulesBox").classList.remove("hidden");
       } else {
         error.style.display = "block";
       }
+    }
+
+    
+
+    function goToNotes() {
+      document.getElementById("rulesBox").classList.add("hidden");
+      document.getElementById("pdfBox").classList.remove("hidden");
+    }
+
+    function openPDF(filename) {
+      const viewer = document.getElementById("pdfViewer");
+      const link = document.getElementById("downloadLink");
+      const btn = document.getElementById("downloadBtn");
+
+      viewer.src = "./" + filename;
+      viewer.style.display = "block";
+
+      link.href = "./" + filename;
+      btn.style.display = "block";
     }
   </script>
 
 </body>
 </html>
+
+
 
