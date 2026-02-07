@@ -96,12 +96,12 @@
 
   <!-- STEP 1: LOGIN -->
   <div class="container" id="loginBox">
-    <h1>TakeYouToTask Notes</h1>
+    <h1>Notes Access</h1>
     <p>Login to continue</p>
 
     <input type="text" id="usernameInput" placeholder="Username" />
     <input type="password" id="passwordInput" placeholder="Password" />
-    <input type="password" id="codeInput" placeholder="Enter access code" />
+    <input type="password" id="codeInput" placeholder="Enter Access Code" />
 
     <button onclick="checkCode()">Next</button>
 
@@ -130,12 +130,13 @@
 
   <!-- STEP 3: NOTES -->
   <div class="container hidden" id="pdfBox">
-    <h1>My Notes</h1>
-    <p>Select a subject 📚</p>
+    <h1>TakeYouToTask Notes</h1>
+    <p>Please Select a Subject</p>
 
+    <button onclick="openPDF('notes.pdf')">History</button>
     <button onclick="openPDF('notes_lscience.pdf')">Life Science</button>
     <button onclick="openPDF('notes_pscience.pdf')">Physical Science</button>
-    <button onclick="openPDF('notes.pdf')">History</button>
+    <button onclick="openPDF('notes_geography.pdf')">Geography</button>
 
     <iframe id="pdfViewer" style="display:none;"></iframe>
 
@@ -146,7 +147,7 @@
 
   <script>
     // CHANGE YOUR LOGIN DETAILS HERE
-    const SECRET_CODE = "Barger002";
+    const SECRET_CODE = "MeetMeAtTheLectureTheatre";
     const USERNAME = "student";
     const PASSWORD = "notes123";
 
@@ -185,6 +186,7 @@
 
 </body>
 </html>
+
 
 
 
