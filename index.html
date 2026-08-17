@@ -10,21 +10,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --bg: #05050d;
-    --card: rgba(16, 14, 31, 0.78);
-    --card2: rgba(25, 20, 45, 0.75);
+    --cyan: #00d9ff;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --violet: #6366f1;
+    --green: #34d399;
+    --yellow: #facc15;
 
-    --cyan: #00e5ff;
-    --purple: #9b5cff;
-    --pink: #ff4fd8;
-    --violet: #704cff;
-    --green: #42f5a7;
-    --yellow: #ffd166;
-
-    --text: #f8f7ff;
-    --muted: #9d9ab0;
-
-    --border: rgba(255,255,255,0.10);
+    --bg: #050816;
+    --card: rgba(10,16,35,.78);
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --border: rgba(255,255,255,.10);
 }
 
 * {
@@ -38,20 +35,22 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
+
     background:
-        radial-gradient(circle at 10% 10%, rgba(0,229,255,.12), transparent 25%),
-        radial-gradient(circle at 90% 15%, rgba(255,79,216,.13), transparent 25%),
-        radial-gradient(circle at 50% 100%, rgba(112,76,255,.18), transparent 35%),
-        #05050d;
+        radial-gradient(circle at 15% 20%, rgba(0,217,255,.13), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(236,72,153,.13), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(139,92,246,.15), transparent 35%),
+        linear-gradient(135deg,#030712,#080b1a 50%,#050816);
 
     color: var(--text);
     font-family: "Outfit", Arial, sans-serif;
+
     overflow-x: hidden;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
 
 body::before {
     content: "";
@@ -59,79 +58,104 @@ body::before {
     inset: 0;
 
     background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        linear-gradient(rgba(0,217,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,217,255,.035) 1px,transparent 1px);
 
-    background-size: 45px 45px;
+    background-size: 50px 50px;
 
-    mask-image: linear-gradient(to bottom, black, transparent);
+    mask-image: linear-gradient(to bottom,black,transparent);
+
     pointer-events: none;
+    z-index: 0;
 }
+
+/* =====================================================
+   BACKGROUND ORBS
+===================================================== */
 
 .orb {
     position: fixed;
     border-radius: 50%;
-    filter: blur(100px);
+
+    filter: blur(85px);
+
     pointer-events: none;
-    opacity: .25;
     z-index: 0;
-    animation: floating 10s ease-in-out infinite;
+
+    opacity: .32;
+
+    animation: float 8s ease-in-out infinite;
 }
 
 .orb1 {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
+
     background: var(--cyan);
-    top: -150px;
+
+    top: -100px;
     left: -100px;
 }
 
 .orb2 {
-    width: 350px;
-    height: 350px;
-    background: var(--pink);
-    right: -150px;
-    top: 20%;
-    animation-delay: -3s;
+    width: 300px;
+    height: 300px;
+
+    background: var(--purple);
+
+    bottom: -150px;
+    right: -100px;
+
+    animation-delay: -4s;
 }
 
 .orb3 {
-    width: 300px;
-    height: 300px;
-    background: var(--purple);
-    bottom: -150px;
-    left: 30%;
-    animation-delay: -6s;
+    width: 220px;
+    height: 220px;
+
+    background: var(--pink);
+
+    top: 45%;
+    right: -130px;
+
+    animation-delay: -2s;
 }
 
-@keyframes floating {
+@keyframes float {
     0%,100% {
         transform: translate(0,0);
     }
 
     50% {
-        transform: translate(35px,-25px);
+        transform: translate(30px,-25px);
     }
 }
 
-/* =========================
-   START SCREEN
-========================= */
+/* =====================================================
+   ORIGINAL-STYLE STARTING SCREEN
+===================================================== */
 
 .start-screen {
     position: fixed;
     inset: 0;
-    z-index: 100;
+
+    z-index: 1000;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     background:
-        radial-gradient(circle at 50% 40%, rgba(112,76,255,.18), transparent 35%),
-        #05050d;
+        radial-gradient(
+            circle at center,
+            rgba(139,92,246,.16),
+            transparent 35%
+        ),
+        #050816;
 
-    transition: opacity .8s ease, visibility .8s ease;
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
 }
 
 .start-screen.hide {
@@ -141,111 +165,188 @@ body::before {
 
 .start-content {
     text-align: center;
-    animation: startIn 1.2s ease;
+
+    animation:
+        startAnimation 1.1s ease forwards;
 }
 
-@keyframes startIn {
-    from {
+@keyframes startAnimation {
+
+    0% {
         opacity: 0;
-        transform: translateY(30px) scale(.95);
+        transform:
+            translateY(25px)
+            scale(.94);
     }
 
-    to {
+    100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
-.logo-small {
+.start-brand {
     font-size: 13px;
-    letter-spacing: 6px;
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
     color: var(--cyan);
-    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 10px rgba(0,217,255,.8),
+        0 0 25px rgba(0,217,255,.35);
+
+    margin-bottom: 15px;
 }
 
 .start-title {
-    font-size: clamp(48px, 9vw, 90px);
+    font-size: clamp(48px,9vw,85px);
+
     font-weight: 800;
+
     letter-spacing: -4px;
 
-    background: linear-gradient(
-        90deg,
-        white,
-        var(--cyan),
-        var(--purple),
-        var(--pink)
-    );
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #8be9ff,
+            #a78bfa,
+            #f472b6,
+            #fff
+        );
+
+    background-size: 300%;
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    animation: gradientMove 5s linear infinite;
-    background-size: 300%;
+    animation:
+        gradientFlow 5s ease infinite;
+
+    text-shadow:
+        0 0 30px rgba(139,92,246,.18);
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0%; }
-    50% { background-position: 100%; }
-    100% { background-position: 0%; }
+@keyframes gradientFlow {
+
+    0% {
+        background-position: 0%;
+    }
+
+    50% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0%;
+    }
 }
 
 .start-subtitle {
     color: var(--muted);
-    margin-top: 10px;
-    font-size: 16px;
+
+    margin-top: 12px;
+
+    font-size: 15px;
+
+    letter-spacing: .5px;
 }
 
-/* =========================
-   LOADING
-========================= */
+/* =====================================================
+   ORIGINAL-STYLE LOADING SCREEN
+===================================================== */
 
 .loading-screen {
     position: fixed;
     inset: 0;
-    z-index: 90;
+
+    z-index: 900;
 
     display: none;
-    justify-content: center;
-    align-items: center;
 
-    background: #05050d;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,217,255,.08),
+            transparent 35%
+        ),
+        #050816;
 }
 
-.loader {
-    width: 55px;
-    height: 55px;
+.loading-content {
+    text-align: center;
+}
+
+.loading-logo {
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    color: var(--cyan);
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 0 12px rgba(0,217,255,.7);
+}
+
+.loading-ring {
+    width: 58px;
+    height: 58px;
 
     border-radius: 50%;
 
-    border: 3px solid rgba(255,255,255,.08);
-    border-top-color: var(--cyan);
-    border-right-color: var(--pink);
+    border:
+        2px solid rgba(255,255,255,.08);
 
-    animation: spin 1s linear infinite;
+    border-top-color: var(--cyan);
+    border-right-color: var(--purple);
+    border-bottom-color: var(--pink);
+
+    animation:
+        loadingSpin 1s linear infinite;
 
     box-shadow:
-        0 0 20px rgba(0,229,255,.4),
-        0 0 30px rgba(255,79,216,.25);
+        0 0 20px rgba(0,217,255,.20),
+        0 0 35px rgba(139,92,246,.15);
 }
 
-@keyframes spin {
+.loading-text {
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+@keyframes loadingSpin {
     to {
         transform: rotate(360deg);
     }
 }
 
-/* =========================
-   MAIN APP
-========================= */
+/* =====================================================
+   APP
+===================================================== */
 
 .app {
     position: relative;
     z-index: 2;
 
-    width: min(1100px, calc(100% - 30px));
+    width: min(1100px,calc(100% - 30px));
+
     margin: 0 auto;
 
-    padding: 25px 0 60px;
+    padding: 22px 0 60px;
 
     display: none;
 }
@@ -254,26 +355,27 @@ body::before {
     display: block;
 }
 
-/* =========================
+/* =====================================================
    NAVBAR
-========================= */
+===================================================== */
 
 .navbar {
-    height: 70px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 10px 18px;
+    padding: 12px 15px;
 
-    background: rgba(10,8,20,.72);
-    backdrop-filter: blur(20px);
-
-    border: 1px solid var(--border);
     border-radius: 22px;
 
-    box-shadow: 0 15px 50px rgba(0,0,0,.25);
+    background: rgba(10,16,35,.72);
+
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.30);
 
     margin-bottom: 25px;
 }
@@ -281,14 +383,14 @@ body::before {
 .nav-logo {
     font-size: 18px;
     font-weight: 800;
-    letter-spacing: 1px;
 
-    background: linear-gradient(
-        90deg,
-        var(--cyan),
-        var(--purple),
-        var(--pink)
-    );
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -296,35 +398,47 @@ body::before {
 
 .nav-buttons {
     display: flex;
-    gap: 8px;
+    gap: 5px;
 }
 
 .nav-btn {
     width: auto;
+
     margin: 0;
 
-    padding: 9px 15px;
+    padding: 9px 13px;
+
+    border: 1px solid transparent;
+
+    border-radius: 12px;
 
     background: transparent;
-    border: 1px solid transparent;
 
     color: var(--muted);
 
-    box-shadow: none;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .25s;
 }
 
 .nav-btn:hover {
     color: white;
-    border-color: rgba(255,255,255,.12);
-    background: rgba(255,255,255,.05);
+
+    background: rgba(255,255,255,.06);
+
+    border-color:
+        rgba(255,255,255,.10);
 }
 
-/* =========================
-   PAGES
-========================= */
+/* =====================================================
+   PAGE SYSTEM
+===================================================== */
 
 .page {
     display: none;
+
     animation: pageIn .35s ease;
 }
 
@@ -344,32 +458,38 @@ body::before {
     }
 }
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero {
-    padding: 50px 10px 35px;
+    padding: 35px 5px;
 }
 
 .hero-label {
     color: var(--cyan);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-size: 12px;
+
+    font-size: 11px;
+
     font-weight: 700;
+
+    letter-spacing: 3px;
 }
 
 .hero h1 {
-    font-size: clamp(38px, 7vw, 68px);
+    margin: 12px 0;
+
+    font-size: clamp(40px,7vw,68px);
+
     line-height: 1;
-    margin: 15px 0;
+
+    letter-spacing: -3px;
 
     background:
         linear-gradient(
             90deg,
-            #fff,
-            #d7faff,
+            white,
+            #bdf7ff,
             var(--cyan),
             var(--purple),
             var(--pink)
@@ -380,106 +500,188 @@ body::before {
 }
 
 .hero p {
+    max-width: 650px;
+
     color: var(--muted);
-    max-width: 600px;
-    font-size: 17px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
 }
 
-/* =========================
+/* =====================================================
    CARDS
-========================= */
+===================================================== */
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap: 18px;
 }
 
 .card {
     position: relative;
 
+    padding: 25px;
+
+    border-radius: 24px;
+
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.06),
-            rgba(255,255,255,.015)
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
         );
 
-    border: 1px solid var(--border);
-    border-radius: 24px;
-
-    padding: 25px;
+    border:
+        1px solid var(--border);
 
     backdrop-filter: blur(18px);
 
-    transition: .3s ease;
-
     overflow: hidden;
-}
 
-.card::before {
-    content: "";
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-
-    background: var(--purple);
-    filter: blur(80px);
-
-    opacity: .10;
-
-    right: -50px;
-    top: -50px;
+    transition: .3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
 
-    border-color: rgba(255,255,255,.18);
+    border-color:
+        rgba(255,255,255,.18);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.35),
-        0 0 30px rgba(112,76,255,.08);
+        0 20px 60px rgba(0,0,0,.30);
 }
 
 .card h2 {
     margin-top: 0;
+
+    font-size: 21px;
 }
 
 .card p {
     color: var(--muted);
+
+    line-height: 1.6;
+
+    min-height: 50px;
 }
 
-/* =========================
-   PLAN CARDS
-========================= */
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary-btn {
+    width: 100%;
+
+    padding: 13px 17px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            100deg,
+            #0891b2,
+            #6366f1,
+            #a855f7,
+            #ec4899
+        );
+
+    background-size: 250%;
+
+    box-shadow:
+        0 8px 25px rgba(99,102,241,.16);
+
+    transition:
+        transform .2s,
+        background-position .4s,
+        box-shadow .2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+
+    background-position: 100%;
+
+    box-shadow:
+        0 10px 30px rgba(236,72,153,.20);
+}
+
+.secondary-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color: white;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.secondary-btn:hover {
+    background:
+        rgba(255,255,255,.08);
+}
+
+/* =====================================================
+   PLANS
+===================================================== */
 
 .plan-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap: 20px;
 }
 
 .plan {
-    position: relative;
-
     padding: 30px;
 
-    border-radius: 26px;
+    border-radius: 27px;
 
-    border: 1px solid var(--border);
+    background:
+        rgba(10,8,25,.78);
 
-    background: rgba(12,10,25,.75);
+    border:
+        1px solid var(--border);
 
-    overflow: hidden;
+    backdrop-filter: blur(20px);
 }
 
 .plan.premium {
-    border-color: rgba(255,79,216,.35);
+    border-color:
+        rgba(236,72,153,.30);
 
     box-shadow:
-        0 0 40px rgba(255,79,216,.08);
+        0 0 50px rgba(236,72,153,.07);
 }
 
 .plan h2 {
@@ -487,9 +689,13 @@ body::before {
 }
 
 .plan-price {
-    font-size: 52px;
+    font-size: 58px;
+
     font-weight: 800;
-    margin: 15px 0;
+
+    letter-spacing: -3px;
+
+    margin: 15px 0 20px;
 
     background:
         linear-gradient(
@@ -504,148 +710,230 @@ body::before {
 }
 
 .plan ul {
-    padding-left: 20px;
     color: var(--muted);
+
     line-height: 2;
+
+    margin-bottom: 25px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-button {
-    font-family: "Outfit", sans-serif;
-    cursor: pointer;
-}
-
-.primary-btn {
-    width: 100%;
-
-    border: 0;
-    border-radius: 14px;
-
-    padding: 14px 18px;
-
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-
-    background:
-        linear-gradient(
-            100deg,
-            #00bcd4,
-            #704cff,
-            #ff4fd8
-        );
-
-    background-size: 200%;
-
-    transition: .3s;
-
-    box-shadow:
-        0 8px 25px rgba(112,76,255,.18);
-}
-
-.primary-btn:hover {
-    background-position: 100%;
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 35px rgba(255,79,216,.22);
-}
-
-.secondary-btn {
-    width: 100%;
-
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,.12);
-
-    background: rgba(255,255,255,.04);
-
-    color: white;
-
-    padding: 13px;
-
-    transition: .25s;
-}
-
-.secondary-btn:hover {
-    background: rgba(255,255,255,.08);
-}
-
-/* =========================
-   NOTES
-========================= */
+/* =====================================================
+   SUBJECT NOTES
+===================================================== */
 
 .subject-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap: 15px;
 }
 
 .subject {
+    width: 100%;
+
+    padding: 23px;
+
     text-align: left;
 
-    padding: 22px;
-
     border-radius: 20px;
+
+    border:
+        1px solid rgba(255,255,255,.10);
 
     background:
         linear-gradient(
             135deg,
-            rgba(0,229,255,.08),
-            rgba(112,76,255,.08),
-            rgba(255,79,216,.07)
+            rgba(0,217,255,.08),
+            rgba(139,92,246,.08),
+            rgba(236,72,153,.07)
         );
 
-    border: 1px solid rgba(255,255,255,.10);
-
     color: white;
+
+    font-family: inherit;
+
+    cursor: pointer;
 
     transition: .3s;
 }
 
 .subject:hover {
     transform: translateY(-4px);
-    border-color: rgba(0,229,255,.35);
+
+    border-color:
+        rgba(0,217,255,.35);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.20);
 }
 
 .subject-title {
     font-size: 18px;
+
     font-weight: 700;
 }
 
 .subject-description {
     color: var(--muted);
-    margin-top: 6px;
+
     font-size: 13px;
+
+    margin-top: 6px;
 }
 
-/* =========================
-   PDF
-========================= */
-
 .pdf-container {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 iframe {
     width: 100%;
     height: 600px;
 
-    border: 1px solid rgba(255,255,255,.10);
     border-radius: 20px;
 
-    background: #111;
+    border:
+        1px solid rgba(0,217,255,.18);
+
+    background: #111827;
+
+    box-shadow:
+        0 0 30px rgba(0,217,255,.07);
 }
 
-/* =========================
+/* =====================================================
+   TIMER
+===================================================== */
+
+.timer-card {
+    max-width: 650px;
+
+    margin: 25px auto;
+
+    padding: 40px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,217,255,.07),
+            rgba(139,92,246,.10),
+            rgba(236,72,153,.07)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.30);
+}
+
+.timer-display {
+    font-size:
+        clamp(65px,12vw,110px);
+
+    font-weight: 800;
+
+    letter-spacing: -5px;
+
+    margin: 25px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.timer-controls {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz-card {
+    max-width: 750px;
+
+    margin: 20px auto;
+
+    padding: 30px;
+
+    border-radius: 27px;
+
+    background:
+        rgba(12,10,25,.80);
+
+    border:
+        1px solid var(--border);
+
+    backdrop-filter: blur(20px);
+}
+
+.quiz-option {
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 10px;
+
+    text-align: left;
+
+    border-radius: 14px;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color: white;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.quiz-option:hover {
+    border-color: var(--purple);
+
+    background:
+        rgba(139,92,246,.10);
+
+    transform: translateX(3px);
+}
+
+.quiz-result {
+    margin-top: 20px;
+
+    color: var(--muted);
+}
+
+/* =====================================================
    PROFILE
-========================= */
+===================================================== */
 
 .profile-wrapper {
     max-width: 750px;
-    margin: 40px auto;
+
+    margin: 20px auto;
 }
 
 .profile-card {
@@ -660,7 +948,8 @@ iframe {
             rgba(255,255,255,.025)
         );
 
-    border: 1px solid rgba(255,255,255,.12);
+    border:
+        1px solid rgba(255,255,255,.12);
 
     backdrop-filter: blur(25px);
 
@@ -670,7 +959,9 @@ iframe {
 
 .profile-top {
     display: flex;
+
     align-items: center;
+
     gap: 25px;
 
     margin-bottom: 30px;
@@ -681,14 +972,15 @@ iframe {
 }
 
 .profile-picture {
-    width: 105px;
-    height: 105px;
+    width: 110px;
+    height: 110px;
 
     border-radius: 50%;
 
     object-fit: cover;
 
-    border: 3px solid transparent;
+    border:
+        3px solid transparent;
 
     background:
         linear-gradient(#111,#111) padding-box,
@@ -700,23 +992,24 @@ iframe {
         ) border-box;
 
     box-shadow:
-        0 0 30px rgba(112,76,255,.25);
+        0 0 30px rgba(139,92,246,.25);
 }
 
 .profile-upload {
     position: absolute;
 
-    bottom: 0;
-    right: 0;
+    right: 2px;
+    bottom: 2px;
 
     width: 32px;
     height: 32px;
 
-    border-radius: 50%;
-
     display: flex;
+
     align-items: center;
     justify-content: center;
+
+    border-radius: 50%;
 
     background:
         linear-gradient(
@@ -725,31 +1018,37 @@ iframe {
             var(--pink)
         );
 
-    border: 2px solid #08070f;
+    border:
+        2px solid #08070f;
 
     cursor: pointer;
 
-    font-size: 13px;
+    color: white;
+
+    font-size: 20px;
 }
 
 .profile-name {
     font-size: 28px;
+
     font-weight: 700;
 }
 
 .profile-plan {
     display: inline-block;
 
-    margin-top: 5px;
+    margin-top: 7px;
 
-    padding: 5px 10px;
+    padding: 5px 11px;
 
     border-radius: 20px;
 
     font-size: 12px;
 
-    background: rgba(0,229,255,.10);
     color: var(--cyan);
+
+    background:
+        rgba(0,217,255,.10);
 }
 
 .profile-field {
@@ -759,25 +1058,28 @@ iframe {
 .profile-field label {
     display: block;
 
-    font-size: 12px;
-    color: var(--muted);
-
     margin-bottom: 7px;
+
+    font-size: 12px;
+
+    color: var(--muted);
 }
 
 .profile-field input,
 .profile-field textarea {
     width: 100%;
 
+    padding: 14px;
+
     border-radius: 14px;
 
-    border: 1px solid rgba(255,255,255,.10);
+    border:
+        1px solid rgba(255,255,255,.10);
 
-    background: rgba(0,0,0,.25);
+    background:
+        rgba(0,0,0,.25);
 
     color: white;
-
-    padding: 13px 15px;
 
     font-family: inherit;
 
@@ -786,6 +1088,7 @@ iframe {
 
 .profile-field textarea {
     min-height: 100px;
+
     resize: vertical;
 }
 
@@ -794,121 +1097,41 @@ iframe {
     border-color: var(--purple);
 
     box-shadow:
-        0 0 0 3px rgba(155,92,255,.08);
+        0 0 0 3px rgba(139,92,246,.08);
 }
 
-/* =========================
-   TIMER
-========================= */
+.status {
+    display: none;
 
-.timer-card {
-    max-width: 600px;
-    margin: 50px auto;
+    padding: 13px;
 
-    text-align: center;
-
-    padding: 40px;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,229,255,.06),
-            rgba(112,76,255,.09),
-            rgba(255,79,216,.06)
-        );
-
-    border: 1px solid rgba(255,255,255,.10);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.35);
-}
-
-.timer-display {
-    font-size: clamp(65px,12vw,110px);
-    font-weight: 800;
-
-    letter-spacing: -4px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--cyan),
-            var(--purple),
-            var(--pink)
-        );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    margin: 25px 0;
-}
-
-.timer-controls {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-}
-
-/* =========================
-   QUIZ
-========================= */
-
-.quiz-card {
-    max-width: 750px;
-    margin: 30px auto;
-
-    padding: 30px;
-
-    border-radius: 26px;
-
-    background: rgba(15,12,28,.78);
-
-    border: 1px solid rgba(255,255,255,.10);
-}
-
-.quiz-option {
-    width: 100%;
-
-    margin-top: 10px;
-
-    padding: 15px;
-
-    text-align: left;
+    margin-bottom: 20px;
 
     border-radius: 14px;
 
-    border: 1px solid rgba(255,255,255,.10);
+    color: var(--green);
 
-    background: rgba(255,255,255,.04);
+    background:
+        rgba(52,211,153,.06);
 
-    color: white;
-
-    transition: .2s;
+    border:
+        1px solid rgba(52,211,153,.15);
 }
 
-.quiz-option:hover {
-    border-color: var(--purple);
-    background: rgba(155,92,255,.08);
+.status.show {
+    display: block;
 }
 
-.quiz-result {
-    margin-top: 20px;
-
-    font-size: 18px;
-    font-weight: 600;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* =====================================================
+   PREMIUM MODAL
+===================================================== */
 
 .modal {
     position: fixed;
+
     inset: 0;
 
-    z-index: 200;
+    z-index: 2000;
 
     display: none;
 
@@ -917,7 +1140,9 @@ iframe {
 
     padding: 20px;
 
-    background: rgba(0,0,0,.65);
+    background:
+        rgba(0,0,0,.70);
+
     backdrop-filter: blur(12px);
 }
 
@@ -926,11 +1151,11 @@ iframe {
 }
 
 .modal-box {
-    width: min(450px,100%);
+    width: min(470px,100%);
 
-    padding: 30px;
+    padding: 32px;
 
-    border-radius: 26px;
+    border-radius: 28px;
 
     background:
         linear-gradient(
@@ -939,14 +1164,37 @@ iframe {
             #0c0a17
         );
 
-    border: 1px solid rgba(255,255,255,.12);
+    border:
+        1px solid rgba(255,255,255,.12);
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.5);
+        0 30px 100px rgba(0,0,0,.55);
+
+    animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(.95) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .modal-box h2 {
     margin-top: 0;
+
+    font-size: 27px;
+}
+
+.modal-box p {
+    color: var(--muted);
+
+    line-height: 1.6;
 }
 
 .modal-box input {
@@ -954,57 +1202,56 @@ iframe {
 
     padding: 14px;
 
-    margin: 10px 0;
-
-    border-radius: 13px;
-
-    border: 1px solid rgba(255,255,255,.10);
-
-    background: rgba(0,0,0,.3);
-
-    color: white;
-
-    outline: none;
-
-    font-family: inherit;
-}
-
-.modal-error {
-    color: #ff719d;
-    font-size: 13px;
-    display: none;
-    margin-top: 10px;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-.status {
-    padding: 14px;
-
-    margin-bottom: 20px;
+    margin: 12px 0;
 
     border-radius: 14px;
 
-    background: rgba(66,245,167,.06);
+    border:
+        1px solid rgba(255,255,255,.10);
 
-    border: 1px solid rgba(66,245,167,.15);
+    background:
+        rgba(0,0,0,.30);
 
-    color: var(--green);
+    color: white;
 
+    font-family: inherit;
+
+    outline: none;
+}
+
+.modal-error {
     display: none;
+
+    margin-top: 12px;
+
+    color: #fb7185;
+
+    font-size: 13px;
 }
 
-.status.show {
-    display: block;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px) {
+
+    .app {
+        width: calc(100% - 20px);
+    }
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .nav-buttons {
+        width: 100%;
+
+        justify-content: center;
+
+        overflow-x: auto;
+    }
 
     .card-grid,
     .plan-grid,
@@ -1012,20 +1259,9 @@ iframe {
         grid-template-columns: 1fr;
     }
 
-    .navbar {
-        height: auto;
-        gap: 12px;
-        flex-direction: column;
-    }
-
-    .nav-buttons {
-        width: 100%;
-        overflow-x: auto;
-        justify-content: center;
-    }
-
     .profile-top {
         flex-direction: column;
+
         text-align: center;
     }
 
@@ -1034,7 +1270,11 @@ iframe {
     }
 
     .hero {
-        padding-top: 25px;
+        padding-top: 20px;
+    }
+
+    iframe {
+        height: 500px;
     }
 }
 </style>
@@ -1042,29 +1282,30 @@ iframe {
 
 <body>
 
+<!-- BACKGROUND -->
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
 
-<!-- =========================
-     START SCREEN
-========================= -->
+<!-- =====================================================
+     STARTING SCREEN
+===================================================== -->
 
 <div class="start-screen" id="startScreen">
 
     <div class="start-content">
 
-        <div class="logo-small">
-            TAKE YOU TO TASK
+        <div class="start-brand">
+            TAKEYOUTOTASK
         </div>
 
         <div class="start-title">
-            Study Smarter.
+            TakeYouToTask
         </div>
 
         <div class="start-subtitle">
-            Your academic workspace.
+            Your academic workspace
         </div>
 
     </div>
@@ -1072,595 +1313,576 @@ iframe {
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      LOADING SCREEN
-========================= -->
+===================================================== -->
 
 <div class="loading-screen" id="loadingScreen">
-    <div class="loader"></div>
+
+    <div class="loading-content">
+
+        <div class="loading-logo">
+            TAKEYOUTOTASK
+        </div>
+
+        <div class="loading-ring"></div>
+
+        <div class="loading-text">
+            LOADING YOUR WORKSPACE
+        </div>
+
+    </div>
+
 </div>
 
 
-<!-- =========================
-     APP
-========================= -->
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
 
 <div class="app" id="app">
 
 
-    <!-- NAVIGATION -->
+<!-- NAVBAR -->
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <div class="nav-logo">
-            TakeYouToTask
+    <div class="nav-logo">
+        TakeYouToTask
+    </div>
+
+    <div class="nav-buttons">
+
+        <button class="nav-btn"
+                onclick="showPage('home')">
+            Home
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('notes')">
+            Notes
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('quiz')">
+            Quiz
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('timer')">
+            Timer
+        </button>
+
+        <button class="nav-btn"
+                onclick="showPage('profile')">
+            Profile
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section class="page active" id="home">
+
+    <div class="hero">
+
+        <div class="hero-label">
+            YOUR ACADEMIC WORKSPACE
         </div>
 
-        <div class="nav-buttons">
+        <h1>
+            Study smarter.
+        </h1>
 
-            <button class="nav-btn" onclick="showPage('home')">
-                Home
-            </button>
+        <p>
+            Notes, quizzes and focused study tools
+            built for your revision.
+        </p>
 
-            <button class="nav-btn" onclick="showPage('notes')">
-                Notes
-            </button>
+    </div>
 
-            <button class="nav-btn" onclick="showPage('quiz')">
-                Quiz
-            </button>
 
-            <button class="nav-btn" onclick="showPage('timer')">
-                Timer
-            </button>
+    <div class="card-grid">
 
-            <button class="nav-btn" onclick="showPage('profile')">
-                Profile
-            </button>
+        <div class="card">
 
-        </div>
-
-    </nav>
-
-
-    <!-- =========================
-         HOME
-    ========================= -->
-
-    <section class="page active" id="home">
-
-        <div class="hero">
-
-            <div class="hero-label">
-                YOUR ACADEMIC WORKSPACE
-            </div>
-
-            <h1>
-                Take You To Task.
-            </h1>
-
-            <p>
-                Notes, quizzes and focused study tools designed
-                to help you get more done.
-            </p>
-
-        </div>
-
-
-        <div class="card-grid">
-
-            <div class="card">
-
-                <h2>Study Notes</h2>
-
-                <p>
-                    Access your organised academic notes
-                    by subject.
-                </p>
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('notes')"
-                >
-                    Open Notes
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <h2>Distraction-Free Timer</h2>
-
-                <p>
-                    Focus on your work with a clean,
-                    distraction-free timer.
-                </p>
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('timer')"
-                >
-                    Start Timer
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <h2>Premium Quiz</h2>
-
-                <p>
-                    Test yourself with interactive
-                    revision questions.
-                </p>
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('quiz')"
-                >
-                    Open Quiz
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <h2>Your Profile</h2>
-
-                <p>
-                    Customise your profile and manage
-                    your account information.
-                </p>
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('profile')"
-                >
-                    Open Profile
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PLANS
-    ========================= -->
-
-    <section class="page" id="plans">
-
-        <div class="hero">
-
-            <div class="hero-label">
-                MEMBERSHIP
-            </div>
-
-            <h1>
-                Choose Your Access.
-            </h1>
-
-            <p>
-                Start with Basic or unlock the full
-                TakeYouToTask experience.
-            </p>
-
-        </div>
-
-
-        <div class="plan-grid">
-
-
-            <!-- BASIC -->
-
-            <div class="plan">
-
-                <h2>Basic</h2>
-
-                <div class="plan-price">
-                    FREE
-                </div>
-
-                <ul>
-                    <li>Study notes</li>
-                    <li>Subject resources</li>
-                    <li>Distraction-free timer</li>
-                    <li>Personal profile</li>
-                </ul>
-
-                <button
-                    class="primary-btn"
-                    onclick="showPage('notes')"
-                >
-                    Continue with Basic
-                </button>
-
-            </div>
-
-
-            <!-- PREMIUM -->
-
-            <div class="plan premium">
-
-                <h2>Premium</h2>
-
-                <div class="plan-price">
-                    $9.90
-                </div>
-
-                <ul>
-                    <li>Everything in Basic</li>
-                    <li>Interactive quizzes</li>
-                    <li>Premium study tools</li>
-                    <li>Advanced revision features</li>
-                </ul>
-
-                <button
-                    class="primary-btn"
-                    onclick="openPremiumModal()"
-                >
-                    Unlock Premium
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         NOTES
-    ========================= -->
-
-    <section class="page" id="notes">
-
-        <div class="hero">
-
-            <div class="hero-label">
-                STUDY MATERIALS
-            </div>
-
-            <h1>
+            <h2>
                 Study Notes
-            </h1>
+            </h2>
 
             <p>
-                Select a subject to open your notes.
+                Access your organised notes
+                by subject.
             </p>
 
-        </div>
-
-
-        <div class="subject-grid">
-
-            <button
-                class="subject"
-                onclick="openPDF('notes.pdf')"
-            >
-
-                <div class="subject-title">
-                    History
-                </div>
-
-                <div class="subject-description">
-                    Historical concepts and revision notes
-                </div>
-
-            </button>
-
-
-            <button
-                class="subject"
-                onclick="openPDF('notes_lscience.pdf')"
-            >
-
-                <div class="subject-title">
-                    Life Science
-                </div>
-
-                <div class="subject-description">
-                    Life science revision materials
-                </div>
-
-            </button>
-
-
-            <button
-                class="subject"
-                onclick="openPDF('notes_pscience.pdf')"
-            >
-
-                <div class="subject-title">
-                    Physical Science
-                </div>
-
-                <div class="subject-description">
-                    Physical science notes
-                </div>
-
-            </button>
-
-
-            <button
-                class="subject"
-                onclick="openPDF('notes_geography.pdf')"
-            >
-
-                <div class="subject-title">
-                    Geography
-                </div>
-
-                <div class="subject-description">
-                    Geography concepts and case studies
-                </div>
-
+            <button class="primary-btn"
+                    onclick="showPage('notes')">
+                Open Notes
             </button>
 
         </div>
 
 
-        <div class="pdf-container">
+        <div class="card">
 
-            <iframe
-                id="pdfViewer"
-                style="display:none;"
-            ></iframe>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         QUIZ
-    ========================= -->
-
-    <section class="page" id="quiz">
-
-        <div class="hero">
-
-            <div class="hero-label">
-                PREMIUM
-            </div>
-
-            <h1>
-                Revision Quiz
-            </h1>
+            <h2>
+                Focus Timer
+            </h2>
 
             <p>
-                Test your knowledge.
+                Stay focused with a clean
+                distraction-free timer.
             </p>
 
-        </div>
-
-
-        <div class="quiz-card">
-
-            <div id="quizContent">
-
-                <h2 id="question">
-                    Loading question...
-                </h2>
-
-                <div id="options"></div>
-
-                <div
-                    class="quiz-result"
-                    id="quizResult"
-                ></div>
-
-            </div>
+            <button class="primary-btn"
+                    onclick="showPage('timer')">
+                Start Timer
+            </button>
 
         </div>
 
-    </section>
 
+        <div class="card">
 
-    <!-- =========================
-         TIMER
-    ========================= -->
-
-    <section class="page" id="timer">
-
-        <div class="hero">
-
-            <div class="hero-label">
-                FOCUS MODE
-            </div>
-
-            <h1>
-                Distraction-Free Timer
-            </h1>
+            <h2>
+                Premium Quiz
+            </h2>
 
             <p>
-                Focus on one task at a time.
+                Test your knowledge with
+                interactive revision questions.
             </p>
 
-        </div>
-
-
-        <div class="timer-card">
-
-            <div
-                class="timer-display"
-                id="timerDisplay"
-            >
-                25:00
-            </div>
-
-
-            <div class="timer-controls">
-
-                <button
-                    class="primary-btn"
-                    onclick="startTimer()"
-                >
-                    Start
-                </button>
-
-                <button
-                    class="secondary-btn"
-                    onclick="pauseTimer()"
-                >
-                    Pause
-                </button>
-
-                <button
-                    class="secondary-btn"
-                    onclick="resetTimer()"
-                >
-                    Reset
-                </button>
-
-            </div>
+            <button class="primary-btn"
+                    onclick="showPage('quiz')">
+                Open Quiz
+            </button>
 
         </div>
 
-    </section>
+
+        <div class="card">
+
+            <h2>
+                My Profile
+            </h2>
+
+            <p>
+                Add your profile picture,
+                username and personal information.
+            </p>
+
+            <button class="primary-btn"
+                    onclick="showPage('profile')">
+                Open Profile
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         PROFILE
-    ========================= -->
+<!-- =====================================================
+     PLANS
+===================================================== -->
 
-    <section class="page" id="profile">
+<section class="page" id="plans">
 
-        <div class="profile-wrapper">
+    <div class="hero">
 
-            <div class="profile-card">
+        <div class="hero-label">
+            MEMBERSHIP
+        </div>
 
+        <h1>
+            Choose your access.
+        </h1>
 
-                <div class="profile-top">
+        <p>
+            Basic is free. Premium unlocks
+            additional study features.
+        </p>
 
-                    <div class="profile-picture-wrapper">
-
-                        <img
-                            id="profilePicture"
-                            class="profile-picture"
-                            src=""
-                            alt="Profile picture"
-                        >
-
-                        <label
-                            class="profile-upload"
-                            for="profileImageInput"
-                        >
-                            +
-                        </label>
-
-                        <input
-                            type="file"
-                            id="profileImageInput"
-                            accept="image/*"
-                            style="display:none;"
-                        >
-
-                    </div>
+    </div>
 
 
-                    <div>
-
-                        <div
-                            class="profile-name"
-                            id="profilePreviewName"
-                        >
-                            Student
-                        </div>
-
-                        <div
-                            class="profile-plan"
-                            id="profilePlan"
-                        >
-                            Basic Plan
-                        </div>
-
-                    </div>
-
-                </div>
+    <div class="plan-grid">
 
 
-                <div
-                    class="status"
-                    id="profileStatus"
-                >
-                    Profile saved successfully.
-                </div>
+        <div class="plan">
+
+            <h2>
+                Basic
+            </h2>
+
+            <div class="plan-price">
+                FREE
+            </div>
+
+            <ul>
+                <li>Study notes</li>
+                <li>Subject resources</li>
+                <li>Focus timer</li>
+                <li>Personal profile</li>
+            </ul>
+
+            <button class="primary-btn"
+                    onclick="showPage('notes')">
+                Continue with Basic
+            </button>
+
+        </div>
 
 
-                <div class="profile-field">
+        <div class="plan premium">
 
-                    <label>
-                        Username
+            <h2>
+                Premium
+            </h2>
+
+            <div class="plan-price">
+                $9.90
+            </div>
+
+            <ul>
+                <li>Everything in Basic</li>
+                <li>Interactive quizzes</li>
+                <li>Premium revision tools</li>
+                <li>Additional study features</li>
+            </ul>
+
+            <button class="primary-btn"
+                    onclick="openPremiumModal()">
+                Unlock Premium
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NOTES
+===================================================== -->
+
+<section class="page" id="notes">
+
+    <div class="hero">
+
+        <div class="hero-label">
+            STUDY MATERIALS
+        </div>
+
+        <h1>
+            Study Notes
+        </h1>
+
+        <p>
+            Select a subject to open your notes.
+        </p>
+
+    </div>
+
+
+    <div class="subject-grid">
+
+        <button class="subject"
+                onclick="openPDF('notes.pdf')">
+
+            <div class="subject-title">
+                History
+            </div>
+
+            <div class="subject-description">
+                History revision notes
+            </div>
+
+        </button>
+
+
+        <button class="subject"
+                onclick="openPDF('notes_lscience.pdf')">
+
+            <div class="subject-title">
+                Life Science
+            </div>
+
+            <div class="subject-description">
+                Life Science revision notes
+            </div>
+
+        </button>
+
+
+        <button class="subject"
+                onclick="openPDF('notes_pscience.pdf')">
+
+            <div class="subject-title">
+                Physical Science
+            </div>
+
+            <div class="subject-description">
+                Physical Science revision notes
+            </div>
+
+        </button>
+
+
+        <button class="subject"
+                onclick="openPDF('notes_geography.pdf')">
+
+            <div class="subject-title">
+                Geography
+            </div>
+
+            <div class="subject-description">
+                Geography revision notes
+            </div>
+
+        </button>
+
+    </div>
+
+
+    <div class="pdf-container">
+
+        <iframe id="pdfViewer"
+                style="display:none;">
+        </iframe>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<section class="page" id="quiz">
+
+    <div class="hero">
+
+        <div class="hero-label">
+            PREMIUM FEATURE
+        </div>
+
+        <h1>
+            Revision Quiz
+        </h1>
+
+        <p>
+            Test yourself and check your knowledge.
+        </p>
+
+    </div>
+
+
+    <div class="quiz-card">
+
+        <h2 id="question">
+            Loading question...
+        </h2>
+
+        <div id="options"></div>
+
+        <div class="quiz-result"
+             id="quizResult">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TIMER
+===================================================== -->
+
+<section class="page" id="timer">
+
+    <div class="hero">
+
+        <div class="hero-label">
+            FOCUS MODE
+        </div>
+
+        <h1>
+            Distraction-Free Timer
+        </h1>
+
+        <p>
+            Focus on your work without distractions.
+        </p>
+
+    </div>
+
+
+    <div class="timer-card">
+
+        <div class="timer-display"
+             id="timerDisplay">
+            25:00
+        </div>
+
+
+        <div class="timer-controls">
+
+            <button class="primary-btn"
+                    onclick="startTimer()">
+                Start
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="pauseTimer()">
+                Pause
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="resetTimer()">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section class="page" id="profile">
+
+    <div class="profile-wrapper">
+
+        <div class="profile-card">
+
+
+            <div class="profile-top">
+
+                <div class="profile-picture-wrapper">
+
+                    <img
+                        id="profilePicture"
+                        class="profile-picture"
+                        alt="Profile picture"
+                    >
+
+                    <label
+                        class="profile-upload"
+                        for="profileImageInput">
+                        +
                     </label>
 
                     <input
-                        id="username"
-                        type="text"
-                        placeholder="Choose a username"
+                        type="file"
+                        id="profileImageInput"
+                        accept="image/*"
+                        style="display:none;"
                     >
 
                 </div>
 
 
-                <div class="profile-field">
+                <div>
 
-                    <label>
-                        Display Name
-                    </label>
+                    <div class="profile-name"
+                         id="profilePreviewName">
+                        Student
+                    </div>
 
-                    <input
-                        id="displayName"
-                        type="text"
-                        placeholder="Your display name"
-                    >
-
-                </div>
-
-
-                <div class="profile-field">
-
-                    <label>
-                        Bio
-                    </label>
-
-                    <textarea
-                        id="bio"
-                        placeholder="Tell us a little about yourself..."
-                    ></textarea>
+                    <div class="profile-plan"
+                         id="profilePlan">
+                        Basic Plan
+                    </div>
 
                 </div>
-
-
-                <button
-                    class="primary-btn"
-                    onclick="saveProfile()"
-                >
-                    Save Profile
-                </button>
 
             </div>
 
+
+            <div class="status"
+                 id="profileStatus">
+                Profile saved successfully.
+            </div>
+
+
+            <div class="profile-field">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="Choose a username"
+                >
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <label>
+                    Display Name
+                </label>
+
+                <input
+                    id="displayName"
+                    type="text"
+                    placeholder="Your display name"
+                >
+
+            </div>
+
+
+            <div class="profile-field">
+
+                <label>
+                    Bio
+                </label>
+
+                <textarea
+                    id="bio"
+                    placeholder="Tell us a little about yourself">
+                </textarea>
+
+            </div>
+
+
+            <button class="primary-btn"
+                    onclick="saveProfile()">
+                Save Profile
+            </button>
+
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      PREMIUM MODAL
-========================= -->
+===================================================== -->
 
-<div
-    class="modal"
-    id="premiumModal"
->
+<div class="modal"
+     id="premiumModal">
 
     <div class="modal-box">
 
@@ -1668,52 +1890,38 @@ iframe {
             Unlock Premium
         </h2>
 
-        <p style="color:var(--muted);">
-            Enter your Premium access code to unlock
-            all Premium features.
+        <p>
+            Premium gives you access to quizzes
+            and other premium study features.
         </p>
-
 
         <input
             type="password"
             id="premiumCode"
-            placeholder="Premium access code"
+            placeholder="Enter Premium access code"
         >
 
-
-        <button
-            class="primary-btn"
-            onclick="activatePremium()"
-        >
+        <button class="primary-btn"
+                onclick="activatePremium()">
             Activate Premium
         </button>
 
-
-        <button
-            class="secondary-btn"
-            style="margin-top:10px;"
-            onclick="closePremiumModal()"
-        >
+        <button class="secondary-btn"
+                style="margin-top:10px;"
+                onclick="closePremiumModal()">
             Cancel
         </button>
 
-
-        <div
-            class="modal-error"
-            id="premiumError"
-        >
+        <div class="modal-error"
+             id="premiumError">
             Incorrect access code.
         </div>
 
-
-        <p
-            style="
-                color:var(--muted);
-                font-size:12px;
-                margin-top:18px;
-                text-align:center;
-            "
-        >
+        <p style="
+            text-align:center;
+            font-size:12px;
+            margin-top:20px;
+        ">
             For Premium purchase information,
             contact 85133766.
         </p>
@@ -1729,40 +1937,45 @@ iframe {
    SETTINGS
 ===================================================== */
 
-const PREMIUM_CODE = "MeetMeAtTheLectureTheatre";
+const PREMIUM_CODE =
+    "MeetMeAtTheLectureTheatre";
 
 
 /* =====================================================
    START + LOADING
 ===================================================== */
 
-window.addEventListener("load", () => {
+window.addEventListener("load", function() {
 
-    setTimeout(() => {
+    setTimeout(function() {
 
         document
             .getElementById("startScreen")
             .classList.add("hide");
 
+
         document
             .getElementById("loadingScreen")
             .style.display = "flex";
 
-        setTimeout(() => {
+
+        setTimeout(function() {
 
             document
                 .getElementById("loadingScreen")
                 .style.display = "none";
 
+
             document
                 .getElementById("app")
                 .classList.add("show");
 
+
             loadProfile();
 
-        }, 1200);
+        }, 1400);
 
-    }, 2200);
+    }, 2300);
 
 });
 
@@ -1774,24 +1987,27 @@ window.addEventListener("load", () => {
 function showPage(pageName) {
 
     /*
-        IMPORTANT:
-        This does NOT send the user back to Plans.
+       IMPORTANT:
 
-        The user can freely move between:
-        Home
-        Notes
-        Quiz
-        Timer
-        Profile
+       There is NO automatic return to Plans.
+
+       Basic:
+       Home -> Notes -> Profile -> Home
+
+       Premium:
+       Home -> Notes -> Quiz -> Timer -> Profile
+
+       Premium status stays stored.
     */
+
 
     if (pageName === "quiz") {
 
         if (!isPremium()) {
 
             openPremiumModal();
-            return;
 
+            return;
         }
 
     }
@@ -1799,7 +2015,7 @@ function showPage(pageName) {
 
     document
         .querySelectorAll(".page")
-        .forEach(page => {
+        .forEach(function(page) {
 
             page.classList.remove("active");
 
@@ -1810,30 +2026,37 @@ function showPage(pageName) {
         document.getElementById(pageName);
 
 
-    if (page) {
+    if (!page) return;
 
-        page.classList.add("active");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    page.classList.add("active");
 
-    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
 /* =====================================================
-   PREMIUM
+   PREMIUM STATUS
 ===================================================== */
 
 function isPremium() {
 
-    return localStorage.getItem("premiumUser") === "true";
+    return (
+        localStorage.getItem("premiumUser")
+        === "true"
+    );
 
 }
 
+
+/* =====================================================
+   PREMIUM MODAL
+===================================================== */
 
 function openPremiumModal() {
 
@@ -1857,6 +2080,10 @@ function closePremiumModal() {
 }
 
 
+/* =====================================================
+   ACTIVATE PREMIUM
+===================================================== */
+
 function activatePremium() {
 
     const code =
@@ -1874,14 +2101,31 @@ function activatePremium() {
         );
 
 
+        document
+            .getElementById("premiumCode")
+            .value = "";
+
+
         closePremiumModal();
+
 
         updateProfilePlan();
 
 
         alert(
-            "Premium has been activated."
+            "Premium activated successfully."
         );
+
+
+        /*
+           IMPORTANT:
+
+           We go to HOME after activation,
+           NOT Plans.
+
+           The user can then choose Quiz,
+           Notes, Timer or Profile.
+        */
 
         showPage("home");
 
@@ -1902,31 +2146,31 @@ function activatePremium() {
 
 function updateProfilePlan() {
 
-    const plan =
+    const element =
         document.getElementById("profilePlan");
 
 
     if (isPremium()) {
 
-        plan.textContent =
+        element.textContent =
             "Premium Plan";
 
-        plan.style.color =
+        element.style.color =
             "var(--pink)";
 
-        plan.style.background =
-            "rgba(255,79,216,.10)";
+        element.style.background =
+            "rgba(236,72,153,.10)";
 
     } else {
 
-        plan.textContent =
+        element.textContent =
             "Basic Plan";
 
-        plan.style.color =
+        element.style.color =
             "var(--cyan)";
 
-        plan.style.background =
-            "rgba(0,229,255,.10)";
+        element.style.background =
+            "rgba(0,217,255,.10)";
 
     }
 
@@ -1940,13 +2184,16 @@ function updateProfilePlan() {
 function loadProfile() {
 
     const username =
-        localStorage.getItem("username") || "";
+        localStorage.getItem("username")
+        || "";
 
     const displayName =
-        localStorage.getItem("displayName") || "Student";
+        localStorage.getItem("displayName")
+        || "Student";
 
     const bio =
-        localStorage.getItem("bio") || "";
+        localStorage.getItem("bio")
+        || "";
 
 
     document
@@ -1971,7 +2218,9 @@ function loadProfile() {
 
 
     const savedPicture =
-        localStorage.getItem("profilePicture");
+        localStorage.getItem(
+            "profilePicture"
+        );
 
 
     if (savedPicture) {
@@ -1982,7 +2231,7 @@ function loadProfile() {
 
     } else {
 
-        createDefaultProfilePicture();
+        createDefaultPicture();
 
     }
 
@@ -2040,23 +2289,28 @@ function saveProfile() {
 
 
     const status =
-        document
-            .getElementById("profileStatus");
+        document.getElementById(
+            "profileStatus"
+        );
 
 
     status.classList.add("show");
 
 
-    setTimeout(() => {
+    setTimeout(function() {
 
         status.classList.remove("show");
 
-    }, 2500);
+    },2500);
 
 }
 
 
-function createDefaultProfilePicture() {
+/* =====================================================
+   DEFAULT PROFILE PICTURE
+===================================================== */
+
+function createDefaultPicture() {
 
     const canvas =
         document.createElement("canvas");
@@ -2072,26 +2326,23 @@ function createDefaultProfilePicture() {
 
     const gradient =
         ctx.createLinearGradient(
-            0,
-            0,
-            200,
-            200
+            0,0,200,200
         );
 
 
     gradient.addColorStop(
         0,
-        "#00e5ff"
+        "#00d9ff"
     );
 
     gradient.addColorStop(
         .5,
-        "#704cff"
+        "#8b5cf6"
     );
 
     gradient.addColorStop(
         1,
-        "#ff4fd8"
+        "#ec4899"
     );
 
 
@@ -2126,7 +2377,7 @@ function createDefaultProfilePicture() {
 
     ctx.arc(
         100,
-        180,
+        190,
         70,
         Math.PI,
         0
@@ -2136,15 +2387,19 @@ function createDefaultProfilePicture() {
 
 
     document
-        .getElementById("profilePicture")
+        .getElementById(
+            "profilePicture"
+        )
         .src =
-        canvas.toDataURL("image/png");
+        canvas.toDataURL(
+            "image/png"
+        );
 
 }
 
 
 /* =====================================================
-   PROFILE PICTURE
+   PROFILE IMAGE
 ===================================================== */
 
 document
@@ -2172,7 +2427,9 @@ document
 
 
                     document
-                        .getElementById("profilePicture")
+                        .getElementById(
+                            "profilePicture"
+                        )
                         .src = image;
 
 
@@ -2191,7 +2448,7 @@ document
 
 
 /* =====================================================
-   LIVE PROFILE NAME
+   LIVE DISPLAY NAME
 ===================================================== */
 
 document
@@ -2212,13 +2469,15 @@ document
 
 
 /* =====================================================
-   PDF
+   NOTES PDF
 ===================================================== */
 
 function openPDF(filename) {
 
     const viewer =
-        document.getElementById("pdfViewer");
+        document.getElementById(
+            "pdfViewer"
+        );
 
 
     viewer.src =
@@ -2229,14 +2488,14 @@ function openPDF(filename) {
         "block";
 
 
-    setTimeout(() => {
+    setTimeout(function() {
 
         viewer.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
-    }, 100);
+    },100);
 
 }
 
@@ -2245,28 +2504,38 @@ function openPDF(filename) {
    TIMER
 ===================================================== */
 
-let timerSeconds = 25 * 60;
+let timerSeconds =
+    25 * 60;
 
-let timerInterval = null;
+let timerInterval =
+    null;
 
 
 function updateTimerDisplay() {
 
     const minutes =
-        Math.floor(timerSeconds / 60);
+        Math.floor(
+            timerSeconds / 60
+        );
+
 
     const seconds =
         timerSeconds % 60;
 
 
     document
-        .getElementById("timerDisplay")
+        .getElementById(
+            "timerDisplay"
+        )
         .textContent =
 
-        String(minutes).padStart(2,"0")
-        + ":"
+        String(minutes)
+            .padStart(2,"0")
         +
-        String(seconds).padStart(2,"0");
+        ":"
+        +
+        String(seconds)
+            .padStart(2,"0");
 
 }
 
@@ -2277,7 +2546,7 @@ function startTimer() {
 
 
     timerInterval =
-        setInterval(() => {
+        setInterval(function() {
 
             if (timerSeconds > 0) {
 
@@ -2287,15 +2556,11 @@ function startTimer() {
 
             } else {
 
-                clearInterval(
-                    timerInterval
-                );
-
-                timerInterval = null;
+                pauseTimer();
 
             }
 
-        }, 1000);
+        },1000);
 
 }
 
@@ -2306,7 +2571,8 @@ function pauseTimer() {
         timerInterval
     );
 
-    timerInterval = null;
+    timerInterval =
+        null;
 
 }
 
@@ -2330,7 +2596,7 @@ updateTimerDisplay();
    QUIZ
 ===================================================== */
 
-const quizQuestions = [
+const questions = [
 
     {
         question:
@@ -2346,29 +2612,31 @@ const quizQuestions = [
         answer: 0
     },
 
+
     {
         question:
-            "What does free port status mean?",
+            "What did Singapore's free port status encourage?",
 
         options: [
-            "Trade was completely banned",
-            "Traders could trade with fewer restrictions",
-            "Only local traders could enter",
-            "Ships were not allowed to dock"
+            "More restrictions on traders",
+            "More traders and ships to visit",
+            "The closure of the harbour",
+            "The banning of foreign traders"
         ],
 
         answer: 1
     },
 
+
     {
         question:
-            "Which subject is available in the Study Notes section?",
+            "Which resource can be accessed from the Notes page?",
 
         options: [
             "History",
-            "Music Production",
-            "Computer Engineering",
-            "Economics"
+            "Movie Reviews",
+            "Music",
+            "Cooking"
         ],
 
         answer: 0
@@ -2384,7 +2652,7 @@ let quizScore = 0;
 function loadQuestion() {
 
     const question =
-        quizQuestions[currentQuestion];
+        questions[currentQuestion];
 
 
     document
@@ -2394,17 +2662,21 @@ function loadQuestion() {
 
 
     const options =
-        document.getElementById("options");
+        document.getElementById(
+            "options"
+        );
 
 
     options.innerHTML = "";
 
 
     question.options.forEach(
-        (option,index) => {
+        function(option,index) {
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             button.className =
@@ -2416,22 +2688,33 @@ function loadQuestion() {
 
 
             button.onclick =
-                () => answerQuestion(index);
+                function() {
+
+                    answerQuestion(index);
+
+                };
 
 
-            options.appendChild(button);
+            options.appendChild(
+                button
+            );
 
         }
     );
 
 
     document
-        .getElementById("quizResult")
+        .getElementById(
+            "quizResult"
+        )
         .textContent =
-        "Question " +
-        (currentQuestion + 1) +
-        " of " +
-        quizQuestions.length;
+        "Question "
+        +
+        (currentQuestion + 1)
+        +
+        " of "
+        +
+        questions.length;
 
 }
 
@@ -2439,10 +2722,12 @@ function loadQuestion() {
 function answerQuestion(index) {
 
     const question =
-        quizQuestions[currentQuestion];
+        questions[currentQuestion];
 
 
-    if (index === question.answer) {
+    if (
+        index === question.answer
+    ) {
 
         quizScore++;
 
@@ -2454,38 +2739,46 @@ function answerQuestion(index) {
 
     if (
         currentQuestion >=
-        quizQuestions.length
+        questions.length
     ) {
 
         document
-            .getElementById("question")
+            .getElementById(
+                "question"
+            )
             .textContent =
             "Quiz Complete";
 
 
         document
-            .getElementById("options")
+            .getElementById(
+                "options"
+            )
             .innerHTML = "";
 
 
         document
-            .getElementById("quizResult")
+            .getElementById(
+                "quizResult"
+            )
             .textContent =
-            "Score: " +
-            quizScore +
-            " / " +
-            quizQuestions.length;
+            "Score: "
+            +
+            quizScore
+            +
+            " / "
+            +
+            questions.length;
 
 
-        currentQuestion = 0;
-        quizScore = 0;
+        setTimeout(function() {
 
+            currentQuestion = 0;
+            quizScore = 0;
 
-        setTimeout(
-            loadQuestion,
-            3000
-        );
+            loadQuestion();
 
+        },3000);
 
     } else {
 
@@ -2496,15 +2789,11 @@ function answerQuestion(index) {
 }
 
 
-/* =====================================================
-   INITIALISE QUIZ
-===================================================== */
-
 loadQuestion();
 
 
 /* =====================================================
-   ESCAPE KEY
+   ESCAPE CLOSE MODAL
 ===================================================== */
 
 document.addEventListener(
