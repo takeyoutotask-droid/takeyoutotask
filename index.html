@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TakeYouToTask • Academic Portal</title>
+<title>TakeYouToTask Academic Notes</title>
 
 <style>
 
@@ -12,7 +12,7 @@
    FONTS
 ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 
 /* =========================================================
@@ -20,723 +20,513 @@
 ========================================================= */
 
 :root {
-  --cyan: #00e5ff;
-  --blue: #3b82f6;
-  --purple: #8b5cf6;
-  --pink: #ec4899;
-  --magenta: #d946ef;
-  --orange: #f97316;
-  --yellow: #facc15;
-  --green: #22c55e;
+    --blue: #00d9ff;
+    --cyan: #22d3ee;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --violet: #a855f7;
 
-  --bg: #03020b;
-  --card: rgba(15, 23, 42, 0.78);
+    --bg: #030712;
+    --bg2: #080b1a;
 
-  --text: #f8fafc;
-  --muted: #94a3b8;
+    --card: rgba(10, 15, 35, 0.78);
+
+    --text: #f8fafc;
+    --muted: #94a3b8;
+
+    --border: rgba(148, 163, 184, 0.15);
 }
 
 
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
+    margin: 0;
+    min-height: 100vh;
 
-  color: var(--text);
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0, 217, 255, 0.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(236, 72, 153, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 85%,
+            rgba(139, 92, 246, 0.16),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #020617,
+            #080b1a 50%,
+            #030712
+        );
 
-  font-family: Arial, sans-serif;
+    color: var(--text);
 
-  background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(0,229,255,.16),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(236,72,153,.15),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 15% 90%,
-      rgba(139,92,246,.16),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 90%,
-      rgba(249,115,22,.12),
-      transparent 25%
-    ),
-    linear-gradient(
-      135deg,
-      #02010a,
-      #09051a,
-      #10051c
-    );
+    font-family: "Inter", Arial, sans-serif;
 
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 
 /* =========================================================
-   GRID
+   BACKGROUND GRID
 ========================================================= */
 
 body::before {
-  content: "";
+    content: "";
 
-  position: fixed;
-  inset: 0;
+    position: fixed;
+    inset: 0;
 
-  background-image:
-    linear-gradient(
-      rgba(0,229,255,.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(236,72,153,.035) 1px,
-      transparent 1px
-    );
+    background-image:
+        linear-gradient(
+            rgba(0, 217, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 217, 255, 0.035) 1px,
+            transparent 1px
+        );
 
-  background-size: 50px 50px;
+    background-size: 50px 50px;
 
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent
-    );
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
 
-  pointer-events: none;
-  z-index: 0;
+    pointer-events: none;
+
+    z-index: 0;
 }
 
 
 /* =========================================================
-   ORBS
+   GLOWING ORBS
 ========================================================= */
 
 .orb {
-  position: fixed;
+    position: fixed;
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  filter: blur(90px);
+    filter: blur(90px);
 
-  pointer-events: none;
+    pointer-events: none;
 
-  opacity: .3;
+    opacity: 0.28;
 
-  z-index: 0;
+    z-index: 0;
 
-  animation: float 9s ease-in-out infinite;
+    animation: orbFloat 9s ease-in-out infinite;
 }
 
 .orb1 {
-  width: 280px;
-  height: 280px;
+    width: 300px;
+    height: 300px;
 
-  background: var(--cyan);
+    background: var(--blue);
 
-  top: -120px;
-  left: -100px;
+    top: -120px;
+    left: -100px;
 }
 
 .orb2 {
-  width: 330px;
-  height: 330px;
+    width: 350px;
+    height: 350px;
 
-  background: var(--purple);
+    background: var(--purple);
 
-  right: -130px;
-  bottom: -150px;
+    right: -130px;
+    bottom: -150px;
 
-  animation-delay: -3s;
+    animation-delay: -4s;
 }
 
 .orb3 {
-  width: 230px;
-  height: 230px;
+    width: 220px;
+    height: 220px;
 
-  background: var(--pink);
+    background: var(--pink);
 
-  right: -100px;
-  top: 40%;
+    right: 20%;
+    top: 30%;
 
-  animation-delay: -5s;
+    opacity: 0.12;
+
+    animation-delay: -7s;
 }
 
-.orb4 {
-  width: 180px;
-  height: 180px;
+@keyframes orbFloat {
 
-  background: var(--orange);
+    0%, 100% {
+        transform: translate(0, 0);
+    }
 
-  left: -100px;
-  bottom: 15%;
-
-  animation-delay: -2s;
-}
-
-@keyframes float {
-
-  0%,100% {
-    transform: translate(0,0);
-  }
-
-  50% {
-    transform: translate(30px,-25px);
-  }
-
+    50% {
+        transform: translate(35px, -25px);
+    }
 }
 
 
 /* =========================================================
-   PARTICLES
+   GENERAL
 ========================================================= */
 
-.particles {
-  position: fixed;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  z-index: 1;
-
-  overflow: hidden;
+.hidden {
+    display: none !important;
 }
-
-.particle {
-  position: absolute;
-
-  width: 3px;
-  height: 3px;
-
-  border-radius: 50%;
-
-  background: white;
-
-  box-shadow:
-    0 0 8px currentColor,
-    0 0 15px currentColor;
-
-  animation:
-    particleFloat
-    linear
-    infinite;
-}
-
-.particle:nth-child(1) {
-  left: 10%;
-  color: var(--cyan);
-  animation-duration: 8s;
-}
-
-.particle:nth-child(2) {
-  left: 20%;
-  color: var(--pink);
-  animation-duration: 11s;
-}
-
-.particle:nth-child(3) {
-  left: 30%;
-  color: var(--purple);
-  animation-duration: 9s;
-}
-
-.particle:nth-child(4) {
-  left: 40%;
-  color: var(--orange);
-  animation-duration: 12s;
-}
-
-.particle:nth-child(5) {
-  left: 50%;
-  color: var(--cyan);
-  animation-duration: 10s;
-}
-
-.particle:nth-child(6) {
-  left: 60%;
-  color: var(--pink);
-  animation-duration: 9s;
-}
-
-.particle:nth-child(7) {
-  left: 70%;
-  color: var(--purple);
-  animation-duration: 13s;
-}
-
-.particle:nth-child(8) {
-  left: 80%;
-  color: var(--orange);
-  animation-duration: 10s;
-}
-
-.particle:nth-child(9) {
-  left: 90%;
-  color: var(--cyan);
-  animation-duration: 12s;
-}
-
-@keyframes particleFloat {
-
-  0% {
-    transform:
-      translateY(110vh)
-      scale(0);
-
-    opacity: 0;
-  }
-
-  10% {
-    opacity: .8;
-  }
-
-  50% {
-    transform:
-      translateY(50vh)
-      translateX(30px)
-      scale(1);
-  }
-
-  90% {
-    opacity: .7;
-  }
-
-  100% {
-    transform:
-      translateY(-10vh)
-      translateX(-20px)
-      scale(0);
-
-    opacity: 0;
-  }
-
-}
-
-
-/* =========================================================
-   GENERAL PAGE
-========================================================= */
 
 .page {
-  position: relative;
+    position: relative;
 
-  z-index: 3;
+    z-index: 2;
 
-  width: min(1000px, calc(100% - 30px));
+    min-height: 100vh;
 
-  margin: 30px auto;
+    display: flex;
 
-  padding: 30px;
+    justify-content: center;
+    align-items: center;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(15,23,42,.82),
-      rgba(20,10,40,.72)
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  border-radius: 24px;
-
-  backdrop-filter: blur(25px);
-
-  box-shadow:
-    0 0 30px rgba(0,229,255,.06),
-    0 0 50px rgba(139,92,246,.06),
-    0 25px 80px rgba(0,0,0,.6);
-
-  animation: pageIn .5s ease;
-}
-
-@keyframes pageIn {
-
-  from {
-    opacity: 0;
-    transform:
-      translateY(15px)
-      scale(.98);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
+    padding: 30px;
 }
 
 
 /* =========================================================
    STARTING SCREEN
-   KEPT UNCHANGED
 ========================================================= */
 
-#homeScreen {
-  position: fixed;
+#startScreen {
+    position: fixed;
 
-  inset: 0;
+    inset: 0;
 
-  z-index: 10;
+    z-index: 100;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 
-  justify-content: center;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(139, 92, 246, 0.14),
+            transparent 40%
+        ),
+        #030712;
 
-  text-align: center;
-
-  padding: 25px;
-
-  transition:
-    opacity .7s,
-    transform .7s,
-    visibility .7s;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
 }
 
-#homeScreen.hide {
+.start-content {
+    text-align: center;
 
-  opacity: 0;
-
-  transform: scale(1.08);
-
-  visibility: hidden;
+    animation: startAppear 1.2s ease;
 }
 
-.home-content {
+@keyframes startAppear {
 
-  position: relative;
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 
-  z-index: 4;
-
-  max-width: 850px;
-
-  animation:
-    homeAppear
-    1.2s ease;
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-@keyframes homeAppear {
+.start-small {
+    font-family: "Space Grotesk", sans-serif;
 
-  from {
-    opacity: 0;
+    font-size: 12px;
 
-    transform:
-      translateY(30px)
-      scale(.95);
-  }
+    letter-spacing: 5px;
 
-  to {
-    opacity: 1;
+    color: var(--blue);
 
-    transform:
-      translateY(0)
-      scale(1);
-  }
+    margin-bottom: 20px;
 
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 15px rgba(0, 217, 255, 0.8);
 }
 
-.home-small {
+.start-title {
+    font-family: "Space Grotesk", sans-serif;
 
-  font-family:
-    "Product Sans",
-    Arial;
+    font-size: clamp(48px, 9vw, 90px);
 
-  letter-spacing: 5px;
+    font-weight: 700;
 
-  font-size: 13px;
+    letter-spacing: -4px;
 
-  color: #cbd5e1;
+    margin: 0;
 
-  margin-bottom: 20px;
-}
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            var(--blue),
+            var(--purple),
+            var(--pink),
+            #ffffff
+        );
 
-.home-title {
+    background-size: 300% 100%;
 
-  margin: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-  font-family:
-    "Product Sans",
-    Arial;
+    animation: gradientMove 5s ease infinite;
 
-  font-size:
-    clamp(55px,11vw,110px);
-
-  line-height: .95;
-
-  letter-spacing: -5px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink),
-      var(--orange),
-      var(--cyan)
-    );
-
-  background-size: 300% auto;
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
-  animation:
-    gradientMove 6s linear infinite,
-    titleGlow 3s ease-in-out infinite;
-}
-
-@keyframes gradientMove {
-
-  0% {
-    background-position: 0%;
-  }
-
-  100% {
-    background-position: 300%;
-  }
-
-}
-
-@keyframes titleGlow {
-
-  0%,100% {
     filter:
-      drop-shadow(
-        0 0 8px
-        rgba(0,229,255,.25)
-      );
-  }
-
-  50% {
-    filter:
-      drop-shadow(
-        0 0 25px
-        rgba(236,72,153,.35)
-      );
-  }
-
+        drop-shadow(
+            0 0 30px
+            rgba(139, 92, 246, 0.25)
+        );
 }
 
-.home-subtitle {
+.start-subtitle {
+    color: var(--muted);
 
-  margin-top: 25px;
+    margin-top: 15px;
 
-  font-family:
-    "Product Sans",
-    Arial;
+    font-size: 15px;
 
-  font-size: 20px;
-
-  color: #cbd5e1;
+    letter-spacing: 1px;
 }
 
-.home-description {
+.start-line {
+    width: 160px;
 
-  margin-top: 10px;
+    height: 2px;
 
-  color: #64748b;
+    margin: 30px auto;
 
-  font-size: 14px;
-}
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--blue),
+            var(--purple),
+            var(--pink),
+            transparent
+        );
 
-.start-button {
-
-  width: auto;
-
-  min-width: 230px;
-
-  margin-top: 35px;
-
-  padding: 16px 32px;
-
-  border: 0;
-
-  border-radius: 50px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink)
-    );
-
-  background-size: 200%;
-
-  color: white;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-weight: 700;
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-  animation:
-    buttonGradient 5s ease infinite;
-
-  box-shadow:
-    0 0 25px
-    rgba(0,229,255,.2);
-
-  transition: .25s;
-}
-
-.start-button:hover {
-
-  transform:
-    translateY(-4px)
-    scale(1.04);
-
-  box-shadow:
-    0 0 35px
-    rgba(0,229,255,.35),
-    0 0 50px
-    rgba(236,72,153,.2);
+    box-shadow:
+        0 0 15px
+        rgba(0, 217, 255, 0.5);
 }
 
 
 /* =========================================================
    LOADING SCREEN
-   KEPT UNCHANGED
 ========================================================= */
 
 #loadingScreen {
+    position: fixed;
 
-  position: fixed;
+    inset: 0;
 
-  inset: 0;
+    z-index: 99;
 
-  z-index: 20;
+    display: flex;
 
-  display: flex;
+    justify-content: center;
+    align-items: center;
 
-  flex-direction: column;
+    background: #030712;
 
-  align-items: center;
-
-  justify-content: center;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(50,15,90,.5),
-      #02010a 65%
-    );
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  transition: .5s;
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
 }
 
-#loadingScreen.show {
+.loading-content {
+    width: min(360px, 80%);
 
-  opacity: 1;
-
-  visibility: visible;
+    text-align: center;
 }
 
-.loader-logo {
+.loading-logo {
+    font-family: "Space Grotesk", sans-serif;
 
-  font-family:
-    "Product Sans",
-    Arial;
+    font-size: 22px;
 
-  font-size: 55px;
+    font-weight: 700;
 
-  font-weight: 700;
+    letter-spacing: 3px;
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink),
-      var(--orange)
-    );
+    margin-bottom: 30px;
 
-  -webkit-background-clip: text;
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
 
-  -webkit-text-fill-color: transparent;
-
-  background-size: 250%;
-
-  animation:
-    gradientMove 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.loader-text {
+.loading-bar {
+    width: 100%;
 
-  margin-top: 15px;
+    height: 5px;
 
-  color: #94a3b8;
+    border-radius: 20px;
 
-  letter-spacing: 2px;
+    background: rgba(148, 163, 184, 0.12);
 
-  font-size: 13px;
-
-  text-transform: uppercase;
+    overflow: hidden;
 }
 
-.loader {
+.loading-progress {
+    height: 100%;
 
-  width: 70px;
+    width: 0%;
 
-  height: 70px;
+    border-radius: 20px;
 
-  margin-top: 30px;
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
 
-  border-radius: 50%;
+    box-shadow:
+        0 0 15px
+        rgba(139, 92, 246, 0.7);
 
-  border:
-    3px solid transparent;
-
-  border-top-color: var(--cyan);
-
-  border-right-color: var(--purple);
-
-  border-bottom-color: var(--pink);
-
-  border-left-color: var(--orange);
-
-  animation:
-    spin 1s linear infinite;
+    animation: loading 2.2s ease forwards;
 }
 
-@keyframes spin {
+@keyframes loading {
 
-  to {
-    transform: rotate(360deg);
-  }
+    0% {
+        width: 0%;
+    }
 
+    100% {
+        width: 100%;
+    }
+}
+
+.loading-text {
+    margin-top: 14px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   GRADIENT ANIMATION
+========================================================= */
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(900px, 100%);
+
+    padding: 38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.82),
+            rgba(8, 12, 30, 0.78)
+        );
+
+    border:
+        1px solid rgba(148, 163, 184, 0.16);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(25px);
+
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 0 60px
+        rgba(0, 217, 255, 0.05),
+        0 30px 80px
+        rgba(0, 0, 0, 0.55);
+
+    animation: cardIn 0.6s ease;
+}
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
 
@@ -745,31 +535,23 @@ body::before {
 ========================================================= */
 
 .brand {
+    font-family: "Space Grotesk", sans-serif;
 
-  font-family:
-    "Product Sans",
-    Arial;
+    font-size: 12px;
 
-  font-size: 14px;
+    font-weight: 700;
 
-  font-weight: 700;
+    letter-spacing: 4px;
 
-  letter-spacing: 3px;
+    text-transform: uppercase;
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink),
-      var(--orange)
-    );
+    color: var(--blue);
 
-  -webkit-background-clip: text;
+    text-shadow:
+        0 0 12px
+        rgba(0, 217, 255, 0.7);
 
-  -webkit-text-fill-color: transparent;
-
-  margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 
@@ -777,211 +559,545 @@ body::before {
    HEADINGS
 ========================================================= */
 
+h1,
+h2,
+h3 {
+    font-family: "Space Grotesk", sans-serif;
+}
+
 h1 {
+    margin: 0;
 
-  margin: 0 0 10px;
+    font-size: 38px;
 
-  font-family:
-    "Product Sans",
-    Arial;
+    letter-spacing: -1.5px;
 
-  font-size: 32px;
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #9befff,
+            #b69cff,
+            #ff9dd1
+        );
 
-  background:
-    linear-gradient(
-      90deg,
-      white,
-      var(--cyan),
-      #c4b5fd,
-      #f9a8d4
-    );
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
+    color: var(--muted);
 
-  color: var(--muted);
+    margin-top: 10px;
 
-  margin-bottom: 25px;
+    font-size: 15px;
 }
 
 
 /* =========================================================
-   NAVIGATION
+   PLAN SELECTOR
 ========================================================= */
 
-.navbar {
+.plan-header {
+    text-align: center;
 
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
-.nav-button {
-
-  width: auto;
-
-  flex: 1;
-
-  min-width: 120px;
-
-  margin: 0;
-
-  padding: 10px;
-
-  background:
-    rgba(255,255,255,.05);
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  box-shadow: none;
-
-  font-size: 13px;
-
-  color: white;
-
-  border-radius: 12px;
-
-  cursor: pointer;
-
-  transition: .25s;
+.plan-header h1 {
+    font-size: 42px;
 }
 
-.nav-button:hover {
+.plan-header p {
+    max-width: 550px;
 
-  background:
-    rgba(255,255,255,.1);
+    margin: 12px auto;
 
-  transform: translateY(-2px);
+    color: var(--muted);
+
+    line-height: 1.6;
 }
 
 
 /* =========================================================
-   LOGIN
+   PRICING GRID
 ========================================================= */
 
-.login-page {
+.pricing-grid {
+    display: grid;
 
-  max-width: 440px;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-  text-align: center;
+    gap: 22px;
+}
+
+
+/* =========================================================
+   PLAN CARD
+========================================================= */
+
+.plan-card {
+    position: relative;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.15);
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-6px);
+}
+
+
+/* =========================================================
+   BASIC CARD
+========================================================= */
+
+.basic-card:hover {
+    border-color:
+        rgba(0, 217, 255, 0.4);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 217, 255, 0.08);
+}
+
+
+/* =========================================================
+   PREMIUM CARD
+========================================================= */
+
+.premium-card {
+    border:
+        1px solid
+        rgba(139, 92, 246, 0.5);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 20, 65, 0.72),
+            rgba(20, 10, 40, 0.72)
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(139, 92, 246, 0.12);
+}
+
+.premium-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    top: -130px;
+    right: -100px;
+
+    background: var(--pink);
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    opacity: 0.16;
+
+    pointer-events: none;
+}
+
+.premium-card:hover {
+    border-color:
+        rgba(236, 72, 153, 0.7);
+
+    box-shadow:
+        0 20px 70px
+        rgba(139, 92, 246, 0.18);
+}
+
+
+/* =========================================================
+   PREMIUM BADGE
+========================================================= */
+
+.premium-badge {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    border-radius: 50px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(236, 72, 153, 0.25);
+}
+
+
+/* =========================================================
+   PLAN TITLE
+========================================================= */
+
+.plan-title {
+    margin-top: 20px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+.plan-description {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    min-height: 42px;
+}
+
+
+/* =========================================================
+   HUGE PREMIUM PRICE
+========================================================= */
+
+.premium-price {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 72px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -5px;
+
+    margin: 25px 0 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink),
+            var(--blue)
+        );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        gradientMove 5s ease infinite;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(139, 92, 246, 0.35)
+        );
+}
+
+.currency {
+    font-size: 38px;
+
+    vertical-align: top;
+
+    letter-spacing: -2px;
+}
+
+.price-label {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: var(--muted);
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 25px 0;
+}
+
+.features li {
+    position: relative;
+
+    padding: 10px 0 10px 25px;
+
+    font-size: 13px;
+
+    color: #cbd5e1;
+
+    border-bottom:
+        1px solid
+        rgba(148, 163, 184, 0.07);
+}
+
+.features li::before {
+    content: "";
+
+    position: absolute;
+
+    left: 2px;
+    top: 17px;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--blue);
+
+    box-shadow:
+        0 0 10px
+        rgba(0, 217, 255, 0.7);
+}
+
+.premium-card .features li::before {
+    background: var(--pink);
+
+    box-shadow:
+        0 0 10px
+        rgba(236, 72, 153, 0.7);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 14px 18px;
+
+    margin-top: 10px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: white;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0891b2,
+            #2563eb
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 217, 255, 0.12);
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.15);
+
+    box-shadow:
+        0 0 30px
+        rgba(0, 217, 255, 0.3);
+}
+
+.premium-button {
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(236, 72, 153, 0.18);
+}
+
+.premium-button:hover {
+    box-shadow:
+        0 0 35px
+        rgba(236, 72, 153, 0.4);
+}
+
+
+/* =========================================================
+   ACCESS CODE
+========================================================= */
+
+.access-section {
+    margin-top: 20px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(148, 163, 184, 0.1);
+}
+
+.access-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.access-text {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 12px;
 }
 
 input {
+    width: 100%;
 
-  width: 100%;
+    padding: 14px 15px;
 
-  padding: 14px;
+    border-radius: 12px;
 
-  margin-bottom: 12px;
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.18);
 
-  background:
-    rgba(2,6,23,.75);
+    background:
+        rgba(2, 6, 23, 0.7);
 
-  border:
-    1px solid
-    rgba(148,163,184,.2);
+    color: white;
 
-  border-radius: 11px;
+    outline: none;
 
-  color: white;
+    font-family: "Inter", sans-serif;
 
-  outline: none;
+    font-size: 14px;
 
-  font-size: 15px;
-
-  transition: .25s;
+    transition: 0.25s;
 }
 
 input:focus {
+    border-color: var(--purple);
 
-  border-color:
-    var(--purple);
-
-  box-shadow:
-    0 0 20px
-    rgba(139,92,246,.18);
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.08),
+        0 0 20px
+        rgba(139, 92, 246, 0.12);
 }
 
-.main-button {
-
-  width: 100%;
-
-  padding: 13px;
-
-  margin-top: 8px;
-
-  border: none;
-
-  border-radius: 13px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink)
-    );
-
-  background-size: 200%;
-
-  color: white;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-weight: 500;
-
-  cursor: pointer;
-
-  animation:
-    buttonGradient 5s ease infinite;
-
-  transition: .25s;
-}
-
-.main-button:hover {
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 25px
-    rgba(139,92,246,.25);
+input::placeholder {
+    color: #64748b;
 }
 
 
 /* =========================================================
-   ERROR
+   PURCHASE INFO
 ========================================================= */
 
-.error {
+.purchase-info {
+    margin-top: 18px;
 
-  display: none;
+    padding: 15px;
 
-  color: #fda4af;
+    border-radius: 15px;
 
-  background:
-    rgba(244,63,94,.1);
+    background:
+        rgba(236, 72, 153, 0.06);
 
-  border:
-    1px solid
-    rgba(244,63,94,.25);
+    border:
+        1px solid
+        rgba(236, 72, 153, 0.12);
 
-  padding: 10px;
+    text-align: center;
+}
 
-  border-radius: 8px;
+.purchase-info p {
+    margin: 4px 0;
 
-  font-size: 13px;
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.phone-number {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #f9a8d4;
+
+    text-shadow:
+        0 0 12px
+        rgba(236, 72, 153, 0.4);
 }
 
 
@@ -990,123 +1106,209 @@ input:focus {
 ========================================================= */
 
 .dashboard {
-
-  text-align: left;
+    max-width: 1000px;
 }
 
-.welcome {
+.dashboard-header {
+    text-align: center;
 
-  margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .dashboard-grid {
+    display: grid;
 
-  display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap: 15px;
+    gap: 18px;
 }
 
-.dashboard-card {
+.feature-card {
+    padding: 25px;
 
-  position: relative;
+    border-radius: 20px;
 
-  padding: 24px;
+    background:
+        rgba(15, 23, 42, 0.55);
 
-  border-radius: 20px;
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.12);
 
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  cursor: pointer;
-
-  overflow: hidden;
-
-  transition: .3s;
-
-  font-family:
-    "Product Sans",
-    Arial;
+    transition: 0.3s;
 }
 
-.dashboard-card:hover {
+.feature-card:hover {
+    transform: translateY(-4px);
 
-  transform:
-    translateY(-5px);
+    border-color:
+        rgba(0, 217, 255, 0.3);
 
-  box-shadow:
-    0 10px 35px
-    rgba(0,0,0,.35);
+    box-shadow:
+        0 15px 40px
+        rgba(0, 217, 255, 0.07);
 }
 
-.card-notes {
+.feature-card h3 {
+    margin: 0 0 8px;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,229,255,.18),
-      rgba(59,130,246,.08)
-    );
+    font-size: 19px;
 }
 
-.card-quiz {
+.feature-card p {
+    color: var(--muted);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(236,72,153,.18),
-      rgba(217,70,239,.08)
-    );
+    font-size: 13px;
+
+    line-height: 1.6;
 }
 
-.card-focus {
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(249,115,22,.18),
-      rgba(250,204,21,.08)
-    );
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-box {
+    margin-top: 25px;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.12);
 }
 
-.card-progress {
+.progress-header {
+    display: flex;
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(34,197,94,.18),
-      rgba(16,185,129,.08)
-    );
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 13px;
 }
 
-.card-icon {
+.progress-track {
+    height: 8px;
 
-  font-size: 28px;
+    border-radius: 20px;
 
-  margin-bottom: 12px;
+    background:
+        rgba(148, 163, 184, 0.1);
 
-  display: none;
+    overflow: hidden;
 }
 
-.card-title {
+.progress-fill {
+    width: 35%;
 
-  font-size: 20px;
+    height: 100%;
 
-  font-weight: 700;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(139, 92, 246, 0.5);
 }
 
-.card-description {
 
-  margin-top: 7px;
+/* =========================================================
+   TIMER
+========================================================= */
 
-  color: var(--muted);
+.timer-box {
+    text-align: center;
 
-  font-size: 13px;
+    margin-top: 25px;
 
-  font-family: Arial, sans-serif;
+    padding: 35px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10, 20, 45, 0.8),
+            rgba(25, 10, 45, 0.7)
+        );
+
+    border:
+        1px solid
+        rgba(139, 92, 246, 0.2);
+
+    box-shadow:
+        0 0 35px
+        rgba(139, 92, 246, 0.08);
+}
+
+.timer-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+
+    text-transform: uppercase;
+}
+
+.timer-display {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 76px;
+
+    font-weight: 700;
+
+    letter-spacing: -4px;
+
+    margin: 20px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(139, 92, 246, 0.25)
+        );
+}
+
+.timer-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.timer-buttons button {
+    margin: 0;
 }
 
 
@@ -1114,99 +1316,69 @@ input:focus {
    NOTES
 ========================================================= */
 
-.subject {
-
-  width: 100%;
-
-  padding: 18px;
-
-  margin: 10px 0;
-
-  border-radius: 16px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  text-align: left;
-
-  color: white;
-
-  cursor: pointer;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 16px;
-
-  transition: .25s;
+.subject-list {
+    margin-top: 25px;
 }
 
-.subject:hover {
+.subject-btn {
+    width: 100%;
 
-  transform:
-    translateX(5px);
+    text-align: left;
 
-  border-color:
-    rgba(255,255,255,.25);
+    padding: 17px 20px;
+
+    margin-top: 10px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 165, 233, 0.10),
+            rgba(139, 92, 246, 0.10)
+        );
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.13);
+
+    position: relative;
 }
 
-.history {
+.subject-btn::after {
+    content: "→";
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(249,115,22,.22),
-      rgba(250,204,21,.08)
-    );
+    position: absolute;
+
+    right: 20px;
+
+    color: var(--blue);
+
+    transition: 0.2s;
 }
 
-.life {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(34,197,94,.22),
-      rgba(16,185,129,.08)
-    );
-}
-
-.physical {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(139,92,246,.22),
-      rgba(217,70,239,.08)
-    );
-}
-
-.geo {
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,229,255,.22),
-      rgba(236,72,153,.08)
-    );
+.subject-btn:hover::after {
+    transform: translateX(5px);
 }
 
 iframe {
+    width: 100%;
 
-  width: 100%;
+    height: 550px;
 
-  height: 600px;
+    margin-top: 20px;
 
-  margin-top: 20px;
+    border-radius: 18px;
 
-  border:
-    1px solid
-    rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(0, 217, 255, 0.18);
 
-  border-radius: 16px;
+    background: #111827;
 
-  background: #111827;
+    box-shadow:
+        0 0 30px
+        rgba(0, 217, 255, 0.08);
 }
 
 
@@ -1215,594 +1387,49 @@ iframe {
 ========================================================= */
 
 .rules {
+    margin-top: 25px;
 
-  color: #cbd5e1;
+    color: #cbd5e1;
 
-  line-height: 1.55;
+    font-size: 14px;
 
-  text-align: left;
+    line-height: 1.7;
 }
 
 .rules li {
-
-  margin-bottom: 14px;
+    margin-bottom: 14px;
 }
 
-.rules li::marker {
+.rules b {
+    color: white;
 
-  color: var(--pink);
-}
-
-
-/* =========================================================
-   QUIZ
-========================================================= */
-
-.quiz-question {
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 20px;
-
-  margin-bottom: 20px;
-}
-
-.answer {
-
-  width: 100%;
-
-  padding: 14px;
-
-  margin: 7px 0;
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  background:
-    rgba(255,255,255,.05);
-
-  color: white;
-
-  border-radius: 12px;
-
-  cursor: pointer;
-
-  text-align: left;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  transition: .2s;
-}
-
-.answer:hover {
-
-  border-color:
-    var(--purple);
-
-  background:
-    rgba(139,92,246,.12);
-}
-
-.answer.correct {
-
-  background:
-    rgba(34,197,94,.2);
-
-  border-color:
-    var(--green);
-}
-
-.answer.wrong {
-
-  background:
-    rgba(244,63,94,.2);
-
-  border-color:
-    #f43f5e;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 
 /* =========================================================
-   DISTRACTION FREE TIMER
+   ERROR
 ========================================================= */
 
-.timer-page {
+.error {
+    display: none;
 
-  max-width: 850px;
+    margin-top: 10px;
 
-  overflow: hidden;
+    padding: 10px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(10,14,35,.94),
-      rgba(22,12,48,.92)
-    );
+    border-radius: 10px;
 
-  border:
-    1px solid
-    rgba(139,92,246,.22);
+    background:
+        rgba(244, 63, 94, 0.08);
 
-  box-shadow:
-    0 0 40px
-    rgba(139,92,246,.08),
-    0 25px 80px
-    rgba(0,0,0,.65);
-}
+    border:
+        1px solid
+        rgba(244, 63, 94, 0.2);
 
+    color: #fb7185;
 
-/* Timer top section */
-
-.timer-top {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 10px;
-}
-
-.timer-label {
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 13px;
-
-  font-weight: 500;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  color: #a78bfa;
-}
-
-
-/* Timer main card */
-
-.timer-card {
-
-  position: relative;
-
-  margin-top: 25px;
-
-  padding: 50px 35px;
-
-  border-radius: 32px;
-
-  background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(139,92,246,.16),
-      transparent 45%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.045),
-      rgba(255,255,255,.015)
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  box-shadow:
-    inset 0 1px
-    rgba(255,255,255,.04),
-    0 20px 50px
-    rgba(0,0,0,.3);
-
-  text-align: center;
-
-  overflow: hidden;
-}
-
-
-/* Animated timer glow */
-
-.timer-card::before {
-
-  content: "";
-
-  position: absolute;
-
-  width: 280px;
-
-  height: 280px;
-
-  left: 50%;
-
-  top: 50%;
-
-  transform: translate(-50%,-50%);
-
-  border-radius: 50%;
-
-  background:
-    conic-gradient(
-      from 0deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink),
-      var(--orange),
-      var(--cyan)
-    );
-
-  filter: blur(70px);
-
-  opacity: .08;
-
-  animation:
-    timerGlow 8s linear infinite;
-
-  pointer-events: none;
-}
-
-@keyframes timerGlow {
-
-  to {
-    transform:
-      translate(-50%,-50%)
-      rotate(360deg);
-  }
-
-}
-
-
-/* Timer display */
-
-.timer-display {
-
-  position: relative;
-
-  z-index: 2;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size:
-    clamp(75px,14vw,125px);
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  letter-spacing: -5px;
-
-  margin: 20px 0 25px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffffff,
-      #c4b5fd,
-      #8b5cf6,
-      #ec4899
-    );
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
-  filter:
-    drop-shadow(
-      0 0 20px
-      rgba(139,92,246,.2)
-    );
-}
-
-
-/* Timer status */
-
-.timer-status {
-
-  position: relative;
-
-  z-index: 2;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 14px;
-
-  color: #94a3b8;
-
-  letter-spacing: 1px;
-
-  margin-bottom: 30px;
-}
-
-
-/* Presets */
-
-.timer-presets {
-
-  position: relative;
-
-  z-index: 2;
-
-  display: flex;
-
-  justify-content: center;
-
-  gap: 9px;
-
-  flex-wrap: wrap;
-
-  margin-bottom: 20px;
-}
-
-.timer-preset {
-
-  width: auto;
-
-  margin: 0;
-
-  padding: 10px 19px;
-
-  border-radius: 999px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  background:
-    rgba(255,255,255,.045);
-
-  color: #cbd5e1;
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 13px;
-
-  cursor: pointer;
-
-  transition: .25s;
-
-  box-shadow: none;
-}
-
-.timer-preset:hover {
-
-  background:
-    rgba(139,92,246,.15);
-
-  border-color:
-    rgba(139,92,246,.4);
-
-  color: white;
-
-  transform: translateY(-2px);
-}
-
-.timer-preset.active {
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,229,255,.15),
-      rgba(139,92,246,.2)
-    );
-
-  border-color:
-    rgba(139,92,246,.55);
-
-  color: white;
-
-  box-shadow:
-    0 0 20px
-    rgba(139,92,246,.12);
-}
-
-
-/* Timer controls */
-
-.timer-controls {
-
-  position: relative;
-
-  z-index: 2;
-
-  display: flex;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  flex-wrap: wrap;
-}
-
-.timer-control {
-
-  width: auto;
-
-  min-width: 120px;
-
-  margin: 0;
-
-  padding: 13px 22px;
-
-  border-radius: 14px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 14px;
-
-  cursor: pointer;
-
-  transition: .25s;
-}
-
-.timer-start {
-
-  background:
-    linear-gradient(
-      90deg,
-      #0891b2,
-      #7c3aed
-    );
-
-  box-shadow:
-    0 0 20px
-    rgba(139,92,246,.15);
-}
-
-.timer-start:hover {
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 0 30px
-    rgba(139,92,246,.3);
-}
-
-.timer-pause {
-
-  background:
-    rgba(255,255,255,.06);
-
-  color: #cbd5e1;
-}
-
-.timer-reset {
-
-  background:
-    rgba(255,255,255,.03);
-
-  color: #94a3b8;
-}
-
-
-/* Timer information */
-
-.timer-info {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap: 10px;
-
-  margin-top: 15px;
-}
-
-.timer-info-card {
-
-  padding: 14px;
-
-  border-radius: 16px;
-
-  background:
-    rgba(255,255,255,.035);
-
-  border:
-    1px solid
-    rgba(255,255,255,.06);
-
-  text-align: center;
-}
-
-.timer-info-number {
-
-  font-family:
-    "Product Sans",
-    Arial;
-
-  font-size: 19px;
-
-  font-weight: 700;
-
-  color: #e2e8f0;
-}
-
-.timer-info-label {
-
-  margin-top: 4px;
-
-  font-size: 11px;
-
-  color: #64748b;
-
-  text-transform: uppercase;
-
-  letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-.progress-item {
-
-  margin: 22px 0;
-}
-
-.progress-header {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-bottom: 7px;
-
-  font-family:
-    "Product Sans",
-    Arial;
-}
-
-.progress-bar {
-
-  height: 12px;
-
-  background:
-    rgba(255,255,255,.08);
-
-  border-radius: 20px;
-
-  overflow: hidden;
-}
-
-.progress-fill {
-
-  height: 100%;
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink)
-    );
-
-  background-size: 200%;
-
-  animation:
-    buttonGradient 5s linear infinite;
+    font-size: 12px;
 }
 
 
@@ -1810,85 +1437,77 @@ iframe {
    FOOTER
 ========================================================= */
 
-.footer {
+.footer-text {
+    text-align: center;
 
-  text-align: center;
+    margin-top: 25px;
 
-  margin-top: 25px;
+    color: #64748b;
 
-  color: #64748b;
+    font-size: 11px;
 
-  font-size: 12px;
+    letter-spacing: 0.5px;
 }
 
 
 /* =========================================================
-   HIDDEN
+   BACK BUTTON
 ========================================================= */
 
-.hidden {
+.back-button {
+    margin-top: 20px;
 
-  display: none !important;
+    background:
+        rgba(148, 163, 184, 0.08);
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.12);
+
+    box-shadow: none;
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:650px) {
+@media (max-width: 750px) {
 
-  .page {
+    .pricing-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 
-    width:
-      calc(100% - 20px);
+    .container {
+        padding: 25px 20px;
 
-    padding: 22px;
+        border-radius: 22px;
+    }
 
-    margin: 10px auto;
-  }
+    h1 {
+        font-size: 30px;
+    }
 
-  .dashboard-grid {
+    .plan-header h1 {
+        font-size: 34px;
+    }
 
-    grid-template-columns: 1fr;
-  }
+    .premium-price {
+        font-size: 60px;
+    }
 
-  .home-title {
+    .timer-display {
+        font-size: 60px;
+    }
 
-    font-size: 55px;
+    .timer-buttons {
+        grid-template-columns: 1fr;
+    }
 
-    letter-spacing: -3px;
-  }
-
-  .loader-logo {
-
-    font-size: 40px;
-  }
-
-  iframe {
-
-    height: 450px;
-  }
-
-  .timer-card {
-
-    padding: 35px 18px;
-
-    border-radius: 25px;
-  }
-
-  .timer-display {
-
-    font-size: 70px;
-
-    letter-spacing: -3px;
-  }
-
-  .timer-info {
-
-    grid-template-columns: 1fr;
-  }
-
+    .page {
+        padding: 18px;
+    }
 }
 
 </style>
@@ -1898,966 +1517,944 @@ iframe {
 <body>
 
 
-<!-- ========================================================
+<!-- =========================================================
      BACKGROUND
 ========================================================= -->
 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
-<div class="orb orb4"></div>
 
-<div class="particles">
 
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
+<!-- =========================================================
+     STARTING SCREEN
+========================================================= -->
+
+<div id="startScreen">
+
+    <div class="start-content">
+
+        <div class="start-small">
+            Academic Resources
+        </div>
+
+        <h1 class="start-title">
+            TakeYouToTask
+        </h1>
+
+        <div class="start-line"></div>
+
+        <div class="start-subtitle">
+            Study smarter. Stay focused. Get it done.
+        </div>
+
+    </div>
 
 </div>
 
 
-<!-- ========================================================
-     START SCREEN
-========================================================= -->
-
-<section id="homeScreen">
-
-  <div class="home-content">
-
-    <div class="home-small">
-      ACADEMIC RESOURCE PORTAL
-    </div>
-
-    <h1 class="home-title">
-      TakeYouToTask
-    </h1>
-
-    <div class="home-subtitle">
-      Study smarter. Learn faster. Stay ahead.
-    </div>
-
-    <div class="home-description">
-      Your personal academic study portal.
-    </div>
-
-    <button
-      class="start-button"
-      onclick="startPortal()"
-    >
-      Start Studying →
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ========================================================
+<!-- =========================================================
      LOADING SCREEN
 ========================================================= -->
 
-<section id="loadingScreen">
+<div id="loadingScreen">
 
-  <div class="loader-logo">
-    TakeYouToTask
-  </div>
+    <div class="loading-content">
 
-  <div class="loader-text">
-    Preparing your study portal
-  </div>
+        <div class="loading-logo">
+            TAKEYOUTOTASK
+        </div>
 
-  <div class="loader"></div>
+        <div class="loading-bar">
+
+            <div class="loading-progress"></div>
+
+        </div>
+
+        <div class="loading-text">
+            PREPARING YOUR STUDY SPACE
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN PAGE
+========================================================= -->
+
+<main class="page">
+
+
+<!-- =========================================================
+     PLAN SELECTION
+========================================================= -->
+
+<section class="container" id="plansPage">
+
+    <div class="plan-header">
+
+        <div class="brand">
+            TAKEYOUTOTASK
+        </div>
+
+        <h1>
+            Choose Your Study Plan
+        </h1>
+
+        <p>
+            Start with the essential study tools for free,
+            or unlock the complete TakeYouToTask experience.
+        </p>
+
+    </div>
+
+
+    <div class="pricing-grid">
+
+
+        <!-- =================================================
+             BASIC
+        ================================================== -->
+
+        <div class="plan-card basic-card">
+
+            <div class="plan-title">
+                Basic
+            </div>
+
+            <div class="plan-description">
+                Everything you need for everyday studying.
+            </div>
+
+            <div class="premium-price"
+                 style="
+                 font-size:52px;
+                 letter-spacing:-3px;
+                 background:
+                 linear-gradient(
+                 90deg,
+                 #ffffff,
+                 #94a3b8
+                 );
+                 -webkit-background-clip:text;
+                 -webkit-text-fill-color:transparent;
+                 ">
+
+                FREE
+
+            </div>
+
+            <div class="price-label">
+                FOREVER
+            </div>
+
+
+            <ul class="features">
+
+                <li>
+                    Study Notes
+                </li>
+
+                <li>
+                    PDF Viewer
+                </li>
+
+                <li>
+                    Subject Library
+                </li>
+
+                <li>
+                    Distraction-Free Timer
+                </li>
+
+                <li>
+                    Study Progress
+                </li>
+
+            </ul>
+
+
+            <button onclick="openBasic()">
+                Continue with Basic
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             PREMIUM
+        ================================================== -->
+
+        <div class="plan-card premium-card">
+
+            <span class="premium-badge">
+                PREMIUM
+            </span>
+
+            <div class="plan-title">
+                Premium
+            </div>
+
+            <div class="plan-description">
+                Unlock advanced tools designed for serious revision.
+            </div>
+
+
+            <!-- HUGE PRICE -->
+
+            <div class="premium-price">
+
+                <span class="currency">$</span>4.90
+
+            </div>
+
+            <div class="price-label">
+                ONE-TIME PAYMENT
+            </div>
+
+
+            <ul class="features">
+
+                <li>
+                    Everything in Basic
+                </li>
+
+                <li>
+                    Interactive Quizzes
+                </li>
+
+                <li>
+                    Practice Questions
+                </li>
+
+                <li>
+                    Exam Mode
+                </li>
+
+                <li>
+                    Advanced Revision Tools
+                </li>
+
+                <li>
+                    Premium Study Materials
+                </li>
+
+            </ul>
+
+
+            <button
+                class="premium-button"
+                onclick="showPremium()">
+
+                Unlock Premium
+
+            </button>
+
+
+            <!-- ACCESS CODE -->
+
+            <div class="access-section">
+
+                <div class="access-title">
+                    Already have a Premium Access Code?
+                </div>
+
+                <div class="access-text">
+                    Enter your code below to unlock Premium
+                    without purchasing it.
+                </div>
+
+                <input
+                    type="password"
+                    id="premiumCode"
+                    placeholder="Enter Premium Access Code"
+                >
+
+                <button
+                    class="premium-button"
+                    onclick="checkPremiumCode()">
+
+                    Enter Access Code
+
+                </button>
+
+                <div
+                    class="error"
+                    id="premiumError">
+
+                    Incorrect access code. Please try again.
+
+                </div>
+
+            </div>
+
+
+            <!-- PURCHASE -->
+
+            <div class="purchase-info">
+
+                <p>
+                    Want to purchase Premium?
+                </p>
+
+                <p>
+                    Text this number for further details:
+                </p>
+
+                <div class="phone-number">
+                    85133766
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-text">
+        TakeYouToTask Academic Resources
+    </div>
 
 </section>
 
 
-<!-- ========================================================
-     LOGIN
+<!-- =========================================================
+     BASIC DASHBOARD
 ========================================================= -->
 
 <section
-  id="loginPage"
-  class="page login-page hidden"
->
+    class="container dashboard hidden"
+    id="basicPage">
 
-  <div class="brand">
-    TAKEYOUTOTASK
-  </div>
+    <div class="dashboard-header">
 
-  <h1>
-    Welcome Back
-  </h1>
+        <div class="brand">
+            BASIC ACCESS
+        </div>
 
-  <p class="subtitle">
-    Login to access your academic resources.
-  </p>
+        <h1>
+            Your Study Space
+        </h1>
 
-  <input
-    id="usernameInput"
-    type="text"
-    placeholder="Username"
-  >
+        <p class="subtitle">
+            Everything you need to stay focused.
+        </p>
 
-  <input
-    id="passwordInput"
-    type="password"
-    placeholder="Password"
-  >
+    </div>
 
-  <input
-    id="codeInput"
-    type="password"
-    placeholder="Access Code"
-  >
 
-  <button
-    class="main-button"
-    onclick="checkLogin()"
-  >
-    Continue →
-  </button>
+    <div class="dashboard-grid">
 
-  <p
-    id="loginError"
-    class="error"
-  >
-    Incorrect login details. Please try again.
-  </p>
 
-  <div class="footer">
-    Private academic resource
-  </div>
+        <div
+            class="feature-card"
+            onclick="openNotes()"
+            style="cursor:pointer">
+
+            <h3>
+                Study Notes
+            </h3>
+
+            <p>
+                Open your subject notes and revision materials.
+            </p>
+
+            <button>
+                Open Notes
+            </button>
+
+        </div>
+
+
+        <div
+            class="feature-card"
+            onclick="openTimer()"
+            style="cursor:pointer">
+
+            <h3>
+                Distraction-Free Timer
+            </h3>
+
+            <p>
+                Focus on your work with a clean study timer.
+            </p>
+
+            <button>
+                Start Timer
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-box">
+
+        <div class="progress-header">
+
+            <span>
+                Study Progress
+            </span>
+
+            <span>
+                35%
+            </span>
+
+        </div>
+
+        <div class="progress-track">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        onclick="backToPlans()">
+
+        Back to Plans
+
+    </button>
 
 </section>
 
 
-<!-- ========================================================
-     RULES
+<!-- =========================================================
+     PREMIUM DASHBOARD
 ========================================================= -->
 
 <section
-  id="rulesPage"
-  class="page hidden"
->
+    class="container dashboard hidden"
+    id="premiumPage">
 
-  <div class="brand">
-    TAKEYOUTOTASK
-  </div>
+    <div class="dashboard-header">
 
-  <h1>
-    Rules & Regulations
-  </h1>
+        <div class="brand">
+            PREMIUM ACCESS
+        </div>
 
-  <p class="subtitle">
-    Please read before entering the portal.
-  </p>
+        <h1>
+            Premium Study Space
+        </h1>
 
-  <div class="rules">
+        <p class="subtitle">
+            Your complete revision toolkit.
+        </p>
 
-    <ul>
+    </div>
 
-      <li>
-        <b>No Redistribution</b><br>
-        These notes are for personal study only.
-      </li>
 
-      <li>
-        <b>No Photocopying or Printing</b><br>
-        Do not photocopy, scan or print the notes.
-      </li>
+    <div class="dashboard-grid">
 
-      <li>
-        <b>No Online Uploading</b><br>
-        Do not upload the notes to other platforms.
-      </li>
 
-      <li>
-        <b>No Claiming as Your Own Work</b><br>
-        Do not claim these notes as your own.
-      </li>
+        <div
+            class="feature-card"
+            onclick="openNotes()"
+            style="cursor:pointer">
 
-      <li>
-        <b>No Unauthorised Editing</b><br>
-        Do not modify or redistribute modified versions.
-      </li>
+            <h3>
+                Study Notes
+            </h3>
 
-      <li>
-        <b>For Study Purposes Only</b><br>
-        These resources are intended for learning.
-      </li>
+            <p>
+                Access all available subject notes.
+            </p>
 
-    </ul>
+            <button>
+                Open Notes
+            </button>
 
-  </div>
+        </div>
 
-  <button
-    class="main-button"
-    onclick="showDashboard()"
-  >
-    I Understand — Enter Portal →
-  </button>
+
+        <div
+            class="feature-card"
+            onclick="openTimer()"
+            style="cursor:pointer">
+
+            <h3>
+                Distraction-Free Timer
+            </h3>
+
+            <p>
+                Focus without unnecessary distractions.
+            </p>
+
+            <button>
+                Start Timer
+            </button>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>
+                Quizzes
+            </h3>
+
+            <p>
+                Test your understanding with interactive quizzes.
+            </p>
+
+            <button
+                class="premium-button"
+                onclick="premiumFeature()">
+
+                Start Quiz
+
+            </button>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>
+                Practice Questions
+            </h3>
+
+            <p>
+                Strengthen your knowledge with targeted questions.
+            </p>
+
+            <button
+                class="premium-button"
+                onclick="premiumFeature()">
+
+                Practice
+
+            </button>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>
+                Exam Mode
+            </h3>
+
+            <p>
+                Simulate an exam environment and test yourself.
+            </p>
+
+            <button
+                class="premium-button"
+                onclick="premiumFeature()">
+
+                Enter Exam Mode
+
+            </button>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>
+                Revision Tools
+            </h3>
+
+            <p>
+                Access advanced tools for faster revision.
+            </p>
+
+            <button
+                class="premium-button"
+                onclick="premiumFeature()">
+
+                Open Tools
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-box">
+
+        <div class="progress-header">
+
+            <span>
+                Premium Study Progress
+            </span>
+
+            <span>
+                35%
+            </span>
+
+        </div>
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                style="width:35%">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        onclick="backToPlans()">
+
+        Back to Plans
+
+    </button>
 
 </section>
 
 
-<!-- ========================================================
-     DASHBOARD
+<!-- =========================================================
+     NOTES PAGE
 ========================================================= -->
 
 <section
-  id="dashboardPage"
-  class="page dashboard hidden"
->
+    class="container hidden"
+    id="notesPage">
 
-  <div class="brand">
-    TAKEYOUTOTASK
-  </div>
-
-  <div class="welcome">
+    <div class="brand">
+        STUDY NOTES
+    </div>
 
     <h1>
-      Welcome Back
+        Subject Library
     </h1>
 
-    <div class="subtitle">
-      What would you like to do today?
-    </div>
-
-  </div>
+    <p class="subtitle">
+        Select a subject to open your notes.
+    </p>
 
 
-  <div class="dashboard-grid">
+    <div class="subject-list">
 
 
-    <div
-      class="dashboard-card card-notes"
-      onclick="showPage('notesPage')"
-    >
+        <button
+            class="subject-btn"
+            onclick="openPDF('notes.pdf')">
 
-      <div class="card-title">
-        Notes Library
-      </div>
+            History
 
-      <div class="card-description">
-        Access your History, Science and Geography notes.
-      </div>
-
-    </div>
+        </button>
 
 
-    <div
-      class="dashboard-card card-quiz"
-      onclick="showPage('quizPage')"
-    >
+        <button
+            class="subject-btn"
+            onclick="openPDF('notes_lscience.pdf')">
 
-      <div class="card-title">
-        Quick Quiz
-      </div>
+            Life Science
 
-      <div class="card-description">
-        Test yourself with practice questions.
-      </div>
-
-    </div>
+        </button>
 
 
-    <div
-      class="dashboard-card card-focus"
-      onclick="showPage('timerPage')"
-    >
+        <button
+            class="subject-btn"
+            onclick="openPDF('notes_pscience.pdf')">
 
-      <div class="card-title">
-        Focus Mode
-      </div>
+            Physical Science
 
-      <div class="card-description">
-        Study using a distraction-free timer.
-      </div>
+        </button>
+
+
+        <button
+            class="subject-btn"
+            onclick="openPDF('notes_geography.pdf')">
+
+            Geography
+
+        </button>
+
 
     </div>
 
 
-    <div
-      class="dashboard-card card-progress"
-      onclick="showPage('progressPage')"
-    >
+    <iframe
+        id="pdfViewer"
+        style="display:none">
+    </iframe>
 
-      <div class="card-title">
-        Progress
-      </div>
 
-      <div class="card-description">
-        See your study progress.
-      </div>
+    <button
+        id="downloadBtn"
+        style="display:none"
+        onclick="downloadCurrentPDF()">
 
+        Download PDF
+
+    </button>
+
+
+    <button
+        class="back-button"
+        onclick="backFromNotes()">
+
+        Back
+
+    </button>
+
+
+    <div class="footer-text">
+        TakeYouToTask Academic Resources
     </div>
-
-  </div>
-
-
-  <div class="footer">
-    TakeYouToTask • Academic Resources
-  </div>
 
 </section>
 
 
-<!-- ========================================================
-     NOTES
+<!-- =========================================================
+     TIMER PAGE
 ========================================================= -->
 
 <section
-  id="notesPage"
-  class="page hidden"
->
+    class="container hidden"
+    id="timerPage">
 
-  <div class="navbar">
-
-    <button
-      class="nav-button"
-      onclick="showPage('dashboardPage')"
-    >
-      Home
-    </button>
-
-    <button
-      class="nav-button"
-      onclick="showPage('quizPage')"
-    >
-      Quiz
-    </button>
-
-    <button
-      class="nav-button"
-      onclick="showPage('timerPage')"
-    >
-      Focus
-    </button>
-
-  </div>
-
-
-  <div class="brand">
-    STUDY LIBRARY
-  </div>
-
-  <h1>
-    Your Notes
-  </h1>
-
-  <p class="subtitle">
-    Select a subject to open your notes.
-  </p>
-
-
-  <button
-    class="subject history"
-    onclick="openPDF('notes.pdf')"
-  >
-    History
-  </button>
-
-
-  <button
-    class="subject life"
-    onclick="openPDF('notes_lscience.pdf')"
-  >
-    Life Science
-  </button>
-
-
-  <button
-    class="subject physical"
-    onclick="openPDF('notes_pscience.pdf')"
-  >
-    Physical Science
-  </button>
-
-
-  <button
-    class="subject geo"
-    onclick="openPDF('notes_geography.pdf')"
-  >
-    Geography
-  </button>
-
-
-  <iframe
-    id="pdfViewer"
-    style="display:none"
-  ></iframe>
-
-
-  <div class="footer">
-    TakeYouToTask • Notes Library
-  </div>
-
-</section>
-
-
-<!-- ========================================================
-     QUIZ
-========================================================= -->
-
-<section
-  id="quizPage"
-  class="page hidden"
->
-
-  <div class="navbar">
-
-    <button
-      class="nav-button"
-      onclick="showPage('dashboardPage')"
-    >
-      Home
-    </button>
-
-    <button
-      class="nav-button"
-      onclick="showPage('notesPage')"
-    >
-      Notes
-    </button>
-
-  </div>
-
-
-  <div class="brand">
-    PRACTICE MODE
-  </div>
-
-  <h1>
-    Quick Quiz
-  </h1>
-
-  <p
-    id="quizProgress"
-    class="subtitle"
-  >
-    Question 1 of 5
-  </p>
-
-
-  <div
-    id="quizQuestion"
-    class="quiz-question"
-  ></div>
-
-
-  <div id="answers"></div>
-
-
-  <button
-    id="nextQuestion"
-    class="main-button hidden"
-    onclick="nextQuizQuestion()"
-  >
-    Next Question →
-  </button>
-
-
-  <div
-    id="quizResult"
-    class="hidden"
-  >
+    <div class="brand">
+        FOCUS MODE
+    </div>
 
     <h1>
-      Quiz Complete
+        Distraction-Free Timer
     </h1>
 
-    <div
-      id="scoreText"
-      class="subtitle"
-    ></div>
+    <p class="subtitle">
+        Focus on the task. Ignore everything else.
+    </p>
+
+
+    <div class="timer-box">
+
+        <div class="timer-title">
+            Focus Session
+        </div>
+
+
+        <div
+            class="timer-display"
+            id="timerDisplay">
+
+            25:00
+
+        </div>
+
+
+        <div class="timer-buttons">
+
+            <button onclick="startTimer()">
+                Start
+            </button>
+
+            <button onclick="pauseTimer()">
+                Pause
+            </button>
+
+            <button onclick="resetTimer()">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
 
     <button
-      class="main-button"
-      onclick="startQuiz()"
-    >
-      Try Again
-    </button>
+        class="back-button"
+        onclick="backFromTimer()">
 
-  </div>
+        Back
+
+    </button>
 
 </section>
 
 
-<!-- ========================================================
-     DISTRACTION FREE TIMER
-========================================================= -->
-
-<section
-  id="timerPage"
-  class="page timer-page hidden"
->
-
-  <div class="timer-top">
-
-    <div>
-
-      <div class="timer-label">
-        Focus Mode
-      </div>
-
-      <h1>
-        Distraction Free
-      </h1>
-
-    </div>
-
-  </div>
-
-
-  <p class="subtitle">
-    Choose a session and focus completely on your work.
-  </p>
-
-
-  <div class="timer-card">
-
-    <div
-      id="timerDisplay"
-      class="timer-display"
-    >
-      25:00
-    </div>
-
-
-    <div
-      id="timerStatus"
-      class="timer-status"
-    >
-      Ready when you are
-    </div>
-
-
-    <div class="timer-presets">
-
-      <button
-        class="timer-preset active"
-        onclick="setTimer(25,this)"
-      >
-        25 minutes
-      </button>
-
-      <button
-        class="timer-preset"
-        onclick="setTimer(45,this)"
-      >
-        45 minutes
-      </button>
-
-      <button
-        class="timer-preset"
-        onclick="setTimer(60,this)"
-      >
-        60 minutes
-      </button>
-
-    </div>
-
-
-    <div class="timer-controls">
-
-      <button
-        class="timer-control timer-start"
-        onclick="startTimer()"
-      >
-        Start Session
-      </button>
-
-      <button
-        class="timer-control timer-pause"
-        onclick="pauseTimer()"
-      >
-        Pause
-      </button>
-
-      <button
-        class="timer-control timer-reset"
-        onclick="resetTimer()"
-      >
-        Reset
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="timer-info">
-
-    <div class="timer-info-card">
-
-      <div
-        id="sessionCount"
-        class="timer-info-number"
-      >
-        0
-      </div>
-
-      <div class="timer-info-label">
-        Sessions
-      </div>
-
-    </div>
-
-
-    <div class="timer-info-card">
-
-      <div
-        id="focusMinutes"
-        class="timer-info-number"
-      >
-        0
-      </div>
-
-      <div class="timer-info-label">
-        Minutes
-      </div>
-
-    </div>
-
-
-    <div class="timer-info-card">
-
-      <div
-        id="timerState"
-        class="timer-info-number"
-      >
-        Ready
-      </div>
-
-      <div class="timer-info-label">
-        Status
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="navbar" style="margin-top:25px;">
-
-    <button
-      class="nav-button"
-      onclick="showPage('dashboardPage')"
-    >
-      Home
-    </button>
-
-    <button
-      class="nav-button"
-      onclick="showPage('notesPage')"
-    >
-      Notes
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ========================================================
-     PROGRESS
-========================================================= -->
-
-<section
-  id="progressPage"
-  class="page hidden"
->
-
-  <div class="navbar">
-
-    <button
-      class="nav-button"
-      onclick="showPage('dashboardPage')"
-    >
-      Home
-    </button>
-
-    <button
-      class="nav-button"
-      onclick="showPage('notesPage')"
-    >
-      Notes
-    </button>
-
-  </div>
-
-
-  <div class="brand">
-    YOUR PROGRESS
-  </div>
-
-  <h1>
-    Study Progress
-  </h1>
-
-  <p class="subtitle">
-    Keep going. You're making progress.
-  </p>
-
-
-  <div class="progress-item">
-
-    <div class="progress-header">
-      <span>History</span>
-      <span>80%</span>
-    </div>
-
-    <div class="progress-bar">
-
-      <div
-        class="progress-fill"
-        style="width:80%"
-      ></div>
-
-    </div>
-
-  </div>
-
-
-  <div class="progress-item">
-
-    <div class="progress-header">
-      <span>Life Science</span>
-      <span>65%</span>
-    </div>
-
-    <div class="progress-bar">
-
-      <div
-        class="progress-fill"
-        style="width:65%"
-      ></div>
-
-    </div>
-
-  </div>
-
-
-  <div class="progress-item">
-
-    <div class="progress-header">
-      <span>Physical Science</span>
-      <span>55%</span>
-    </div>
-
-    <div class="progress-bar">
-
-      <div
-        class="progress-fill"
-        style="width:55%"
-      ></div>
-
-    </div>
-
-  </div>
-
-
-  <div class="progress-item">
-
-    <div class="progress-header">
-      <span>Geography</span>
-      <span>70%</span>
-    </div>
-
-    <div class="progress-bar">
-
-      <div
-        class="progress-fill"
-        style="width:70%"
-      ></div>
-
-    </div>
-
-  </div>
-
-
-  <div class="footer">
-    Keep studying. Keep improving.
-  </div>
-
-</section>
+</main>
 
 
 <script>
 
+
 /* =========================================================
-   LOGIN DETAILS
+   PREMIUM ACCESS CODE
 ========================================================= */
 
-const USERNAME = "student";
-
-const PASSWORD = "notes123";
-
-const SECRET_CODE =
-  "MeetMeAtTheLectureTheatre";
+const PREMIUM_CODE =
+    "MeetMeAtTheLectureTheatre";
 
 
 /* =========================================================
-   START PORTAL
+   PAGE ELEMENTS
 ========================================================= */
 
-function startPortal() {
+const startScreen =
+    document.getElementById("startScreen");
 
-  const home =
-    document.getElementById("homeScreen");
-
-  const loading =
+const loadingScreen =
     document.getElementById("loadingScreen");
 
+const plansPage =
+    document.getElementById("plansPage");
 
-  home.classList.add("hide");
+const basicPage =
+    document.getElementById("basicPage");
+
+const premiumPage =
+    document.getElementById("premiumPage");
+
+const notesPage =
+    document.getElementById("notesPage");
+
+const timerPage =
+    document.getElementById("timerPage");
 
 
-  setTimeout(() => {
+/* =========================================================
+   START + LOADING
+========================================================= */
 
-    loading.classList.add("show");
+setTimeout(() => {
 
-  },300);
+    startScreen.style.opacity = "0";
+    startScreen.style.visibility = "hidden";
+
+}, 2300);
 
 
-  setTimeout(() => {
+setTimeout(() => {
 
-    loading.classList.remove("show");
+    loadingScreen.style.opacity = "0";
+    loadingScreen.style.visibility = "hidden";
 
-    document
-      .getElementById("loginPage")
-      .classList
-      .remove("hidden");
+}, 4500);
 
-  },2300);
+
+/* =========================================================
+   PAGE SWITCHER
+========================================================= */
+
+function hideAllPages() {
+
+    plansPage.classList.add("hidden");
+
+    basicPage.classList.add("hidden");
+
+    premiumPage.classList.add("hidden");
+
+    notesPage.classList.add("hidden");
+
+    timerPage.classList.add("hidden");
 
 }
 
 
 /* =========================================================
-   LOGIN
+   BASIC
 ========================================================= */
 
-function checkLogin() {
+function openBasic() {
 
-  const username =
-    document
-      .getElementById("usernameInput")
-      .value;
+    hideAllPages();
 
-  const password =
-    document
-      .getElementById("passwordInput")
-      .value;
+    basicPage.classList.remove("hidden");
 
-  const code =
-    document
-      .getElementById("codeInput")
-      .value;
-
-  const error =
-    document
-      .getElementById("loginError");
-
-
-  if (
-    username === USERNAME &&
-    password === PASSWORD &&
-    code === SECRET_CODE
-  ) {
-
-    error.style.display = "none";
-
-    document
-      .getElementById("loginPage")
-      .classList
-      .add("hidden");
-
-    document
-      .getElementById("rulesPage")
-      .classList
-      .remove("hidden");
-
-  }
-
-  else {
-
-    error.style.display = "block";
-
-  }
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
 /* =========================================================
-   RULES → DASHBOARD
+   PREMIUM PAGE
 ========================================================= */
 
-function showDashboard() {
+function showPremium() {
 
-  document
-    .getElementById("rulesPage")
-    .classList
-    .add("hidden");
-
-  document
-    .getElementById("dashboardPage")
-    .classList
-    .remove("hidden");
+    document
+        .getElementById("premiumCode")
+        .focus();
 
 }
 
 
 /* =========================================================
-   PAGE NAVIGATION
+   CHECK PREMIUM CODE
 ========================================================= */
 
-function showPage(pageID) {
+function checkPremiumCode() {
 
-  const pages = [
+    const input =
+        document
+        .getElementById("premiumCode")
+        .value
+        .trim();
 
-    "dashboardPage",
-    "notesPage",
-    "quizPage",
-    "timerPage",
-    "progressPage"
-
-  ];
-
-
-  pages.forEach(id => {
-
-    document
-      .getElementById(id)
-      .classList
-      .add("hidden");
-
-  });
+    const error =
+        document
+        .getElementById("premiumError");
 
 
-  document
-    .getElementById(pageID)
-    .classList
-    .remove("hidden");
+    if (input === PREMIUM_CODE) {
+
+        error.style.display = "none";
+
+        hideAllPages();
+
+        premiumPage.classList.remove("hidden");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    } else {
+
+        error.style.display = "block";
+
+    }
+
+}
 
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+/* =========================================================
+   PREMIUM FEATURES
+========================================================= */
+
+function premiumFeature() {
+
+    alert(
+        "Premium feature selected. This section is ready for your quiz, practice questions or exam system."
+    );
+
+}
 
 
-  if (pageID === "quizPage") {
+/* =========================================================
+   NOTES
+========================================================= */
 
-    startQuiz();
+function openNotes() {
 
-  }
+    hideAllPages();
+
+    notesPage.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
@@ -2866,302 +2463,68 @@ function showPage(pageID) {
    OPEN PDF
 ========================================================= */
 
+let currentPDF = "";
+
+
 function openPDF(filename) {
 
-  const viewer =
-    document
-      .getElementById("pdfViewer");
+    const viewer =
+        document.getElementById("pdfViewer");
+
+    const downloadBtn =
+        document.getElementById("downloadBtn");
 
 
-  viewer.src =
-    "./" + filename;
+    currentPDF = filename;
 
 
-  viewer.style.display =
-    "block";
+    viewer.src =
+        "./" + filename;
+
+    viewer.style.display =
+        "block";
 
 
-  setTimeout(() => {
+    downloadBtn.style.display =
+        "block";
 
-    viewer.scrollIntoView({
-      behavior: "smooth"
-    });
 
-  },100);
+    setTimeout(() => {
+
+        viewer.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
 
 }
 
 
 /* =========================================================
-   QUIZ
+   DOWNLOAD PDF
 ========================================================= */
 
-const quizQuestions = [
+function downloadCurrentPDF() {
 
-  {
-    question:
-      "Which factor helped Singapore become an important trading centre?",
-
-    answers: [
-      "Strategic location",
-      "Cold climate",
-      "Mountainous terrain",
-      "Large forests"
-    ],
-
-    correct: 0
-  },
-
-  {
-    question:
-      "What is a tissue?",
-
-    answers: [
-      "A group of similar cells working together",
-      "A single organ",
-      "A group of organs",
-      "A single organism"
-    ],
-
-    correct: 0
-  },
-
-  {
-    question:
-      "Which process involves water changing from liquid to gas?",
-
-    answers: [
-      "Condensation",
-      "Evaporation",
-      "Freezing",
-      "Melting"
-    ],
-
-    correct: 1
-  },
-
-  {
-    question:
-      "What does density measure?",
-
-    answers: [
-      "Mass per unit volume",
-      "Volume per unit time",
-      "Distance per unit time",
-      "Force per unit area"
-    ],
-
-    correct: 0
-  },
-
-  {
-    question:
-      "Which is an example of a pull factor for migration?",
-
-    answers: [
-      "War",
-      "Famine",
-      "Better economic opportunities",
-      "Natural disasters"
-    ],
-
-    correct: 2
-  }
-
-];
-
-
-let currentQuestion = 0;
-
-let quizScore = 0;
-
-
-function startQuiz() {
-
-  currentQuestion = 0;
-
-  quizScore = 0;
-
-
-  document
-    .getElementById("quizResult")
-    .classList
-    .add("hidden");
-
-
-  document
-    .getElementById("nextQuestion")
-    .classList
-    .add("hidden");
-
-
-  showQuizQuestion();
-
-}
-
-
-function showQuizQuestion() {
-
-  const q =
-    quizQuestions[currentQuestion];
-
-
-  document
-    .getElementById("quizProgress")
-    .textContent =
-      `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
-
-
-  document
-    .getElementById("quizQuestion")
-    .textContent =
-      q.question;
-
-
-  const answers =
-    document
-      .getElementById("answers");
-
-
-  answers.innerHTML = "";
-
-
-  q.answers.forEach(
-    (answer,index) => {
-
-      const button =
-        document.createElement("button");
-
-
-      button.className =
-        "answer";
-
-
-      button.textContent =
-        answer;
-
-
-      button.onclick =
-        () => selectAnswer(button,index);
-
-
-      answers.appendChild(button);
-
+    if (!currentPDF) {
+        return;
     }
-  );
 
-}
+    const link =
+        document.createElement("a");
 
+    link.href =
+        "./" + currentPDF;
 
-function selectAnswer(button,index) {
+    link.download =
+        currentPDF;
 
-  const q =
-    quizQuestions[currentQuestion];
+    document.body.appendChild(link);
 
+    link.click();
 
-  const all =
-    document
-      .querySelectorAll(".answer");
-
-
-  all.forEach(btn => {
-
-    btn.disabled = true;
-
-  });
-
-
-  if(index === q.correct) {
-
-    button.classList.add("correct");
-
-    quizScore++;
-
-  }
-
-  else {
-
-    button.classList.add("wrong");
-
-    all[q.correct]
-      .classList
-      .add("correct");
-
-  }
-
-
-  document
-    .getElementById("nextQuestion")
-    .classList
-    .remove("hidden");
-
-}
-
-
-function nextQuizQuestion() {
-
-  currentQuestion++;
-
-
-  if(
-    currentQuestion >=
-    quizQuestions.length
-  ) {
-
-    finishQuiz();
-
-    return;
-
-  }
-
-
-  document
-    .getElementById("nextQuestion")
-    .classList
-    .add("hidden");
-
-
-  showQuizQuestion();
-
-}
-
-
-function finishQuiz() {
-
-  document
-    .getElementById("quizQuestion")
-    .innerHTML = "";
-
-
-  document
-    .getElementById("answers")
-    .innerHTML = "";
-
-
-  document
-    .getElementById("nextQuestion")
-    .classList
-    .add("hidden");
-
-
-  document
-    .getElementById("quizResult")
-    .classList
-    .remove("hidden");
-
-
-  const percentage =
-    Math.round(
-      quizScore /
-      quizQuestions.length *
-      100
-    );
-
-
-  document
-    .getElementById("scoreText")
-    .textContent =
-      `You scored ${quizScore}/${quizQuestions.length} — ${percentage}%`;
+    document.body.removeChild(link);
 
 }
 
@@ -3174,237 +2537,189 @@ let timerSeconds = 25 * 60;
 
 let timerInterval = null;
 
-let selectedMinutes = 25;
-
-let completedSessions = 0;
-
-let totalFocusMinutes = 0;
-
-
-/* =========================================================
-   UPDATE TIMER
-========================================================= */
 
 function updateTimerDisplay() {
 
-  const minutes =
-    Math.floor(
-      timerSeconds / 60
-    );
+    const minutes =
+        Math.floor(timerSeconds / 60);
 
-  const seconds =
-    timerSeconds % 60;
+    const seconds =
+        timerSeconds % 60;
 
 
-  document
-    .getElementById("timerDisplay")
-    .textContent =
-      `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
-
-}
-
-
-/* =========================================================
-   SELECT TIMER
-========================================================= */
-
-function setTimer(minutes,button) {
-
-  clearInterval(timerInterval);
-
-  timerInterval = null;
-
-  selectedMinutes = minutes;
-
-  timerSeconds =
-    minutes * 60;
-
-
-  document
-    .querySelectorAll(".timer-preset")
-    .forEach(btn => {
-
-      btn.classList.remove("active");
-
-    });
-
-
-  if(button) {
-
-    button.classList.add("active");
-
-  }
-
-
-  document
-    .getElementById("timerStatus")
-    .textContent =
-      "Ready when you are";
-
-  document
-    .getElementById("timerState")
-    .textContent =
-      "Ready";
-
-
-  updateTimerDisplay();
+    document.getElementById(
+        "timerDisplay"
+    ).textContent =
+        String(minutes).padStart(2, "0")
+        + ":"
+        +
+        String(seconds).padStart(2, "0");
 
 }
 
-
-/* =========================================================
-   START TIMER
-========================================================= */
 
 function startTimer() {
 
-  if(timerInterval)
-    return;
-
-
-  document
-    .getElementById("timerStatus")
-    .textContent =
-      "Focus session in progress";
-
-  document
-    .getElementById("timerState")
-    .textContent =
-      "Active";
-
-
-  timerInterval =
-    setInterval(() => {
-
-      if(timerSeconds <= 0) {
-
-        clearInterval(timerInterval);
-
-        timerInterval = null;
-
-        completedSessions++;
-
-        totalFocusMinutes +=
-          selectedMinutes;
-
-
-        document
-          .getElementById("sessionCount")
-          .textContent =
-            completedSessions;
-
-
-        document
-          .getElementById("focusMinutes")
-          .textContent =
-            totalFocusMinutes;
-
-
-        document
-          .getElementById("timerStatus")
-          .textContent =
-            "Session complete";
-
-        document
-          .getElementById("timerState")
-          .textContent =
-            "Complete";
-
-
+    if (timerInterval !== null) {
         return;
+    }
 
-      }
+
+    timerInterval =
+        setInterval(() => {
+
+            if (timerSeconds <= 0) {
+
+                clearInterval(timerInterval);
+
+                timerInterval = null;
+
+                alert(
+                    "Focus session complete."
+                );
+
+                return;
+
+            }
 
 
-      timerSeconds--;
+            timerSeconds--;
 
-      updateTimerDisplay();
+            updateTimerDisplay();
 
-    },1000);
+        }, 1000);
 
 }
 
-
-/* =========================================================
-   PAUSE TIMER
-========================================================= */
 
 function pauseTimer() {
 
-  clearInterval(timerInterval);
+    clearInterval(timerInterval);
 
-  timerInterval = null;
-
-
-  document
-    .getElementById("timerStatus")
-    .textContent =
-      "Session paused";
-
-  document
-    .getElementById("timerState")
-    .textContent =
-      "Paused";
+    timerInterval = null;
 
 }
 
-
-/* =========================================================
-   RESET TIMER
-========================================================= */
 
 function resetTimer() {
 
-  clearInterval(timerInterval);
+    clearInterval(timerInterval);
 
-  timerInterval = null;
+    timerInterval = null;
 
-  timerSeconds =
-    selectedMinutes * 60;
+    timerSeconds = 25 * 60;
 
-
-  document
-    .getElementById("timerStatus")
-    .textContent =
-      "Ready when you are";
-
-  document
-    .getElementById("timerState")
-    .textContent =
-      "Ready";
-
-
-  updateTimerDisplay();
+    updateTimerDisplay();
 
 }
 
 
 /* =========================================================
-   ENTER KEY LOGIN
+   OPEN TIMER
 ========================================================= */
 
-document.addEventListener(
-  "keydown",
-  event => {
+function openTimer() {
 
-    if(
-      event.key === "Enter" &&
-      !document
-        .getElementById("loginPage")
-        .classList
-        .contains("hidden")
-    ) {
+    hideAllPages();
 
-      checkLogin();
+    timerPage.classList.remove("hidden");
 
-    }
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-  }
-);
+}
 
 
 /* =========================================================
-   INITIALISE
+   BACK FROM NOTES
+========================================================= */
+
+function backFromNotes() {
+
+    hideAllPages();
+
+    if (
+        localStorage.getItem("premiumUnlocked")
+        === "true"
+    ) {
+
+        premiumPage.classList.remove("hidden");
+
+    } else {
+
+        basicPage.classList.remove("hidden");
+
+    }
+
+}
+
+
+/* =========================================================
+   BACK FROM TIMER
+========================================================= */
+
+function backFromTimer() {
+
+    hideAllPages();
+
+    if (
+        localStorage.getItem("premiumUnlocked")
+        === "true"
+    ) {
+
+        premiumPage.classList.remove("hidden");
+
+    } else {
+
+        basicPage.classList.remove("hidden");
+
+    }
+
+}
+
+
+/* =========================================================
+   BACK TO PLANS
+========================================================= */
+
+function backToPlans() {
+
+    hideAllPages();
+
+    plansPage.classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   ENTER KEY FOR PREMIUM CODE
+========================================================= */
+
+document
+    .getElementById("premiumCode")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                checkPremiumCode();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   INITIAL TIMER
 ========================================================= */
 
 updateTimerDisplay();
