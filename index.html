@@ -4,42 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TakeYouToTask Academic Notes</title>
+<title>TakeYouToTask</title>
 
 <style>
-
-/* =========================================================
-   FONTS
-========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --blue: #00d9ff;
-    --cyan: #22d3ee;
-    --purple: #8b5cf6;
-    --pink: #ec4899;
-    --violet: #a855f7;
+    --bg: #05050d;
+    --card: rgba(16, 14, 31, 0.78);
+    --card2: rgba(25, 20, 45, 0.75);
 
-    --bg: #030712;
-    --bg2: #080b1a;
+    --cyan: #00e5ff;
+    --purple: #9b5cff;
+    --pink: #ff4fd8;
+    --violet: #704cff;
+    --green: #42f5a7;
+    --yellow: #ffd166;
 
-    --text: #f8fafc;
-    --muted: #94a3b8;
+    --text: #f8f7ff;
+    --muted: #9d9ab0;
 
-    --card: rgba(10, 15, 35, 0.78);
-    --border: rgba(148, 163, 184, 0.15);
+    --border: rgba(255,255,255,0.10);
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
     box-sizing: border-box;
@@ -52,1335 +38,803 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-
     background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(0, 217, 255, 0.13),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(236, 72, 153, 0.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 80% 85%,
-            rgba(139, 92, 246, 0.16),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #020617,
-            #080b1a 50%,
-            #030712
-        );
+        radial-gradient(circle at 10% 10%, rgba(0,229,255,.12), transparent 25%),
+        radial-gradient(circle at 90% 15%, rgba(255,79,216,.13), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(112,76,255,.18), transparent 35%),
+        #05050d;
 
     color: var(--text);
-
-    font-family: "Inter", Arial, sans-serif;
-
+    font-family: "Outfit", Arial, sans-serif;
     overflow-x: hidden;
 }
 
-
-/* =========================================================
-   BACKGROUND GRID
-========================================================= */
+/* =========================
+   BACKGROUND
+========================= */
 
 body::before {
     content: "";
-
     position: fixed;
     inset: 0;
 
     background-image:
-        linear-gradient(
-            rgba(0, 217, 255, 0.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(0, 217, 255, 0.035) 1px,
-            transparent 1px
-        );
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
 
-    background-size: 50px 50px;
+    background-size: 45px 45px;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 90%
-        );
-
+    mask-image: linear-gradient(to bottom, black, transparent);
     pointer-events: none;
-
-    z-index: 0;
 }
-
-
-/* =========================================================
-   GLOWING ORBS
-========================================================= */
 
 .orb {
     position: fixed;
-
     border-radius: 50%;
-
-    filter: blur(90px);
-
+    filter: blur(100px);
     pointer-events: none;
-
-    opacity: 0.28;
-
+    opacity: .25;
     z-index: 0;
-
-    animation: orbFloat 9s ease-in-out infinite;
+    animation: floating 10s ease-in-out infinite;
 }
 
 .orb1 {
     width: 300px;
     height: 300px;
-
-    background: var(--blue);
-
-    top: -120px;
+    background: var(--cyan);
+    top: -150px;
     left: -100px;
 }
 
 .orb2 {
     width: 350px;
     height: 350px;
-
-    background: var(--purple);
-
-    right: -130px;
-    bottom: -150px;
-
-    animation-delay: -4s;
+    background: var(--pink);
+    right: -150px;
+    top: 20%;
+    animation-delay: -3s;
 }
 
 .orb3 {
-    width: 220px;
-    height: 220px;
-
-    background: var(--pink);
-
-    right: 20%;
-    top: 30%;
-
-    opacity: 0.12;
-
-    animation-delay: -7s;
+    width: 300px;
+    height: 300px;
+    background: var(--purple);
+    bottom: -150px;
+    left: 30%;
+    animation-delay: -6s;
 }
 
-@keyframes orbFloat {
-
-    0%, 100% {
-        transform: translate(0, 0);
+@keyframes floating {
+    0%,100% {
+        transform: translate(0,0);
     }
 
     50% {
-        transform: translate(35px, -25px);
+        transform: translate(35px,-25px);
     }
 }
 
-
-/* =========================================================
-   GENERAL
-========================================================= */
-
-.hidden {
-    display: none !important;
-}
-
-.page {
-    position: relative;
-
-    z-index: 2;
-
-    min-height: 100vh;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 30px;
-}
-
-
-/* =========================================================
+/* =========================
    START SCREEN
-========================================================= */
+========================= */
 
-#startScreen {
+.start-screen {
     position: fixed;
-
     inset: 0;
-
     z-index: 100;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
 
     background:
-        radial-gradient(
-            circle at center,
-            rgba(139, 92, 246, 0.14),
-            transparent 40%
-        ),
-        #030712;
+        radial-gradient(circle at 50% 40%, rgba(112,76,255,.18), transparent 35%),
+        #05050d;
 
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+    transition: opacity .8s ease, visibility .8s ease;
+}
+
+.start-screen.hide {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .start-content {
     text-align: center;
-
-    animation: startAppear 1.2s ease;
+    animation: startIn 1.2s ease;
 }
 
-@keyframes startAppear {
-
+@keyframes startIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: translateY(30px) scale(.95);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0) scale(1);
     }
 }
 
-.start-small {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 12px;
-
-    letter-spacing: 5px;
-
-    color: var(--blue);
-
+.logo-small {
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--cyan);
     margin-bottom: 20px;
-
-    text-transform: uppercase;
-
-    text-shadow:
-        0 0 15px rgba(0, 217, 255, 0.8);
 }
 
 .start-title {
-    font-family: "Space Grotesk", sans-serif;
-
     font-size: clamp(48px, 9vw, 90px);
-
-    font-weight: 700;
-
+    font-weight: 800;
     letter-spacing: -4px;
 
-    margin: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            var(--blue),
-            var(--purple),
-            var(--pink),
-            #ffffff
-        );
-
-    background-size: 300% 100%;
+    background: linear-gradient(
+        90deg,
+        white,
+        var(--cyan),
+        var(--purple),
+        var(--pink)
+    );
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    animation: gradientMove 5s ease infinite;
+    animation: gradientMove 5s linear infinite;
+    background-size: 300%;
+}
 
-    filter:
-        drop-shadow(
-            0 0 30px
-            rgba(139, 92, 246, 0.25)
-        );
+@keyframes gradientMove {
+    0% { background-position: 0%; }
+    50% { background-position: 100%; }
+    100% { background-position: 0%; }
 }
 
 .start-subtitle {
     color: var(--muted);
-
-    margin-top: 15px;
-
-    font-size: 15px;
-
-    letter-spacing: 1px;
+    margin-top: 10px;
+    font-size: 16px;
 }
 
-.start-line {
-    width: 160px;
+/* =========================
+   LOADING
+========================= */
 
-    height: 2px;
-
-    margin: 30px auto;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--blue),
-            var(--purple),
-            var(--pink),
-            transparent
-        );
-
-    box-shadow:
-        0 0 15px
-        rgba(0, 217, 255, 0.5);
-}
-
-
-/* =========================================================
-   LOADING SCREEN
-========================================================= */
-
-#loadingScreen {
+.loading-screen {
     position: fixed;
-
     inset: 0;
+    z-index: 90;
 
-    z-index: 99;
-
-    display: flex;
-
+    display: none;
     justify-content: center;
     align-items: center;
 
-    background: #030712;
-
-    transition:
-        opacity 0.7s ease,
-        visibility 0.7s ease;
+    background: #05050d;
 }
 
-.loading-content {
-    width: min(360px, 80%);
+.loader {
+    width: 55px;
+    height: 55px;
 
-    text-align: center;
+    border-radius: 50%;
+
+    border: 3px solid rgba(255,255,255,.08);
+    border-top-color: var(--cyan);
+    border-right-color: var(--pink);
+
+    animation: spin 1s linear infinite;
+
+    box-shadow:
+        0 0 20px rgba(0,229,255,.4),
+        0 0 30px rgba(255,79,216,.25);
 }
 
-.loading-logo {
-    font-family: "Space Grotesk", sans-serif;
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-    font-size: 22px;
+/* =========================
+   MAIN APP
+========================= */
 
-    font-weight: 700;
+.app {
+    position: relative;
+    z-index: 2;
 
-    letter-spacing: 3px;
+    width: min(1100px, calc(100% - 30px));
+    margin: 0 auto;
 
-    margin-bottom: 30px;
+    padding: 25px 0 60px;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--purple),
-            var(--pink)
-        );
+    display: none;
+}
+
+.app.show {
+    display: block;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 18px;
+
+    background: rgba(10,8,20,.72);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    box-shadow: 0 15px 50px rgba(0,0,0,.25);
+
+    margin-bottom: 25px;
+}
+
+.nav-logo {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    background: linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--purple),
+        var(--pink)
+    );
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.loading-bar {
-    width: 100%;
-
-    height: 5px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(148, 163, 184, 0.12);
-
-    overflow: hidden;
+.nav-buttons {
+    display: flex;
+    gap: 8px;
 }
 
-.loading-progress {
-    height: 100%;
+.nav-btn {
+    width: auto;
+    margin: 0;
 
-    width: 0%;
+    padding: 9px 15px;
 
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--purple),
-            var(--pink)
-        );
-
-    box-shadow:
-        0 0 15px
-        rgba(139, 92, 246, 0.7);
-
-    animation: loading 2.2s ease forwards;
-}
-
-@keyframes loading {
-
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
-.loading-text {
-    margin-top: 14px;
+    background: transparent;
+    border: 1px solid transparent;
 
     color: var(--muted);
 
-    font-size: 12px;
-
-    letter-spacing: 2px;
+    box-shadow: none;
 }
 
-
-/* =========================================================
-   GRADIENT ANIMATION
-========================================================= */
-
-@keyframes gradientMove {
-
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+.nav-btn:hover {
+    color: white;
+    border-color: rgba(255,255,255,.12);
+    background: rgba(255,255,255,.05);
 }
 
+/* =========================
+   PAGES
+========================= */
 
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container {
-    position: relative;
-
-    z-index: 2;
-
-    width: min(950px, 100%);
-
-    padding: 38px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(15, 23, 42, 0.82),
-            rgba(8, 12, 30, 0.78)
-        );
-
-    border:
-        1px solid rgba(148, 163, 184, 0.16);
-
-    border-radius: 28px;
-
-    backdrop-filter: blur(25px);
-
-    -webkit-backdrop-filter: blur(25px);
-
-    box-shadow:
-        0 0 60px
-        rgba(0, 217, 255, 0.05),
-        0 30px 80px
-        rgba(0, 0, 0, 0.55);
-
-    animation: cardIn 0.6s ease;
+.page {
+    display: none;
+    animation: pageIn .35s ease;
 }
 
-@keyframes cardIn {
+.page.active {
+    display: block;
+}
 
+@keyframes pageIn {
     from {
         opacity: 0;
-        transform:
-            translateY(20px)
-            scale(0.98);
+        transform: translateY(12px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
+        transform: translateY(0);
     }
 }
 
+/* =========================
+   HERO
+========================= */
 
-/* =========================================================
-   BRAND
-========================================================= */
+.hero {
+    padding: 50px 10px 35px;
+}
 
-.brand {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 4px;
-
+.hero-label {
+    color: var(--cyan);
+    letter-spacing: 3px;
     text-transform: uppercase;
-
-    color: var(--blue);
-
-    text-shadow:
-        0 0 12px
-        rgba(0, 217, 255, 0.7);
-
-    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-
-h1,
-h2,
-h3 {
-    font-family: "Space Grotesk", sans-serif;
-}
-
-h1 {
-    margin: 0;
-
-    font-size: 38px;
-
-    letter-spacing: -1.5px;
+.hero h1 {
+    font-size: clamp(38px, 7vw, 68px);
+    line-height: 1;
+    margin: 15px 0;
 
     background:
         linear-gradient(
             90deg,
-            #ffffff,
-            #9befff,
-            #b69cff,
-            #ff9dd1
+            #fff,
+            #d7faff,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
         );
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
+.hero p {
     color: var(--muted);
-
-    margin-top: 10px;
-
-    font-size: 15px;
+    max-width: 600px;
+    font-size: 17px;
 }
 
+/* =========================
+   CARDS
+========================= */
 
-/* =========================================================
-   PLAN HEADER
-========================================================= */
-
-.plan-header {
-    text-align: center;
-
-    margin-bottom: 35px;
-}
-
-.plan-header h1 {
-    font-size: 42px;
-}
-
-.plan-header p {
-    max-width: 550px;
-
-    margin: 12px auto;
-
-    color: var(--muted);
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   PRICING GRID
-========================================================= */
-
-.pricing-grid {
+.card-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 22px;
+    grid-template-columns: repeat(2,1fr);
+    gap: 18px;
 }
 
-
-/* =========================================================
-   PLAN CARD
-========================================================= */
-
-.plan-card {
+.card {
     position: relative;
-
-    padding: 30px;
-
-    border-radius: 25px;
-
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.15);
-
-    background:
-        rgba(15, 23, 42, 0.55);
-
-    overflow: hidden;
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.plan-card:hover {
-    transform: translateY(-6px);
-}
-
-
-/* =========================================================
-   BASIC CARD
-========================================================= */
-
-.basic-card:hover {
-    border-color:
-        rgba(0, 217, 255, 0.4);
-
-    box-shadow:
-        0 20px 50px
-        rgba(0, 217, 255, 0.08);
-}
-
-
-/* =========================================================
-   PREMIUM CARD
-========================================================= */
-
-.premium-card {
-    border:
-        1px solid
-        rgba(139, 92, 246, 0.5);
 
     background:
         linear-gradient(
             145deg,
-            rgba(30, 20, 65, 0.72),
-            rgba(20, 10, 40, 0.72)
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.015)
         );
 
-    box-shadow:
-        0 0 35px
-        rgba(139, 92, 246, 0.12);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    padding: 25px;
+
+    backdrop-filter: blur(18px);
+
+    transition: .3s ease;
+
+    overflow: hidden;
 }
 
-.premium-card::before {
+.card::before {
     content: "";
-
     position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    top: -130px;
-    right: -100px;
-
-    background: var(--pink);
-
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 
-    filter: blur(90px);
+    background: var(--purple);
+    filter: blur(80px);
 
-    opacity: 0.16;
+    opacity: .10;
 
-    pointer-events: none;
+    right: -50px;
+    top: -50px;
 }
 
-.premium-card:hover {
-    border-color:
-        rgba(236, 72, 153, 0.7);
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(255,255,255,.18);
 
     box-shadow:
-        0 20px 70px
-        rgba(139, 92, 246, 0.18);
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 30px rgba(112,76,255,.08);
 }
 
+.card h2 {
+    margin-top: 0;
+}
 
-/* =========================================================
-   PREMIUM BADGE
-========================================================= */
+.card p {
+    color: var(--muted);
+}
 
-.premium-badge {
-    display: inline-block;
+/* =========================
+   PLAN CARDS
+========================= */
 
-    padding: 7px 13px;
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
 
-    border-radius: 50px;
+.plan {
+    position: relative;
 
-    font-family: "Space Grotesk", sans-serif;
+    padding: 30px;
 
-    font-size: 10px;
+    border-radius: 26px;
 
-    font-weight: 700;
+    border: 1px solid var(--border);
 
-    letter-spacing: 2px;
+    background: rgba(12,10,25,.75);
 
-    color: white;
+    overflow: hidden;
+}
+
+.plan.premium {
+    border-color: rgba(255,79,216,.35);
+
+    box-shadow:
+        0 0 40px rgba(255,79,216,.08);
+}
+
+.plan h2 {
+    font-size: 25px;
+}
+
+.plan-price {
+    font-size: 52px;
+    font-weight: 800;
+    margin: 15px 0;
 
     background:
         linear-gradient(
             90deg,
+            var(--cyan),
             var(--purple),
             var(--pink)
         );
 
-    box-shadow:
-        0 0 20px
-        rgba(236, 72, 153, 0.25);
-}
-
-
-/* =========================================================
-   PLAN TEXT
-========================================================= */
-
-.plan-title {
-    margin-top: 20px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 25px;
-
-    font-weight: 700;
-}
-
-.plan-description {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    line-height: 1.6;
-
-    min-height: 42px;
-}
-
-
-/* =========================================================
-   PRICE
-========================================================= */
-
-.premium-price {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 72px;
-
-    font-weight: 700;
-
-    line-height: 1;
-
-    letter-spacing: -5px;
-
-    margin: 25px 0 8px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--purple),
-            var(--pink),
-            var(--blue)
-        );
-
-    background-size: 300% 100%;
-
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    animation:
-        gradientMove 5s ease infinite;
-
-    filter:
-        drop-shadow(
-            0 0 20px
-            rgba(139, 92, 246, 0.35)
-        );
 }
 
-.currency {
-    font-size: 38px;
-
-    vertical-align: top;
-
-    letter-spacing: -2px;
-}
-
-.price-label {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
+.plan ul {
+    padding-left: 20px;
     color: var(--muted);
-
-    margin-bottom: 20px;
+    line-height: 2;
 }
 
-
-/* =========================================================
-   FEATURES
-========================================================= */
-
-.features {
-    list-style: none;
-
-    padding: 0;
-
-    margin: 25px 0;
-}
-
-.features li {
-    position: relative;
-
-    padding: 10px 0 10px 25px;
-
-    font-size: 13px;
-
-    color: #cbd5e1;
-
-    border-bottom:
-        1px solid
-        rgba(148, 163, 184, 0.07);
-}
-
-.features li::before {
-    content: "";
-
-    position: absolute;
-
-    left: 2px;
-    top: 17px;
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: var(--blue);
-
-    box-shadow:
-        0 0 10px
-        rgba(0, 217, 255, 0.7);
-}
-
-.premium-card .features li::before {
-    background: var(--pink);
-
-    box-shadow:
-        0 0 10px
-        rgba(236, 72, 153, 0.7);
-}
-
-
-/* =========================================================
+/* =========================
    BUTTONS
-========================================================= */
+========================= */
 
 button {
+    font-family: "Outfit", sans-serif;
+    cursor: pointer;
+}
+
+.primary-btn {
     width: 100%;
 
-    border: none;
-
+    border: 0;
     border-radius: 14px;
 
     padding: 14px 18px;
 
-    margin-top: 10px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
     color: white;
-
-    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
 
     background:
         linear-gradient(
-            90deg,
-            #0891b2,
-            #2563eb
+            100deg,
+            #00bcd4,
+            #704cff,
+            #ff4fd8
         );
 
-    box-shadow:
-        0 0 20px
-        rgba(0, 217, 255, 0.12);
+    background-size: 200%;
 
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: .3s;
+
+    box-shadow:
+        0 8px 25px rgba(112,76,255,.18);
 }
 
-button:hover {
+.primary-btn:hover {
+    background-position: 100%;
     transform: translateY(-2px);
 
-    filter: brightness(1.15);
-
     box-shadow:
-        0 0 30px
-        rgba(0, 217, 255, 0.3);
+        0 10px 35px rgba(255,79,216,.22);
 }
 
-button:active {
-    transform: translateY(0);
-}
-
-.premium-button {
-    background:
-        linear-gradient(
-            90deg,
-            var(--purple),
-            var(--pink)
-        );
-
-    box-shadow:
-        0 0 25px
-        rgba(236, 72, 153, 0.18);
-}
-
-.premium-button:hover {
-    box-shadow:
-        0 0 35px
-        rgba(236, 72, 153, 0.4);
-}
-
-
-/* =========================================================
-   INPUT
-========================================================= */
-
-input {
+.secondary-btn {
     width: 100%;
 
-    padding: 14px 15px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.12);
 
-    border-radius: 12px;
-
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.18);
-
-    background:
-        rgba(2, 6, 23, 0.7);
+    background: rgba(255,255,255,.04);
 
     color: white;
 
-    outline: none;
+    padding: 13px;
 
-    font-family: "Inter", sans-serif;
-
-    font-size: 14px;
-
-    transition: 0.25s;
+    transition: .25s;
 }
 
-input:focus {
-    border-color: var(--purple);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(139, 92, 246, 0.08),
-        0 0 20px
-        rgba(139, 92, 246, 0.12);
+.secondary-btn:hover {
+    background: rgba(255,255,255,.08);
 }
 
-input::placeholder {
-    color: #64748b;
-}
+/* =========================
+   NOTES
+========================= */
 
-
-/* =========================================================
-   ACCESS SECTION
-========================================================= */
-
-.access-section {
-    margin-top: 20px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid
-        rgba(148, 163, 184, 0.1);
-}
-
-.access-title {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    margin-bottom: 8px;
-}
-
-.access-text {
-    color: var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.5;
-
-    margin-bottom: 12px;
-}
-
-
-/* =========================================================
-   PURCHASE INFO
-========================================================= */
-
-.purchase-info {
-    margin-top: 18px;
-
-    padding: 15px;
-
-    border-radius: 15px;
-
-    background:
-        rgba(236, 72, 153, 0.06);
-
-    border:
-        1px solid
-        rgba(236, 72, 153, 0.12);
-
-    text-align: center;
-}
-
-.purchase-info p {
-    margin: 4px 0;
-
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-.phone-number {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 20px;
-
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    color: #f9a8d4;
-
-    text-shadow:
-        0 0 12px
-        rgba(236, 72, 153, 0.4);
-}
-
-
-/* =========================================================
-   ERROR
-========================================================= */
-
-.error {
-    display: none;
-
-    margin-top: 10px;
-
-    padding: 10px;
-
-    border-radius: 10px;
-
-    background:
-        rgba(244, 63, 94, 0.08);
-
-    border:
-        1px solid
-        rgba(244, 63, 94, 0.2);
-
-    color: #fb7185;
-
-    font-size: 12px;
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.dashboard {
-    max-width: 1000px;
-}
-
-.dashboard-header {
-    text-align: center;
-
-    margin-bottom: 30px;
-}
-
-.dashboard-grid {
+.subject-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 18px;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
 }
 
-.feature-card {
-    padding: 25px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(15, 23, 42, 0.55);
-
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.12);
-
-    transition: 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-4px);
-
-    border-color:
-        rgba(0, 217, 255, 0.3);
-
-    box-shadow:
-        0 15px 40px
-        rgba(0, 217, 255, 0.07);
-}
-
-.feature-card h3 {
-    margin: 0 0 8px;
-
-    font-size: 19px;
-}
-
-.feature-card p {
-    color: var(--muted);
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-.progress-box {
-    margin-top: 25px;
+.subject {
+    text-align: left;
 
     padding: 22px;
 
     border-radius: 20px;
 
     background:
-        rgba(15, 23, 42, 0.55);
+        linear-gradient(
+            135deg,
+            rgba(0,229,255,.08),
+            rgba(112,76,255,.08),
+            rgba(255,79,216,.07)
+        );
 
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(255,255,255,.10);
+
+    color: white;
+
+    transition: .3s;
 }
 
-.progress-header {
-    display: flex;
+.subject:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,229,255,.35);
+}
 
-    justify-content: space-between;
+.subject-title {
+    font-size: 18px;
+    font-weight: 700;
+}
 
-    margin-bottom: 10px;
-
-    font-family: "Space Grotesk", sans-serif;
-
+.subject-description {
+    color: var(--muted);
+    margin-top: 6px;
     font-size: 13px;
 }
 
-.progress-track {
-    height: 8px;
+/* =========================
+   PDF
+========================= */
 
-    border-radius: 20px;
-
-    background:
-        rgba(148, 163, 184, 0.1);
-
-    overflow: hidden;
-}
-
-.progress-fill {
-    width: 35%;
-
-    height: 100%;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--blue),
-            var(--purple),
-            var(--pink)
-        );
-
-    box-shadow:
-        0 0 15px
-        rgba(139, 92, 246, 0.5);
-}
-
-
-/* =========================================================
-   NOTES
-========================================================= */
-
-.subject-list {
+.pdf-container {
     margin-top: 25px;
-}
-
-.subject-btn {
-    text-align: left;
-
-    position: relative;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(14, 165, 233, 0.10),
-            rgba(139, 92, 246, 0.10)
-        );
-
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.13);
-}
-
-.subject-btn::after {
-    content: "→";
-
-    position: absolute;
-
-    right: 20px;
-
-    color: var(--blue);
-
-    transition: 0.2s;
-}
-
-.subject-btn:hover::after {
-    transform: translateX(5px);
 }
 
 iframe {
     width: 100%;
+    height: 600px;
 
-    height: 550px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 20px;
 
-    margin-top: 20px;
-
-    border-radius: 18px;
-
-    border:
-        1px solid
-        rgba(0, 217, 255, 0.18);
-
-    background: #111827;
-
-    box-shadow:
-        0 0 30px
-        rgba(0, 217, 255, 0.08);
+    background: #111;
 }
 
+/* =========================
+   PROFILE
+========================= */
 
-/* =========================================================
-   TIMER
-========================================================= */
+.profile-wrapper {
+    max-width: 750px;
+    margin: 40px auto;
+}
 
-.timer-box {
-    text-align: center;
-
-    margin-top: 25px;
-
+.profile-card {
     padding: 35px;
 
-    border-radius: 28px;
+    border-radius: 30px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(10, 20, 45, 0.8),
-            rgba(25, 10, 45, 0.7)
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
         );
 
-    border:
-        1px solid
-        rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(255,255,255,.12);
+
+    backdrop-filter: blur(25px);
 
     box-shadow:
-        0 0 35px
-        rgba(139, 92, 246, 0.08);
+        0 30px 90px rgba(0,0,0,.35);
 }
 
-.timer-title {
-    font-family: "Space Grotesk", sans-serif;
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+.profile-picture-wrapper {
+    position: relative;
+}
+
+.profile-picture {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid transparent;
+
+    background:
+        linear-gradient(#111,#111) padding-box,
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        ) border-box;
+
+    box-shadow:
+        0 0 30px rgba(112,76,255,.25);
+}
+
+.profile-upload {
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--pink)
+        );
+
+    border: 2px solid #08070f;
+
+    cursor: pointer;
 
     font-size: 13px;
+}
 
-    letter-spacing: 2px;
+.profile-name {
+    font-size: 28px;
+    font-weight: 700;
+}
 
+.profile-plan {
+    display: inline-block;
+
+    margin-top: 5px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    background: rgba(0,229,255,.10);
+    color: var(--cyan);
+}
+
+.profile-field {
+    margin-bottom: 18px;
+}
+
+.profile-field label {
+    display: block;
+
+    font-size: 12px;
     color: var(--muted);
 
-    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+.profile-field input,
+.profile-field textarea {
+    width: 100%;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,.10);
+
+    background: rgba(0,0,0,.25);
+
+    color: white;
+
+    padding: 13px 15px;
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+.profile-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.profile-field input:focus,
+.profile-field textarea:focus {
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 0 3px rgba(155,92,255,.08);
+}
+
+/* =========================
+   TIMER
+========================= */
+
+.timer-card {
+    max-width: 600px;
+    margin: 50px auto;
+
+    text-align: center;
+
+    padding: 40px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,229,255,.06),
+            rgba(112,76,255,.09),
+            rgba(255,79,216,.06)
+        );
+
+    border: 1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
 }
 
 .timer-display {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 76px;
-
-    font-weight: 700;
+    font-size: clamp(65px,12vw,110px);
+    font-weight: 800;
 
     letter-spacing: -4px;
-
-    margin: 20px 0;
 
     background:
         linear-gradient(
             90deg,
-            var(--blue),
+            var(--cyan),
             var(--purple),
             var(--pink)
         );
@@ -1388,221 +842,229 @@ iframe {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    filter:
-        drop-shadow(
-            0 0 15px
-            rgba(139, 92, 246, 0.25)
-        );
+    margin: 25px 0;
 }
 
-.timer-buttons {
+.timer-controls {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
+    grid-template-columns: repeat(3,1fr);
     gap: 10px;
 }
 
-.timer-buttons button {
-    margin: 0;
-}
+/* =========================
+   QUIZ
+========================= */
 
+.quiz-card {
+    max-width: 750px;
+    margin: 30px auto;
 
-/* =========================================================
-   PREMIUM FEATURE PAGES
-========================================================= */
+    padding: 30px;
 
-.premium-page-header {
-    text-align: center;
+    border-radius: 26px;
 
-    margin-bottom: 30px;
-}
+    background: rgba(15,12,28,.78);
 
-.quiz-question {
-    padding: 25px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(15, 23, 42, 0.55);
-
-    border:
-        1px solid
-        rgba(139, 92, 246, 0.18);
-
-    margin-bottom: 18px;
-}
-
-.quiz-question h3 {
-    margin-top: 0;
-
-    font-size: 18px;
+    border: 1px solid rgba(255,255,255,.10);
 }
 
 .quiz-option {
-    text-align: left;
+    width: 100%;
 
     margin-top: 10px;
 
-    background:
-        rgba(148, 163, 184, 0.07);
+    padding: 15px;
 
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.12);
+    text-align: left;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,.10);
+
+    background: rgba(255,255,255,.04);
+
+    color: white;
+
+    transition: .2s;
 }
 
 .quiz-option:hover {
-    border-color:
-        rgba(139, 92, 246, 0.5);
+    border-color: var(--purple);
+    background: rgba(155,92,255,.08);
 }
 
-.practice-card,
-.exam-card {
-    padding: 28px;
-
-    border-radius: 22px;
-
-    background:
-        rgba(15, 23, 42, 0.55);
-
-    border:
-        1px solid
-        rgba(139, 92, 246, 0.15);
-
-    margin-top: 18px;
-}
-
-.practice-card p,
-.exam-card p {
-    color: var(--muted);
-
-    line-height: 1.7;
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.back-button {
+.quiz-result {
     margin-top: 20px;
 
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 200;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(12px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: min(450px,100%);
+
+    padding: 30px;
+
+    border-radius: 26px;
+
     background:
-        rgba(148, 163, 184, 0.08);
+        linear-gradient(
+            145deg,
+            #151027,
+            #0c0a17
+        );
 
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(255,255,255,.12);
 
-    box-shadow: none;
-}
-
-.back-button:hover {
     box-shadow:
-        0 0 20px
-        rgba(148, 163, 184, 0.12);
+        0 30px 100px rgba(0,0,0,.5);
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer-text {
-    text-align: center;
-
-    margin-top: 25px;
-
-    color: #64748b;
-
-    font-size: 11px;
-
-    letter-spacing: 0.5px;
+.modal-box h2 {
+    margin-top: 0;
 }
 
+.modal-box input {
+    width: 100%;
 
-/* =========================================================
-   MOBILE
-========================================================= */
+    padding: 14px;
 
-@media (max-width: 750px) {
+    margin: 10px 0;
 
-    .pricing-grid,
-    .dashboard-grid {
+    border-radius: 13px;
+
+    border: 1px solid rgba(255,255,255,.10);
+
+    background: rgba(0,0,0,.3);
+
+    color: white;
+
+    outline: none;
+
+    font-family: inherit;
+}
+
+.modal-error {
+    color: #ff719d;
+    font-size: 13px;
+    display: none;
+    margin-top: 10px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    padding: 14px;
+
+    margin-bottom: 20px;
+
+    border-radius: 14px;
+
+    background: rgba(66,245,167,.06);
+
+    border: 1px solid rgba(66,245,167,.15);
+
+    color: var(--green);
+
+    display: none;
+}
+
+.status.show {
+    display: block;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px) {
+
+    .card-grid,
+    .plan-grid,
+    .subject-grid {
         grid-template-columns: 1fr;
     }
 
-    .container {
-        padding: 25px 20px;
-
-        border-radius: 22px;
+    .navbar {
+        height: auto;
+        gap: 12px;
+        flex-direction: column;
     }
 
-    h1 {
-        font-size: 30px;
+    .nav-buttons {
+        width: 100%;
+        overflow-x: auto;
+        justify-content: center;
     }
 
-    .plan-header h1 {
-        font-size: 34px;
+    .profile-top {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .premium-price {
-        font-size: 60px;
-    }
-
-    .timer-display {
-        font-size: 60px;
-    }
-
-    .timer-buttons {
+    .timer-controls {
         grid-template-columns: 1fr;
     }
 
-    .page {
-        padding: 18px;
+    .hero {
+        padding-top: 25px;
     }
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================================================
-     BACKGROUND
-========================================================= -->
 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
 
-<!-- =========================================================
-     STARTING SCREEN
-========================================================= -->
+<!-- =========================
+     START SCREEN
+========================= -->
 
-<div id="startScreen">
+<div class="start-screen" id="startScreen">
 
     <div class="start-content">
 
-        <div class="start-small">
-            Academic Resources
+        <div class="logo-small">
+            TAKE YOU TO TASK
         </div>
 
-        <h1 class="start-title">
-            TakeYouToTask
-        </h1>
-
-        <div class="start-line"></div>
+        <div class="start-title">
+            Study Smarter.
+        </div>
 
         <div class="start-subtitle">
-            Study smarter. Stay focused. Get it done.
+            Your academic workspace.
         </div>
 
     </div>
@@ -1610,1247 +1072,1160 @@ iframe {
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      LOADING SCREEN
-========================================================= -->
+========================= -->
 
-<div id="loadingScreen">
-
-    <div class="loading-content">
-
-        <div class="loading-logo">
-            TAKEYOUTOTASK
-        </div>
-
-        <div class="loading-bar">
-
-            <div class="loading-progress"></div>
-
-        </div>
-
-        <div class="loading-text">
-            PREPARING YOUR STUDY SPACE
-        </div>
-
-    </div>
-
+<div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
 </div>
 
 
-<!-- =========================================================
-     MAIN
-========================================================= -->
+<!-- =========================
+     APP
+========================= -->
 
-<main class="page">
+<div class="app" id="app">
 
 
-<!-- =========================================================
-     PLAN PAGE
-========================================================= -->
+    <!-- NAVIGATION -->
 
-<section class="container" id="plansPage">
+    <nav class="navbar">
 
-    <div class="plan-header">
-
-        <div class="brand">
-            TAKEYOUTOTASK
+        <div class="nav-logo">
+            TakeYouToTask
         </div>
 
-        <h1>
-            Choose Your Study Plan
-        </h1>
+        <div class="nav-buttons">
 
-        <p>
-            Start with the essential study tools for free,
-            or unlock the complete TakeYouToTask experience.
-        </p>
+            <button class="nav-btn" onclick="showPage('home')">
+                Home
+            </button>
 
-    </div>
+            <button class="nav-btn" onclick="showPage('notes')">
+                Notes
+            </button>
 
+            <button class="nav-btn" onclick="showPage('quiz')">
+                Quiz
+            </button>
 
-    <div class="pricing-grid">
+            <button class="nav-btn" onclick="showPage('timer')">
+                Timer
+            </button>
 
-
-        <!-- BASIC -->
-
-        <div class="plan-card basic-card">
-
-            <div class="plan-title">
-                Basic
-            </div>
-
-            <div class="plan-description">
-                Everything you need for everyday studying.
-            </div>
-
-            <div
-                class="premium-price"
-                style="
-                font-size:52px;
-                letter-spacing:-3px;
-                background:
-                linear-gradient(
-                    90deg,
-                    #ffffff,
-                    #94a3b8
-                );
-                -webkit-background-clip:text;
-                -webkit-text-fill-color:transparent;
-                ">
-
-                FREE
-
-            </div>
-
-            <div class="price-label">
-                FOREVER
-            </div>
-
-
-            <ul class="features">
-
-                <li>
-                    Study Notes
-                </li>
-
-                <li>
-                    PDF Viewer
-                </li>
-
-                <li>
-                    Subject Library
-                </li>
-
-                <li>
-                    Distraction-Free Timer
-                </li>
-
-                <li>
-                    Study Progress
-                </li>
-
-            </ul>
-
-
-            <button onclick="openBasic()">
-                Continue with Basic
+            <button class="nav-btn" onclick="showPage('profile')">
+                Profile
             </button>
 
         </div>
 
+    </nav>
 
-        <!-- PREMIUM -->
 
-        <div class="plan-card premium-card">
+    <!-- =========================
+         HOME
+    ========================= -->
 
-            <span class="premium-badge">
-                PREMIUM
-            </span>
+    <section class="page active" id="home">
 
-            <div class="plan-title">
-                Premium
+        <div class="hero">
+
+            <div class="hero-label">
+                YOUR ACADEMIC WORKSPACE
             </div>
 
-            <div class="plan-description">
-                Unlock advanced tools designed for serious revision.
-            </div>
+            <h1>
+                Take You To Task.
+            </h1>
+
+            <p>
+                Notes, quizzes and focused study tools designed
+                to help you get more done.
+            </p>
+
+        </div>
 
 
-            <div class="premium-price">
+        <div class="card-grid">
 
-                <span class="currency">$</span>4.90
+            <div class="card">
 
-            </div>
+                <h2>Study Notes</h2>
 
-            <div class="price-label">
-                ONE-TIME PAYMENT
-            </div>
-
-
-            <ul class="features">
-
-                <li>
-                    Everything in Basic
-                </li>
-
-                <li>
-                    Interactive Quizzes
-                </li>
-
-                <li>
-                    Practice Questions
-                </li>
-
-                <li>
-                    Exam Mode
-                </li>
-
-                <li>
-                    Advanced Revision Tools
-                </li>
-
-                <li>
-                    Premium Study Materials
-                </li>
-
-            </ul>
-
-
-            <button
-                class="premium-button"
-                onclick="focusPremiumCode()">
-
-                Unlock Premium
-
-            </button>
-
-
-            <div class="access-section">
-
-                <div class="access-title">
-                    Already have a Premium Access Code?
-                </div>
-
-                <div class="access-text">
-                    Enter your code below to unlock Premium.
-                </div>
-
-                <input
-                    type="password"
-                    id="premiumCode"
-                    placeholder="Enter Premium Access Code"
-                >
+                <p>
+                    Access your organised academic notes
+                    by subject.
+                </p>
 
                 <button
-                    class="premium-button"
-                    onclick="checkPremiumCode()">
-
-                    Enter Access Code
-
+                    class="primary-btn"
+                    onclick="showPage('notes')"
+                >
+                    Open Notes
                 </button>
 
+            </div>
+
+
+            <div class="card">
+
+                <h2>Distraction-Free Timer</h2>
+
+                <p>
+                    Focus on your work with a clean,
+                    distraction-free timer.
+                </p>
+
+                <button
+                    class="primary-btn"
+                    onclick="showPage('timer')"
+                >
+                    Start Timer
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Premium Quiz</h2>
+
+                <p>
+                    Test yourself with interactive
+                    revision questions.
+                </p>
+
+                <button
+                    class="primary-btn"
+                    onclick="showPage('quiz')"
+                >
+                    Open Quiz
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Your Profile</h2>
+
+                <p>
+                    Customise your profile and manage
+                    your account information.
+                </p>
+
+                <button
+                    class="primary-btn"
+                    onclick="showPage('profile')"
+                >
+                    Open Profile
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PLANS
+    ========================= -->
+
+    <section class="page" id="plans">
+
+        <div class="hero">
+
+            <div class="hero-label">
+                MEMBERSHIP
+            </div>
+
+            <h1>
+                Choose Your Access.
+            </h1>
+
+            <p>
+                Start with Basic or unlock the full
+                TakeYouToTask experience.
+            </p>
+
+        </div>
+
+
+        <div class="plan-grid">
+
+
+            <!-- BASIC -->
+
+            <div class="plan">
+
+                <h2>Basic</h2>
+
+                <div class="plan-price">
+                    FREE
+                </div>
+
+                <ul>
+                    <li>Study notes</li>
+                    <li>Subject resources</li>
+                    <li>Distraction-free timer</li>
+                    <li>Personal profile</li>
+                </ul>
+
+                <button
+                    class="primary-btn"
+                    onclick="showPage('notes')"
+                >
+                    Continue with Basic
+                </button>
+
+            </div>
+
+
+            <!-- PREMIUM -->
+
+            <div class="plan premium">
+
+                <h2>Premium</h2>
+
+                <div class="plan-price">
+                    $9.90
+                </div>
+
+                <ul>
+                    <li>Everything in Basic</li>
+                    <li>Interactive quizzes</li>
+                    <li>Premium study tools</li>
+                    <li>Advanced revision features</li>
+                </ul>
+
+                <button
+                    class="primary-btn"
+                    onclick="openPremiumModal()"
+                >
+                    Unlock Premium
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NOTES
+    ========================= -->
+
+    <section class="page" id="notes">
+
+        <div class="hero">
+
+            <div class="hero-label">
+                STUDY MATERIALS
+            </div>
+
+            <h1>
+                Study Notes
+            </h1>
+
+            <p>
+                Select a subject to open your notes.
+            </p>
+
+        </div>
+
+
+        <div class="subject-grid">
+
+            <button
+                class="subject"
+                onclick="openPDF('notes.pdf')"
+            >
+
+                <div class="subject-title">
+                    History
+                </div>
+
+                <div class="subject-description">
+                    Historical concepts and revision notes
+                </div>
+
+            </button>
+
+
+            <button
+                class="subject"
+                onclick="openPDF('notes_lscience.pdf')"
+            >
+
+                <div class="subject-title">
+                    Life Science
+                </div>
+
+                <div class="subject-description">
+                    Life science revision materials
+                </div>
+
+            </button>
+
+
+            <button
+                class="subject"
+                onclick="openPDF('notes_pscience.pdf')"
+            >
+
+                <div class="subject-title">
+                    Physical Science
+                </div>
+
+                <div class="subject-description">
+                    Physical science notes
+                </div>
+
+            </button>
+
+
+            <button
+                class="subject"
+                onclick="openPDF('notes_geography.pdf')"
+            >
+
+                <div class="subject-title">
+                    Geography
+                </div>
+
+                <div class="subject-description">
+                    Geography concepts and case studies
+                </div>
+
+            </button>
+
+        </div>
+
+
+        <div class="pdf-container">
+
+            <iframe
+                id="pdfViewer"
+                style="display:none;"
+            ></iframe>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUIZ
+    ========================= -->
+
+    <section class="page" id="quiz">
+
+        <div class="hero">
+
+            <div class="hero-label">
+                PREMIUM
+            </div>
+
+            <h1>
+                Revision Quiz
+            </h1>
+
+            <p>
+                Test your knowledge.
+            </p>
+
+        </div>
+
+
+        <div class="quiz-card">
+
+            <div id="quizContent">
+
+                <h2 id="question">
+                    Loading question...
+                </h2>
+
+                <div id="options"></div>
+
                 <div
-                    class="error"
-                    id="premiumError">
-
-                    Incorrect access code. Please try again.
-
-                </div>
-
-            </div>
-
-
-            <div class="purchase-info">
-
-                <p>
-                    Want to purchase Premium?
-                </p>
-
-                <p>
-                    Text this number for further details:
-                </p>
-
-                <div class="phone-number">
-                    85133766
-                </div>
+                    class="quiz-result"
+                    id="quizResult"
+                ></div>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
 
-    <div class="footer-text">
-        TakeYouToTask Academic Resources
-    </div>
+    <!-- =========================
+         TIMER
+    ========================= -->
 
-</section>
+    <section class="page" id="timer">
 
+        <div class="hero">
 
-<!-- =========================================================
-     BASIC DASHBOARD
-========================================================= -->
+            <div class="hero-label">
+                FOCUS MODE
+            </div>
 
-<section
-    class="container dashboard hidden"
-    id="basicPage">
-
-    <div class="dashboard-header">
-
-        <div class="brand">
-            BASIC ACCESS
-        </div>
-
-        <h1>
-            Your Study Space
-        </h1>
-
-        <p class="subtitle">
-            Everything you need to stay focused.
-        </p>
-
-    </div>
-
-
-    <div class="dashboard-grid">
-
-
-        <div class="feature-card">
-
-            <h3>
-                Study Notes
-            </h3>
-
-            <p>
-                Open your subject notes and revision materials.
-            </p>
-
-            <button onclick="openNotes()">
-                Open Notes
-            </button>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <h3>
+            <h1>
                 Distraction-Free Timer
-            </h3>
+            </h1>
 
             <p>
-                Focus on your work with a clean study timer.
+                Focus on one task at a time.
             </p>
 
-            <button onclick="openTimer()">
-                Start Timer
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="progress-box">
-
-        <div class="progress-header">
-
-            <span>
-                Study Progress
-            </span>
-
-            <span>
-                35%
-            </span>
-
-        </div>
-
-        <div class="progress-track">
-
-            <div class="progress-fill"></div>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="back-button"
-        onclick="backToPlans()">
-
-        Back to Plans
-
-    </button>
-
-</section>
-
-
-<!-- =========================================================
-     PREMIUM DASHBOARD
-========================================================= -->
-
-<section
-    class="container dashboard hidden"
-    id="premiumPage">
-
-    <div class="dashboard-header">
-
-        <div class="brand">
-            PREMIUM ACCESS
-        </div>
-
-        <h1>
-            Premium Study Space
-        </h1>
-
-        <p class="subtitle">
-            Your complete revision toolkit.
-        </p>
-
-    </div>
-
-
-    <div class="dashboard-grid">
-
-
-        <!-- NOTES -->
-
-        <div class="feature-card">
-
-            <h3>
-                Study Notes
-            </h3>
-
-            <p>
-                Access all available subject notes.
-            </p>
-
-            <button onclick="openNotes()">
-                Open Notes
-            </button>
-
         </div>
 
 
-        <!-- TIMER -->
-
-        <div class="feature-card">
-
-            <h3>
-                Distraction-Free Timer
-            </h3>
-
-            <p>
-                Focus without unnecessary distractions.
-            </p>
-
-            <button onclick="openTimer()">
-                Start Timer
-            </button>
-
-        </div>
-
-
-        <!-- QUIZ -->
-
-        <div class="feature-card">
-
-            <h3>
-                Quizzes
-            </h3>
-
-            <p>
-                Test your understanding with interactive quizzes.
-            </p>
-
-            <button
-                class="premium-button"
-                onclick="openQuiz()">
-
-                Start Quiz
-
-            </button>
-
-        </div>
-
-
-        <!-- PRACTICE -->
-
-        <div class="feature-card">
-
-            <h3>
-                Practice Questions
-            </h3>
-
-            <p>
-                Strengthen your knowledge with targeted questions.
-            </p>
-
-            <button
-                class="premium-button"
-                onclick="openPractice()">
-
-                Practice
-
-            </button>
-
-        </div>
-
-
-        <!-- EXAM -->
-
-        <div class="feature-card">
-
-            <h3>
-                Exam Mode
-            </h3>
-
-            <p>
-                Simulate an exam environment and test yourself.
-            </p>
-
-            <button
-                class="premium-button"
-                onclick="openExam()">
-
-                Enter Exam Mode
-
-            </button>
-
-        </div>
-
-
-        <!-- REVISION -->
-
-        <div class="feature-card">
-
-            <h3>
-                Revision Tools
-            </h3>
-
-            <p>
-                Access advanced tools for faster revision.
-            </p>
-
-            <button
-                class="premium-button"
-                onclick="openRevision()">
-
-                Open Tools
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="progress-box">
-
-        <div class="progress-header">
-
-            <span>
-                Premium Study Progress
-            </span>
-
-            <span>
-                35%
-            </span>
-
-        </div>
-
-        <div class="progress-track">
+        <div class="timer-card">
 
             <div
-                class="progress-fill"
-                style="width:35%">
+                class="timer-display"
+                id="timerDisplay"
+            >
+                25:00
+            </div>
+
+
+            <div class="timer-controls">
+
+                <button
+                    class="primary-btn"
+                    onclick="startTimer()"
+                >
+                    Start
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="pauseTimer()"
+                >
+                    Pause
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="resetTimer()"
+                >
+                    Reset
+                </button>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
 
-    <button
-        class="back-button"
-        onclick="backToPlans()">
+    <!-- =========================
+         PROFILE
+    ========================= -->
 
-        Back to Plans
+    <section class="page" id="profile">
 
-    </button>
+        <div class="profile-wrapper">
 
-</section>
-
-
-<!-- =========================================================
-     NOTES PAGE
-========================================================= -->
-
-<section
-    class="container hidden"
-    id="notesPage">
-
-    <div class="brand">
-        STUDY NOTES
-    </div>
-
-    <h1>
-        Subject Library
-    </h1>
-
-    <p class="subtitle">
-        Select a subject to open your notes.
-    </p>
+            <div class="profile-card">
 
 
-    <div class="subject-list">
+                <div class="profile-top">
 
-        <button
-            class="subject-btn"
-            onclick="openPDF('notes.pdf')">
+                    <div class="profile-picture-wrapper">
 
-            History
+                        <img
+                            id="profilePicture"
+                            class="profile-picture"
+                            src=""
+                            alt="Profile picture"
+                        >
 
-        </button>
+                        <label
+                            class="profile-upload"
+                            for="profileImageInput"
+                        >
+                            +
+                        </label>
 
-        <button
-            class="subject-btn"
-            onclick="openPDF('notes_lscience.pdf')">
+                        <input
+                            type="file"
+                            id="profileImageInput"
+                            accept="image/*"
+                            style="display:none;"
+                        >
 
-            Life Science
-
-        </button>
-
-        <button
-            class="subject-btn"
-            onclick="openPDF('notes_pscience.pdf')">
-
-            Physical Science
-
-        </button>
-
-        <button
-            class="subject-btn"
-            onclick="openPDF('notes_geography.pdf')">
-
-            Geography
-
-        </button>
-
-    </div>
+                    </div>
 
 
-    <iframe
-        id="pdfViewer"
-        style="display:none">
-    </iframe>
+                    <div>
+
+                        <div
+                            class="profile-name"
+                            id="profilePreviewName"
+                        >
+                            Student
+                        </div>
+
+                        <div
+                            class="profile-plan"
+                            id="profilePlan"
+                        >
+                            Basic Plan
+                        </div>
+
+                    </div>
+
+                </div>
 
 
-    <button
-        id="downloadBtn"
-        style="display:none"
-        onclick="downloadCurrentPDF()">
-
-        Download PDF
-
-    </button>
+                <div
+                    class="status"
+                    id="profileStatus"
+                >
+                    Profile saved successfully.
+                </div>
 
 
-    <button
-        class="back-button"
-        onclick="backFromNotes()">
+                <div class="profile-field">
 
-        Back
+                    <label>
+                        Username
+                    </label>
 
-    </button>
+                    <input
+                        id="username"
+                        type="text"
+                        placeholder="Choose a username"
+                    >
 
-
-    <div class="footer-text">
-        TakeYouToTask Academic Resources
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     TIMER PAGE
-========================================================= -->
-
-<section
-    class="container hidden"
-    id="timerPage">
-
-    <div class="brand">
-        FOCUS MODE
-    </div>
-
-    <h1>
-        Distraction-Free Timer
-    </h1>
-
-    <p class="subtitle">
-        Focus on the task. Ignore everything else.
-    </p>
+                </div>
 
 
-    <div class="timer-box">
+                <div class="profile-field">
 
-        <div class="timer-title">
-            Focus Session
+                    <label>
+                        Display Name
+                    </label>
+
+                    <input
+                        id="displayName"
+                        type="text"
+                        placeholder="Your display name"
+                    >
+
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>
+                        Bio
+                    </label>
+
+                    <textarea
+                        id="bio"
+                        placeholder="Tell us a little about yourself..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="saveProfile()"
+                >
+                    Save Profile
+                </button>
+
+            </div>
+
         </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
+     PREMIUM MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="premiumModal"
+>
+
+    <div class="modal-box">
+
+        <h2>
+            Unlock Premium
+        </h2>
+
+        <p style="color:var(--muted);">
+            Enter your Premium access code to unlock
+            all Premium features.
+        </p>
+
+
+        <input
+            type="password"
+            id="premiumCode"
+            placeholder="Premium access code"
+        >
+
+
+        <button
+            class="primary-btn"
+            onclick="activatePremium()"
+        >
+            Activate Premium
+        </button>
+
+
+        <button
+            class="secondary-btn"
+            style="margin-top:10px;"
+            onclick="closePremiumModal()"
+        >
+            Cancel
+        </button>
 
 
         <div
-            class="timer-display"
-            id="timerDisplay">
-
-            25:00
-
+            class="modal-error"
+            id="premiumError"
+        >
+            Incorrect access code.
         </div>
 
 
-        <div class="timer-buttons">
-
-            <button onclick="startTimer()">
-                Start
-            </button>
-
-            <button onclick="pauseTimer()">
-                Pause
-            </button>
-
-            <button onclick="resetTimer()">
-                Reset
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="back-button"
-        onclick="backFromTimer()">
-
-        Back
-
-    </button>
-
-</section>
-
-
-<!-- =========================================================
-     QUIZ PAGE
-========================================================= -->
-
-<section
-    class="container hidden"
-    id="quizPage">
-
-    <div class="premium-page-header">
-
-        <div class="brand">
-            PREMIUM QUIZ
-        </div>
-
-        <h1>
-            Knowledge Check
-        </h1>
-
-        <p class="subtitle">
-            Test your understanding.
+        <p
+            style="
+                color:var(--muted);
+                font-size:12px;
+                margin-top:18px;
+                text-align:center;
+            "
+        >
+            For Premium purchase information,
+            contact 85133766.
         </p>
 
     </div>
 
-
-    <div class="quiz-question">
-
-        <h3>
-            Question 1
-        </h3>
-
-        <p>
-            Which subject would you like to practise?
-        </p>
-
-        <button
-            class="quiz-option"
-            onclick="quizAnswer(this, true)">
-
-            History
-
-        </button>
-
-        <button
-            class="quiz-option"
-            onclick="quizAnswer(this, false)">
-
-            Random
-
-        </button>
-
-    </div>
-
-
-    <div id="quizResult"
-         style="
-         text-align:center;
-         margin-top:20px;
-         color:var(--muted);
-         font-size:14px;
-         ">
-
-    </div>
-
-
-    <button
-        class="back-button"
-        onclick="backFromPremiumFeature()">
-
-        Back to Premium
-
-    </button>
-
-</section>
-
-
-<!-- =========================================================
-     PRACTICE PAGE
-========================================================= -->
-
-<section
-    class="container hidden"
-    id="practicePage">
-
-    <div class="premium-page-header">
-
-        <div class="brand">
-            PREMIUM PRACTICE
-        </div>
-
-        <h1>
-            Practice Questions
-        </h1>
-
-        <p class="subtitle">
-            Sharpen your understanding before the exam.
-        </p>
-
-    </div>
-
-
-    <div class="practice-card">
-
-        <h2>
-            Practice Mode
-        </h2>
-
-        <p>
-            This is where your subject-specific practice
-            questions can be added.
-        </p>
-
-        <button
-            class="premium-button"
-            onclick="alert('Practice question system ready for your questions.')">
-
-            Start Practice
-
-        </button>
-
-    </div>
-
-
-    <button
-        class="back-button"
-        onclick="backFromPremiumFeature()">
-
-        Back to Premium
-
-    </button>
-
-</section>
-
-
-<!-- =========================================================
-     EXAM PAGE
-========================================================= -->
-
-<section
-    class="container hidden"
-    id="examPage">
-
-    <div class="premium-page-header">
-
-        <div class="brand">
-            PREMIUM EXAM MODE
-        </div>
-
-        <h1>
-            Exam Mode
-        </h1>
-
-        <p class="subtitle">
-            Simulate a real examination environment.
-        </p>
-
-    </div>
-
-
-    <div class="exam-card">
-
-        <h2>
-            Ready?
-        </h2>
-
-        <p>
-            Your exam system can include timed questions,
-            marks, automatic scoring and a final result.
-        </p>
-
-        <button
-            class="premium-button"
-            onclick="alert('Exam Mode is ready for your exam questions.')">
-
-            Begin Exam
-
-        </button>
-
-    </div>
-
-
-    <button
-        class="back-button"
-        onclick="backFromPremiumFeature()">
-
-        Back to Premium
-
-    </button>
-
-</section>
-
-
-<!-- =========================================================
-     REVISION PAGE
-========================================================= -->
-
-<section
-    class="container hidden"
-    id="revisionPage">
-
-    <div class="premium-page-header">
-
-        <div class="brand">
-            PREMIUM REVISION
-        </div>
-
-        <h1>
-            Revision Tools
-        </h1>
-
-        <p class="subtitle">
-            Tools designed to make revision more efficient.
-        </p>
-
-    </div>
-
-
-    <div class="dashboard-grid">
-
-        <div class="feature-card">
-
-            <h3>
-                Quick Review
-            </h3>
-
-            <p>
-                Quickly review important concepts.
-            </p>
-
-            <button
-                class="premium-button"
-                onclick="alert('Quick Review ready.')">
-
-                Open
-
-            </button>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <h3>
-                Key Concepts
-            </h3>
-
-            <p>
-                Focus on the most important information.
-            </p>
-
-            <button
-                class="premium-button"
-                onclick="alert('Key Concepts ready.')">
-
-                Open
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="back-button"
-        onclick="backFromPremiumFeature()">
-
-        Back to Premium
-
-    </button>
-
-</section>
-
-
-</main>
+</div>
 
 
 <script>
 
-/* =========================================================
-   PREMIUM CODE
-========================================================= */
+/* =====================================================
+   SETTINGS
+===================================================== */
 
-const PREMIUM_CODE =
-    "MeetMeAtTheLectureTheatre";
-
-
-/* =========================================================
-   PAGE REFERENCES
-========================================================= */
-
-const plansPage =
-    document.getElementById("plansPage");
-
-const basicPage =
-    document.getElementById("basicPage");
-
-const premiumPage =
-    document.getElementById("premiumPage");
-
-const notesPage =
-    document.getElementById("notesPage");
-
-const timerPage =
-    document.getElementById("timerPage");
-
-const quizPage =
-    document.getElementById("quizPage");
-
-const practicePage =
-    document.getElementById("practicePage");
-
-const examPage =
-    document.getElementById("examPage");
-
-const revisionPage =
-    document.getElementById("revisionPage");
+const PREMIUM_CODE = "MeetMeAtTheLectureTheatre";
 
 
-/* =========================================================
-   START SCREEN
-========================================================= */
+/* =====================================================
+   START + LOADING
+===================================================== */
 
-setTimeout(() => {
+window.addEventListener("load", () => {
 
-    const startScreen =
-        document.getElementById("startScreen");
+    setTimeout(() => {
 
-    startScreen.style.opacity = "0";
-
-    startScreen.style.visibility = "hidden";
-
-}, 2300);
-
-
-/* =========================================================
-   LOADING SCREEN
-========================================================= */
-
-setTimeout(() => {
-
-    const loadingScreen =
-        document.getElementById("loadingScreen");
-
-    loadingScreen.style.opacity = "0";
-
-    loadingScreen.style.visibility = "hidden";
-
-}, 4500);
-
-
-/* =========================================================
-   HIDE ALL PAGES
-========================================================= */
-
-function hideAllPages() {
-
-    plansPage.classList.add("hidden");
-
-    basicPage.classList.add("hidden");
-
-    premiumPage.classList.add("hidden");
-
-    notesPage.classList.add("hidden");
-
-    timerPage.classList.add("hidden");
-
-    quizPage.classList.add("hidden");
-
-    practicePage.classList.add("hidden");
-
-    examPage.classList.add("hidden");
-
-    revisionPage.classList.add("hidden");
-
-}
-
-
-/* =========================================================
-   CHECK PREMIUM STATUS
-========================================================= */
-
-function isPremiumUser() {
-
-    return (
-        localStorage.getItem(
-            "premiumUnlocked"
-        ) === "true"
-    );
-
-}
-
-
-/* =========================================================
-   OPEN BASIC
-========================================================= */
-
-function openBasic() {
-
-    hideAllPages();
-
-    basicPage.classList.remove("hidden");
-
-    scrollTop();
-
-}
-
-
-/* =========================================================
-   FOCUS PREMIUM CODE
-========================================================= */
-
-function focusPremiumCode() {
-
-    const input =
-        document.getElementById("premiumCode");
-
-    input.focus();
-
-    input.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-}
-
-
-/* =========================================================
-   CHECK PREMIUM CODE
-========================================================= */
-
-function checkPremiumCode() {
-
-    const input =
         document
-        .getElementById("premiumCode")
-        .value
-        .trim();
+            .getElementById("startScreen")
+            .classList.add("hide");
 
-    const error =
-        document.getElementById("premiumError");
+        document
+            .getElementById("loadingScreen")
+            .style.display = "flex";
+
+        setTimeout(() => {
+
+            document
+                .getElementById("loadingScreen")
+                .style.display = "none";
+
+            document
+                .getElementById("app")
+                .classList.add("show");
+
+            loadProfile();
+
+        }, 1200);
+
+    }, 2200);
+
+});
 
 
-    if (input === PREMIUM_CODE) {
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
 
-        /*
-         * Save Premium status.
-         */
+function showPage(pageName) {
 
-        localStorage.setItem(
-            "premiumUnlocked",
-            "true"
-        );
+    /*
+        IMPORTANT:
+        This does NOT send the user back to Plans.
+
+        The user can freely move between:
+        Home
+        Notes
+        Quiz
+        Timer
+        Profile
+    */
+
+    if (pageName === "quiz") {
+
+        if (!isPremium()) {
+
+            openPremiumModal();
+            return;
+
+        }
+
+    }
 
 
-        error.style.display = "none";
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
 
 
-        /*
-         * Open Premium dashboard.
-         */
+    const page =
+        document.getElementById(pageName);
 
-        hideAllPages();
 
-        premiumPage.classList.remove(
-            "hidden"
-        );
+    if (page) {
 
-        scrollTop();
+        page.classList.add("active");
 
-    } else {
-
-        error.style.display = "block";
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     }
 
 }
 
 
-/* =========================================================
-   OPEN NOTES
-========================================================= */
+/* =====================================================
+   PREMIUM
+===================================================== */
 
-function openNotes() {
+function isPremium() {
 
-    hideAllPages();
-
-    notesPage.classList.remove(
-        "hidden"
-    );
-
-    scrollTop();
+    return localStorage.getItem("premiumUser") === "true";
 
 }
 
 
-/* =========================================================
-   CURRENT PDF
-========================================================= */
+function openPremiumModal() {
 
-let currentPDF = "";
+    document
+        .getElementById("premiumModal")
+        .classList.add("show");
+
+}
 
 
-/* =========================================================
-   OPEN PDF
-========================================================= */
+function closePremiumModal() {
+
+    document
+        .getElementById("premiumModal")
+        .classList.remove("show");
+
+    document
+        .getElementById("premiumError")
+        .style.display = "none";
+
+}
+
+
+function activatePremium() {
+
+    const code =
+        document
+            .getElementById("premiumCode")
+            .value
+            .trim();
+
+
+    if (code === PREMIUM_CODE) {
+
+        localStorage.setItem(
+            "premiumUser",
+            "true"
+        );
+
+
+        closePremiumModal();
+
+        updateProfilePlan();
+
+
+        alert(
+            "Premium has been activated."
+        );
+
+        showPage("home");
+
+    } else {
+
+        document
+            .getElementById("premiumError")
+            .style.display = "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   PROFILE PLAN
+===================================================== */
+
+function updateProfilePlan() {
+
+    const plan =
+        document.getElementById("profilePlan");
+
+
+    if (isPremium()) {
+
+        plan.textContent =
+            "Premium Plan";
+
+        plan.style.color =
+            "var(--pink)";
+
+        plan.style.background =
+            "rgba(255,79,216,.10)";
+
+    } else {
+
+        plan.textContent =
+            "Basic Plan";
+
+        plan.style.color =
+            "var(--cyan)";
+
+        plan.style.background =
+            "rgba(0,229,255,.10)";
+
+    }
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function loadProfile() {
+
+    const username =
+        localStorage.getItem("username") || "";
+
+    const displayName =
+        localStorage.getItem("displayName") || "Student";
+
+    const bio =
+        localStorage.getItem("bio") || "";
+
+
+    document
+        .getElementById("username")
+        .value = username;
+
+
+    document
+        .getElementById("displayName")
+        .value = displayName;
+
+
+    document
+        .getElementById("bio")
+        .value = bio;
+
+
+    document
+        .getElementById("profilePreviewName")
+        .textContent =
+        displayName || "Student";
+
+
+    const savedPicture =
+        localStorage.getItem("profilePicture");
+
+
+    if (savedPicture) {
+
+        document
+            .getElementById("profilePicture")
+            .src = savedPicture;
+
+    } else {
+
+        createDefaultProfilePicture();
+
+    }
+
+
+    updateProfilePlan();
+
+}
+
+
+function saveProfile() {
+
+    const username =
+        document
+            .getElementById("username")
+            .value
+            .trim();
+
+
+    const displayName =
+        document
+            .getElementById("displayName")
+            .value
+            .trim();
+
+
+    const bio =
+        document
+            .getElementById("bio")
+            .value
+            .trim();
+
+
+    localStorage.setItem(
+        "username",
+        username
+    );
+
+
+    localStorage.setItem(
+        "displayName",
+        displayName
+    );
+
+
+    localStorage.setItem(
+        "bio",
+        bio
+    );
+
+
+    document
+        .getElementById("profilePreviewName")
+        .textContent =
+        displayName || "Student";
+
+
+    const status =
+        document
+            .getElementById("profileStatus");
+
+
+    status.classList.add("show");
+
+
+    setTimeout(() => {
+
+        status.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+function createDefaultProfilePicture() {
+
+    const canvas =
+        document.createElement("canvas");
+
+
+    canvas.width = 200;
+    canvas.height = 200;
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            0,
+            200,
+            200
+        );
+
+
+    gradient.addColorStop(
+        0,
+        "#00e5ff"
+    );
+
+    gradient.addColorStop(
+        .5,
+        "#704cff"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#ff4fd8"
+    );
+
+
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        200,
+        200
+    );
+
+
+    ctx.fillStyle =
+        "rgba(255,255,255,.9)";
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        100,
+        75,
+        35,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        100,
+        180,
+        70,
+        Math.PI,
+        0
+    );
+
+    ctx.fill();
+
+
+    document
+        .getElementById("profilePicture")
+        .src =
+        canvas.toDataURL("image/png");
+
+}
+
+
+/* =====================================================
+   PROFILE PICTURE
+===================================================== */
+
+document
+    .getElementById("profileImageInput")
+    .addEventListener(
+        "change",
+        function(event) {
+
+            const file =
+                event.target.files[0];
+
+
+            if (!file) return;
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(e) {
+
+                    const image =
+                        e.target.result;
+
+
+                    document
+                        .getElementById("profilePicture")
+                        .src = image;
+
+
+                    localStorage.setItem(
+                        "profilePicture",
+                        image
+                    );
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+/* =====================================================
+   LIVE PROFILE NAME
+===================================================== */
+
+document
+    .getElementById("displayName")
+    .addEventListener(
+        "input",
+        function() {
+
+            document
+                .getElementById(
+                    "profilePreviewName"
+                )
+                .textContent =
+                this.value || "Student";
+
+        }
+    );
+
+
+/* =====================================================
+   PDF
+===================================================== */
 
 function openPDF(filename) {
 
     const viewer =
-        document.getElementById(
-            "pdfViewer"
-        );
-
-    const downloadBtn =
-        document.getElementById(
-            "downloadBtn"
-        );
-
-
-    currentPDF = filename;
+        document.getElementById("pdfViewer");
 
 
     viewer.src =
         "./" + filename;
 
-    viewer.style.display =
-        "block";
 
-    downloadBtn.style.display =
+    viewer.style.display =
         "block";
 
 
@@ -2866,55 +2241,9 @@ function openPDF(filename) {
 }
 
 
-/* =========================================================
-   DOWNLOAD PDF
-========================================================= */
-
-function downloadCurrentPDF() {
-
-    if (!currentPDF) {
-        return;
-    }
-
-
-    const link =
-        document.createElement("a");
-
-    link.href =
-        "./" + currentPDF;
-
-    link.download =
-        currentPDF;
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
-
-}
-
-
-/* =========================================================
-   OPEN TIMER
-========================================================= */
-
-function openTimer() {
-
-    hideAllPages();
-
-    timerPage.classList.remove(
-        "hidden"
-    );
-
-    scrollTop();
-
-}
-
-
-/* =========================================================
+/* =====================================================
    TIMER
-========================================================= */
+===================================================== */
 
 let timerSeconds = 25 * 60;
 
@@ -2924,36 +2253,39 @@ let timerInterval = null;
 function updateTimerDisplay() {
 
     const minutes =
-        Math.floor(
-            timerSeconds / 60
-        );
+        Math.floor(timerSeconds / 60);
 
     const seconds =
         timerSeconds % 60;
 
 
-    document.getElementById(
-        "timerDisplay"
-    ).textContent =
-        String(minutes).padStart(2, "0")
+    document
+        .getElementById("timerDisplay")
+        .textContent =
+
+        String(minutes).padStart(2,"0")
         + ":"
         +
-        String(seconds).padStart(2, "0");
+        String(seconds).padStart(2,"0");
 
 }
 
 
 function startTimer() {
 
-    if (timerInterval !== null) {
-        return;
-    }
+    if (timerInterval) return;
 
 
     timerInterval =
         setInterval(() => {
 
-            if (timerSeconds <= 0) {
+            if (timerSeconds > 0) {
+
+                timerSeconds--;
+
+                updateTimerDisplay();
+
+            } else {
 
                 clearInterval(
                     timerInterval
@@ -2961,18 +2293,7 @@ function startTimer() {
 
                 timerInterval = null;
 
-                alert(
-                    "Focus session complete."
-                );
-
-                return;
-
             }
-
-
-            timerSeconds--;
-
-            updateTimerDisplay();
 
         }, 1000);
 
@@ -2992,11 +2313,7 @@ function pauseTimer() {
 
 function resetTimer() {
 
-    clearInterval(
-        timerInterval
-    );
-
-    timerInterval = null;
+    pauseTimer();
 
     timerSeconds =
         25 * 60;
@@ -3006,314 +2323,204 @@ function resetTimer() {
 }
 
 
-/* =========================================================
-   PREMIUM FEATURE GUARD
-========================================================= */
-
-function requirePremium(callback) {
-
-    if (!isPremiumUser()) {
-
-        alert(
-            "Premium access is required for this feature."
-        );
-
-        hideAllPages();
-
-        plansPage.classList.remove(
-            "hidden"
-        );
-
-        scrollTop();
-
-        return false;
-
-    }
+updateTimerDisplay();
 
 
-    callback();
-
-    return true;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    QUIZ
-========================================================= */
+===================================================== */
 
-function openQuiz() {
+const quizQuestions = [
 
-    requirePremium(() => {
+    {
+        question:
+            "Which factor helped Singapore develop as a trading centre?",
 
-        hideAllPages();
+        options: [
+            "Its strategic location",
+            "Its cold climate",
+            "Its distance from trade routes",
+            "Its lack of a harbour"
+        ],
 
-        quizPage.classList.remove(
-            "hidden"
-        );
+        answer: 0
+    },
 
-        scrollTop();
+    {
+        question:
+            "What does free port status mean?",
 
-    });
+        options: [
+            "Trade was completely banned",
+            "Traders could trade with fewer restrictions",
+            "Only local traders could enter",
+            "Ships were not allowed to dock"
+        ],
 
-}
+        answer: 1
+    },
 
+    {
+        question:
+            "Which subject is available in the Study Notes section?",
 
-/* =========================================================
-   QUIZ ANSWER
-========================================================= */
+        options: [
+            "History",
+            "Music Production",
+            "Computer Engineering",
+            "Economics"
+        ],
 
-function quizAnswer(button, correct) {
-
-    const result =
-        document.getElementById(
-            "quizResult"
-        );
-
-
-    if (correct) {
-
-        button.style.borderColor =
-            "rgba(34,197,94,0.7)";
-
-        result.textContent =
-            "Correct. Well done.";
-
-        result.style.color =
-            "#4ade80";
-
-    } else {
-
-        button.style.borderColor =
-            "rgba(244,63,94,0.7)";
-
-        result.textContent =
-            "Incorrect. Try again.";
-
-        result.style.color =
-            "#fb7185";
-
+        answer: 0
     }
 
-}
+];
 
 
-/* =========================================================
-   PRACTICE
-========================================================= */
+let currentQuestion = 0;
+let quizScore = 0;
 
-function openPractice() {
 
-    requirePremium(() => {
+function loadQuestion() {
 
-        hideAllPages();
+    const question =
+        quizQuestions[currentQuestion];
 
-        practicePage.classList.remove(
-            "hidden"
-        );
 
-        scrollTop();
+    document
+        .getElementById("question")
+        .textContent =
+        question.question;
 
-    });
 
-}
+    const options =
+        document.getElementById("options");
 
 
-/* =========================================================
-   EXAM
-========================================================= */
+    options.innerHTML = "";
 
-function openExam() {
 
-    requirePremium(() => {
+    question.options.forEach(
+        (option,index) => {
 
-        hideAllPages();
+            const button =
+                document.createElement("button");
 
-        examPage.classList.remove(
-            "hidden"
-        );
 
-        scrollTop();
+            button.className =
+                "quiz-option";
 
-    });
 
-}
+            button.textContent =
+                option;
 
 
-/* =========================================================
-   REVISION
-========================================================= */
+            button.onclick =
+                () => answerQuestion(index);
 
-function openRevision() {
 
-    requirePremium(() => {
-
-        hideAllPages();
-
-        revisionPage.classList.remove(
-            "hidden"
-        );
-
-        scrollTop();
-
-    });
-
-}
-
-
-/* =========================================================
-   BACK FROM NOTES
-========================================================= */
-
-function backFromNotes() {
-
-    hideAllPages();
-
-
-    if (isPremiumUser()) {
-
-        premiumPage.classList.remove(
-            "hidden"
-        );
-
-    } else {
-
-        basicPage.classList.remove(
-            "hidden"
-        );
-
-    }
-
-
-    scrollTop();
-
-}
-
-
-/* =========================================================
-   BACK FROM TIMER
-========================================================= */
-
-function backFromTimer() {
-
-    hideAllPages();
-
-
-    if (isPremiumUser()) {
-
-        premiumPage.classList.remove(
-            "hidden"
-        );
-
-    } else {
-
-        basicPage.classList.remove(
-            "hidden"
-        );
-
-    }
-
-
-    scrollTop();
-
-}
-
-
-/* =========================================================
-   BACK FROM PREMIUM FEATURE
-========================================================= */
-
-function backFromPremiumFeature() {
-
-    /*
-     * If the user somehow loses Premium,
-     * send them to Basic instead.
-     */
-
-    if (!isPremiumUser()) {
-
-        hideAllPages();
-
-        basicPage.classList.remove(
-            "hidden"
-        );
-
-        scrollTop();
-
-        return;
-
-    }
-
-
-    hideAllPages();
-
-    premiumPage.classList.remove(
-        "hidden"
-    );
-
-    scrollTop();
-
-}
-
-
-/* =========================================================
-   BACK TO PLANS
-========================================================= */
-
-function backToPlans() {
-
-    hideAllPages();
-
-    plansPage.classList.remove(
-        "hidden"
-    );
-
-    scrollTop();
-
-}
-
-
-/* =========================================================
-   SCROLL TOP
-========================================================= */
-
-function scrollTop() {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* =========================================================
-   ENTER KEY FOR ACCESS CODE
-========================================================= */
-
-document
-    .getElementById("premiumCode")
-    .addEventListener(
-        "keydown",
-        function(event) {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                checkPremiumCode();
-
-            }
+            options.appendChild(button);
 
         }
     );
 
 
-/* =========================================================
-   INITIAL TIMER
-========================================================= */
+    document
+        .getElementById("quizResult")
+        .textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        quizQuestions.length;
 
-updateTimerDisplay();
+}
+
+
+function answerQuestion(index) {
+
+    const question =
+        quizQuestions[currentQuestion];
+
+
+    if (index === question.answer) {
+
+        quizScore++;
+
+    }
+
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        quizQuestions.length
+    ) {
+
+        document
+            .getElementById("question")
+            .textContent =
+            "Quiz Complete";
+
+
+        document
+            .getElementById("options")
+            .innerHTML = "";
+
+
+        document
+            .getElementById("quizResult")
+            .textContent =
+            "Score: " +
+            quizScore +
+            " / " +
+            quizQuestions.length;
+
+
+        currentQuestion = 0;
+        quizScore = 0;
+
+
+        setTimeout(
+            loadQuestion,
+            3000
+        );
+
+
+    } else {
+
+        loadQuestion();
+
+    }
+
+}
+
+
+/* =====================================================
+   INITIALISE QUIZ
+===================================================== */
+
+loadQuestion();
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closePremiumModal();
+
+        }
+
+    }
+);
 
 </script>
 
