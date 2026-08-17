@@ -29,11 +29,10 @@
     --bg: #030712;
     --bg2: #080b1a;
 
-    --card: rgba(10, 15, 35, 0.78);
-
     --text: #f8fafc;
     --muted: #94a3b8;
 
+    --card: rgba(10, 15, 35, 0.78);
     --border: rgba(148, 163, 184, 0.15);
 }
 
@@ -214,7 +213,7 @@ body::before {
 
 
 /* =========================================================
-   STARTING SCREEN
+   START SCREEN
 ========================================================= */
 
 #startScreen {
@@ -405,7 +404,8 @@ body::before {
 
     border-radius: 20px;
 
-    background: rgba(148, 163, 184, 0.12);
+    background:
+        rgba(148, 163, 184, 0.12);
 
     overflow: hidden;
 }
@@ -434,11 +434,11 @@ body::before {
 
 @keyframes loading {
 
-    0% {
+    from {
         width: 0%;
     }
 
-    100% {
+    to {
         width: 100%;
     }
 }
@@ -475,7 +475,7 @@ body::before {
 
 
 /* =========================================================
-   MAIN CONTAINER
+   CONTAINER
 ========================================================= */
 
 .container {
@@ -483,7 +483,7 @@ body::before {
 
     z-index: 2;
 
-    width: min(900px, 100%);
+    width: min(950px, 100%);
 
     padding: 38px;
 
@@ -595,7 +595,7 @@ h1 {
 
 
 /* =========================================================
-   PLAN SELECTOR
+   PLAN HEADER
 ========================================================= */
 
 .plan-header {
@@ -766,7 +766,7 @@ h1 {
 
 
 /* =========================================================
-   PLAN TITLE
+   PLAN TEXT
 ========================================================= */
 
 .plan-title {
@@ -791,7 +791,7 @@ h1 {
 
 
 /* =========================================================
-   HUGE PREMIUM PRICE
+   PRICE
 ========================================================= */
 
 .premium-price {
@@ -961,6 +961,10 @@ button:hover {
         rgba(0, 217, 255, 0.3);
 }
 
+button:active {
+    transform: translateY(0);
+}
+
 .premium-button {
     background:
         linear-gradient(
@@ -982,38 +986,8 @@ button:hover {
 
 
 /* =========================================================
-   ACCESS CODE
+   INPUT
 ========================================================= */
-
-.access-section {
-    margin-top: 20px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid
-        rgba(148, 163, 184, 0.1);
-}
-
-.access-title {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    margin-bottom: 8px;
-}
-
-.access-text {
-    color: var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.5;
-
-    margin-bottom: 12px;
-}
 
 input {
     width: 100%;
@@ -1052,6 +1026,41 @@ input:focus {
 
 input::placeholder {
     color: #64748b;
+}
+
+
+/* =========================================================
+   ACCESS SECTION
+========================================================= */
+
+.access-section {
+    margin-top: 20px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(148, 163, 184, 0.1);
+}
+
+.access-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.access-text {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 12px;
 }
 
 
@@ -1098,6 +1107,32 @@ input::placeholder {
     text-shadow:
         0 0 12px
         rgba(236, 72, 153, 0.4);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error {
+    display: none;
+
+    margin-top: 10px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(244, 63, 94, 0.08);
+
+    border:
+        1px solid
+        rgba(244, 63, 94, 0.2);
+
+    color: #fb7185;
+
+    font-size: 12px;
 }
 
 
@@ -1229,6 +1264,68 @@ input::placeholder {
 
 
 /* =========================================================
+   NOTES
+========================================================= */
+
+.subject-list {
+    margin-top: 25px;
+}
+
+.subject-btn {
+    text-align: left;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(14, 165, 233, 0.10),
+            rgba(139, 92, 246, 0.10)
+        );
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.13);
+}
+
+.subject-btn::after {
+    content: "→";
+
+    position: absolute;
+
+    right: 20px;
+
+    color: var(--blue);
+
+    transition: 0.2s;
+}
+
+.subject-btn:hover::after {
+    transform: translateX(5px);
+}
+
+iframe {
+    width: 100%;
+
+    height: 550px;
+
+    margin-top: 20px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid
+        rgba(0, 217, 255, 0.18);
+
+    background: #111827;
+
+    box-shadow:
+        0 0 30px
+        rgba(0, 217, 255, 0.08);
+}
+
+
+/* =========================================================
    TIMER
 ========================================================= */
 
@@ -1313,123 +1410,101 @@ input::placeholder {
 
 
 /* =========================================================
-   NOTES
+   PREMIUM FEATURE PAGES
 ========================================================= */
 
-.subject-list {
-    margin-top: 25px;
+.premium-page-header {
+    text-align: center;
+
+    margin-bottom: 30px;
 }
 
-.subject-btn {
-    width: 100%;
+.quiz-question {
+    padding: 25px;
 
+    border-radius: 20px;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    border:
+        1px solid
+        rgba(139, 92, 246, 0.18);
+
+    margin-bottom: 18px;
+}
+
+.quiz-question h3 {
+    margin-top: 0;
+
+    font-size: 18px;
+}
+
+.quiz-option {
     text-align: left;
 
-    padding: 17px 20px;
-
     margin-top: 10px;
 
-    border-radius: 15px;
+    background:
+        rgba(148, 163, 184, 0.07);
+
+    border:
+        1px solid
+        rgba(148, 163, 184, 0.12);
+}
+
+.quiz-option:hover {
+    border-color:
+        rgba(139, 92, 246, 0.5);
+}
+
+.practice-card,
+.exam-card {
+    padding: 28px;
+
+    border-radius: 22px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(14, 165, 233, 0.10),
-            rgba(139, 92, 246, 0.10)
-        );
+        rgba(15, 23, 42, 0.55);
 
     border:
         1px solid
-        rgba(148, 163, 184, 0.13);
+        rgba(139, 92, 246, 0.15);
 
-    position: relative;
+    margin-top: 18px;
 }
 
-.subject-btn::after {
-    content: "→";
-
-    position: absolute;
-
-    right: 20px;
-
-    color: var(--blue);
-
-    transition: 0.2s;
-}
-
-.subject-btn:hover::after {
-    transform: translateX(5px);
-}
-
-iframe {
-    width: 100%;
-
-    height: 550px;
-
-    margin-top: 20px;
-
-    border-radius: 18px;
-
-    border:
-        1px solid
-        rgba(0, 217, 255, 0.18);
-
-    background: #111827;
-
-    box-shadow:
-        0 0 30px
-        rgba(0, 217, 255, 0.08);
-}
-
-
-/* =========================================================
-   RULES
-========================================================= */
-
-.rules {
-    margin-top: 25px;
-
-    color: #cbd5e1;
-
-    font-size: 14px;
+.practice-card p,
+.exam-card p {
+    color: var(--muted);
 
     line-height: 1.7;
-}
 
-.rules li {
-    margin-bottom: 14px;
-}
-
-.rules b {
-    color: white;
-
-    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
 }
 
 
 /* =========================================================
-   ERROR
+   BACK BUTTON
 ========================================================= */
 
-.error {
-    display: none;
-
-    margin-top: 10px;
-
-    padding: 10px;
-
-    border-radius: 10px;
+.back-button {
+    margin-top: 20px;
 
     background:
-        rgba(244, 63, 94, 0.08);
+        rgba(148, 163, 184, 0.08);
 
     border:
         1px solid
-        rgba(244, 63, 94, 0.2);
+        rgba(148, 163, 184, 0.12);
 
-    color: #fb7185;
+    box-shadow: none;
+}
 
-    font-size: 12px;
+.back-button:hover {
+    box-shadow:
+        0 0 20px
+        rgba(148, 163, 184, 0.12);
 }
 
 
@@ -1451,25 +1526,7 @@ iframe {
 
 
 /* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.back-button {
-    margin-top: 20px;
-
-    background:
-        rgba(148, 163, 184, 0.08);
-
-    border:
-        1px solid
-        rgba(148, 163, 184, 0.12);
-
-    box-shadow: none;
-}
-
-
-/* =========================================================
-   RESPONSIVE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 750px) {
@@ -1581,14 +1638,14 @@ iframe {
 
 
 <!-- =========================================================
-     MAIN PAGE
+     MAIN
 ========================================================= -->
 
 <main class="page">
 
 
 <!-- =========================================================
-     PLAN SELECTION
+     PLAN PAGE
 ========================================================= -->
 
 <section class="container" id="plansPage">
@@ -1614,9 +1671,7 @@ iframe {
     <div class="pricing-grid">
 
 
-        <!-- =================================================
-             BASIC
-        ================================================== -->
+        <!-- BASIC -->
 
         <div class="plan-card basic-card">
 
@@ -1628,19 +1683,20 @@ iframe {
                 Everything you need for everyday studying.
             </div>
 
-            <div class="premium-price"
-                 style="
-                 font-size:52px;
-                 letter-spacing:-3px;
-                 background:
-                 linear-gradient(
-                 90deg,
-                 #ffffff,
-                 #94a3b8
-                 );
-                 -webkit-background-clip:text;
-                 -webkit-text-fill-color:transparent;
-                 ">
+            <div
+                class="premium-price"
+                style="
+                font-size:52px;
+                letter-spacing:-3px;
+                background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #94a3b8
+                );
+                -webkit-background-clip:text;
+                -webkit-text-fill-color:transparent;
+                ">
 
                 FREE
 
@@ -1683,9 +1739,7 @@ iframe {
         </div>
 
 
-        <!-- =================================================
-             PREMIUM
-        ================================================== -->
+        <!-- PREMIUM -->
 
         <div class="plan-card premium-card">
 
@@ -1701,8 +1755,6 @@ iframe {
                 Unlock advanced tools designed for serious revision.
             </div>
 
-
-            <!-- HUGE PRICE -->
 
             <div class="premium-price">
 
@@ -1746,14 +1798,12 @@ iframe {
 
             <button
                 class="premium-button"
-                onclick="showPremium()">
+                onclick="focusPremiumCode()">
 
                 Unlock Premium
 
             </button>
 
-
-            <!-- ACCESS CODE -->
 
             <div class="access-section">
 
@@ -1762,8 +1812,7 @@ iframe {
                 </div>
 
                 <div class="access-text">
-                    Enter your code below to unlock Premium
-                    without purchasing it.
+                    Enter your code below to unlock Premium.
                 </div>
 
                 <input
@@ -1790,8 +1839,6 @@ iframe {
 
             </div>
 
-
-            <!-- PURCHASE -->
 
             <div class="purchase-info">
 
@@ -1849,10 +1896,7 @@ iframe {
     <div class="dashboard-grid">
 
 
-        <div
-            class="feature-card"
-            onclick="openNotes()"
-            style="cursor:pointer">
+        <div class="feature-card">
 
             <h3>
                 Study Notes
@@ -1862,17 +1906,14 @@ iframe {
                 Open your subject notes and revision materials.
             </p>
 
-            <button>
+            <button onclick="openNotes()">
                 Open Notes
             </button>
 
         </div>
 
 
-        <div
-            class="feature-card"
-            onclick="openTimer()"
-            style="cursor:pointer">
+        <div class="feature-card">
 
             <h3>
                 Distraction-Free Timer
@@ -1882,7 +1923,7 @@ iframe {
                 Focus on your work with a clean study timer.
             </p>
 
-            <button>
+            <button onclick="openTimer()">
                 Start Timer
             </button>
 
@@ -1953,10 +1994,9 @@ iframe {
     <div class="dashboard-grid">
 
 
-        <div
-            class="feature-card"
-            onclick="openNotes()"
-            style="cursor:pointer">
+        <!-- NOTES -->
+
+        <div class="feature-card">
 
             <h3>
                 Study Notes
@@ -1966,17 +2006,16 @@ iframe {
                 Access all available subject notes.
             </p>
 
-            <button>
+            <button onclick="openNotes()">
                 Open Notes
             </button>
 
         </div>
 
 
-        <div
-            class="feature-card"
-            onclick="openTimer()"
-            style="cursor:pointer">
+        <!-- TIMER -->
+
+        <div class="feature-card">
 
             <h3>
                 Distraction-Free Timer
@@ -1986,12 +2025,14 @@ iframe {
                 Focus without unnecessary distractions.
             </p>
 
-            <button>
+            <button onclick="openTimer()">
                 Start Timer
             </button>
 
         </div>
 
+
+        <!-- QUIZ -->
 
         <div class="feature-card">
 
@@ -2005,7 +2046,7 @@ iframe {
 
             <button
                 class="premium-button"
-                onclick="premiumFeature()">
+                onclick="openQuiz()">
 
                 Start Quiz
 
@@ -2013,6 +2054,8 @@ iframe {
 
         </div>
 
+
+        <!-- PRACTICE -->
 
         <div class="feature-card">
 
@@ -2026,7 +2069,7 @@ iframe {
 
             <button
                 class="premium-button"
-                onclick="premiumFeature()">
+                onclick="openPractice()">
 
                 Practice
 
@@ -2034,6 +2077,8 @@ iframe {
 
         </div>
 
+
+        <!-- EXAM -->
 
         <div class="feature-card">
 
@@ -2047,7 +2092,7 @@ iframe {
 
             <button
                 class="premium-button"
-                onclick="premiumFeature()">
+                onclick="openExam()">
 
                 Enter Exam Mode
 
@@ -2055,6 +2100,8 @@ iframe {
 
         </div>
 
+
+        <!-- REVISION -->
 
         <div class="feature-card">
 
@@ -2068,7 +2115,7 @@ iframe {
 
             <button
                 class="premium-button"
-                onclick="premiumFeature()">
+                onclick="openRevision()">
 
                 Open Tools
 
@@ -2140,7 +2187,6 @@ iframe {
 
     <div class="subject-list">
 
-
         <button
             class="subject-btn"
             onclick="openPDF('notes.pdf')">
@@ -2148,7 +2194,6 @@ iframe {
             History
 
         </button>
-
 
         <button
             class="subject-btn"
@@ -2158,7 +2203,6 @@ iframe {
 
         </button>
 
-
         <button
             class="subject-btn"
             onclick="openPDF('notes_pscience.pdf')">
@@ -2167,7 +2211,6 @@ iframe {
 
         </button>
 
-
         <button
             class="subject-btn"
             onclick="openPDF('notes_geography.pdf')">
@@ -2175,7 +2218,6 @@ iframe {
             Geography
 
         </button>
-
 
     </div>
 
@@ -2279,14 +2321,287 @@ iframe {
 </section>
 
 
+<!-- =========================================================
+     QUIZ PAGE
+========================================================= -->
+
+<section
+    class="container hidden"
+    id="quizPage">
+
+    <div class="premium-page-header">
+
+        <div class="brand">
+            PREMIUM QUIZ
+        </div>
+
+        <h1>
+            Knowledge Check
+        </h1>
+
+        <p class="subtitle">
+            Test your understanding.
+        </p>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+        <h3>
+            Question 1
+        </h3>
+
+        <p>
+            Which subject would you like to practise?
+        </p>
+
+        <button
+            class="quiz-option"
+            onclick="quizAnswer(this, true)">
+
+            History
+
+        </button>
+
+        <button
+            class="quiz-option"
+            onclick="quizAnswer(this, false)">
+
+            Random
+
+        </button>
+
+    </div>
+
+
+    <div id="quizResult"
+         style="
+         text-align:center;
+         margin-top:20px;
+         color:var(--muted);
+         font-size:14px;
+         ">
+
+    </div>
+
+
+    <button
+        class="back-button"
+        onclick="backFromPremiumFeature()">
+
+        Back to Premium
+
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     PRACTICE PAGE
+========================================================= -->
+
+<section
+    class="container hidden"
+    id="practicePage">
+
+    <div class="premium-page-header">
+
+        <div class="brand">
+            PREMIUM PRACTICE
+        </div>
+
+        <h1>
+            Practice Questions
+        </h1>
+
+        <p class="subtitle">
+            Sharpen your understanding before the exam.
+        </p>
+
+    </div>
+
+
+    <div class="practice-card">
+
+        <h2>
+            Practice Mode
+        </h2>
+
+        <p>
+            This is where your subject-specific practice
+            questions can be added.
+        </p>
+
+        <button
+            class="premium-button"
+            onclick="alert('Practice question system ready for your questions.')">
+
+            Start Practice
+
+        </button>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        onclick="backFromPremiumFeature()">
+
+        Back to Premium
+
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     EXAM PAGE
+========================================================= -->
+
+<section
+    class="container hidden"
+    id="examPage">
+
+    <div class="premium-page-header">
+
+        <div class="brand">
+            PREMIUM EXAM MODE
+        </div>
+
+        <h1>
+            Exam Mode
+        </h1>
+
+        <p class="subtitle">
+            Simulate a real examination environment.
+        </p>
+
+    </div>
+
+
+    <div class="exam-card">
+
+        <h2>
+            Ready?
+        </h2>
+
+        <p>
+            Your exam system can include timed questions,
+            marks, automatic scoring and a final result.
+        </p>
+
+        <button
+            class="premium-button"
+            onclick="alert('Exam Mode is ready for your exam questions.')">
+
+            Begin Exam
+
+        </button>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        onclick="backFromPremiumFeature()">
+
+        Back to Premium
+
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     REVISION PAGE
+========================================================= -->
+
+<section
+    class="container hidden"
+    id="revisionPage">
+
+    <div class="premium-page-header">
+
+        <div class="brand">
+            PREMIUM REVISION
+        </div>
+
+        <h1>
+            Revision Tools
+        </h1>
+
+        <p class="subtitle">
+            Tools designed to make revision more efficient.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="feature-card">
+
+            <h3>
+                Quick Review
+            </h3>
+
+            <p>
+                Quickly review important concepts.
+            </p>
+
+            <button
+                class="premium-button"
+                onclick="alert('Quick Review ready.')">
+
+                Open
+
+            </button>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>
+                Key Concepts
+            </h3>
+
+            <p>
+                Focus on the most important information.
+            </p>
+
+            <button
+                class="premium-button"
+                onclick="alert('Key Concepts ready.')">
+
+                Open
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        onclick="backFromPremiumFeature()">
+
+        Back to Premium
+
+    </button>
+
+</section>
+
+
 </main>
 
 
 <script>
 
-
 /* =========================================================
-   PREMIUM ACCESS CODE
+   PREMIUM CODE
 ========================================================= */
 
 const PREMIUM_CODE =
@@ -2294,14 +2609,8 @@ const PREMIUM_CODE =
 
 
 /* =========================================================
-   PAGE ELEMENTS
+   PAGE REFERENCES
 ========================================================= */
-
-const startScreen =
-    document.getElementById("startScreen");
-
-const loadingScreen =
-    document.getElementById("loadingScreen");
 
 const plansPage =
     document.getElementById("plansPage");
@@ -2318,29 +2627,53 @@ const notesPage =
 const timerPage =
     document.getElementById("timerPage");
 
+const quizPage =
+    document.getElementById("quizPage");
+
+const practicePage =
+    document.getElementById("practicePage");
+
+const examPage =
+    document.getElementById("examPage");
+
+const revisionPage =
+    document.getElementById("revisionPage");
+
 
 /* =========================================================
-   START + LOADING
+   START SCREEN
 ========================================================= */
 
 setTimeout(() => {
 
+    const startScreen =
+        document.getElementById("startScreen");
+
     startScreen.style.opacity = "0";
+
     startScreen.style.visibility = "hidden";
 
 }, 2300);
 
 
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
 setTimeout(() => {
 
+    const loadingScreen =
+        document.getElementById("loadingScreen");
+
     loadingScreen.style.opacity = "0";
+
     loadingScreen.style.visibility = "hidden";
 
 }, 4500);
 
 
 /* =========================================================
-   PAGE SWITCHER
+   HIDE ALL PAGES
 ========================================================= */
 
 function hideAllPages() {
@@ -2355,11 +2688,34 @@ function hideAllPages() {
 
     timerPage.classList.add("hidden");
 
+    quizPage.classList.add("hidden");
+
+    practicePage.classList.add("hidden");
+
+    examPage.classList.add("hidden");
+
+    revisionPage.classList.add("hidden");
+
 }
 
 
 /* =========================================================
-   BASIC
+   CHECK PREMIUM STATUS
+========================================================= */
+
+function isPremiumUser() {
+
+    return (
+        localStorage.getItem(
+            "premiumUnlocked"
+        ) === "true"
+    );
+
+}
+
+
+/* =========================================================
+   OPEN BASIC
 ========================================================= */
 
 function openBasic() {
@@ -2368,23 +2724,26 @@ function openBasic() {
 
     basicPage.classList.remove("hidden");
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    scrollTop();
 
 }
 
 
 /* =========================================================
-   PREMIUM PAGE
+   FOCUS PREMIUM CODE
 ========================================================= */
 
-function showPremium() {
+function focusPremiumCode() {
 
-    document
-        .getElementById("premiumCode")
-        .focus();
+    const input =
+        document.getElementById("premiumCode");
+
+    input.focus();
+
+    input.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
 }
 
@@ -2402,22 +2761,35 @@ function checkPremiumCode() {
         .trim();
 
     const error =
-        document
-        .getElementById("premiumError");
+        document.getElementById("premiumError");
 
 
     if (input === PREMIUM_CODE) {
 
+        /*
+         * Save Premium status.
+         */
+
+        localStorage.setItem(
+            "premiumUnlocked",
+            "true"
+        );
+
+
         error.style.display = "none";
+
+
+        /*
+         * Open Premium dashboard.
+         */
 
         hideAllPages();
 
-        premiumPage.classList.remove("hidden");
+        premiumPage.classList.remove(
+            "hidden"
+        );
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        scrollTop();
 
     } else {
 
@@ -2429,50 +2801,44 @@ function checkPremiumCode() {
 
 
 /* =========================================================
-   PREMIUM FEATURES
-========================================================= */
-
-function premiumFeature() {
-
-    alert(
-        "Premium feature selected. This section is ready for your quiz, practice questions or exam system."
-    );
-
-}
-
-
-/* =========================================================
-   NOTES
+   OPEN NOTES
 ========================================================= */
 
 function openNotes() {
 
     hideAllPages();
 
-    notesPage.classList.remove("hidden");
+    notesPage.classList.remove(
+        "hidden"
+    );
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    scrollTop();
 
 }
+
+
+/* =========================================================
+   CURRENT PDF
+========================================================= */
+
+let currentPDF = "";
 
 
 /* =========================================================
    OPEN PDF
 ========================================================= */
 
-let currentPDF = "";
-
-
 function openPDF(filename) {
 
     const viewer =
-        document.getElementById("pdfViewer");
+        document.getElementById(
+            "pdfViewer"
+        );
 
     const downloadBtn =
-        document.getElementById("downloadBtn");
+        document.getElementById(
+            "downloadBtn"
+        );
 
 
     currentPDF = filename;
@@ -2483,7 +2849,6 @@ function openPDF(filename) {
 
     viewer.style.display =
         "block";
-
 
     downloadBtn.style.display =
         "block";
@@ -2511,6 +2876,7 @@ function downloadCurrentPDF() {
         return;
     }
 
+
     const link =
         document.createElement("a");
 
@@ -2530,6 +2896,23 @@ function downloadCurrentPDF() {
 
 
 /* =========================================================
+   OPEN TIMER
+========================================================= */
+
+function openTimer() {
+
+    hideAllPages();
+
+    timerPage.classList.remove(
+        "hidden"
+    );
+
+    scrollTop();
+
+}
+
+
+/* =========================================================
    TIMER
 ========================================================= */
 
@@ -2541,7 +2924,9 @@ let timerInterval = null;
 function updateTimerDisplay() {
 
     const minutes =
-        Math.floor(timerSeconds / 60);
+        Math.floor(
+            timerSeconds / 60
+        );
 
     const seconds =
         timerSeconds % 60;
@@ -2570,7 +2955,9 @@ function startTimer() {
 
             if (timerSeconds <= 0) {
 
-                clearInterval(timerInterval);
+                clearInterval(
+                    timerInterval
+                );
 
                 timerInterval = null;
 
@@ -2594,7 +2981,9 @@ function startTimer() {
 
 function pauseTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
     timerInterval = null;
 
@@ -2603,11 +2992,14 @@ function pauseTimer() {
 
 function resetTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
     timerInterval = null;
 
-    timerSeconds = 25 * 60;
+    timerSeconds =
+        25 * 60;
 
     updateTimerDisplay();
 
@@ -2615,18 +3007,155 @@ function resetTimer() {
 
 
 /* =========================================================
-   OPEN TIMER
+   PREMIUM FEATURE GUARD
 ========================================================= */
 
-function openTimer() {
+function requirePremium(callback) {
 
-    hideAllPages();
+    if (!isPremiumUser()) {
 
-    timerPage.classList.remove("hidden");
+        alert(
+            "Premium access is required for this feature."
+        );
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        hideAllPages();
+
+        plansPage.classList.remove(
+            "hidden"
+        );
+
+        scrollTop();
+
+        return false;
+
+    }
+
+
+    callback();
+
+    return true;
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+function openQuiz() {
+
+    requirePremium(() => {
+
+        hideAllPages();
+
+        quizPage.classList.remove(
+            "hidden"
+        );
+
+        scrollTop();
+
+    });
+
+}
+
+
+/* =========================================================
+   QUIZ ANSWER
+========================================================= */
+
+function quizAnswer(button, correct) {
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+
+    if (correct) {
+
+        button.style.borderColor =
+            "rgba(34,197,94,0.7)";
+
+        result.textContent =
+            "Correct. Well done.";
+
+        result.style.color =
+            "#4ade80";
+
+    } else {
+
+        button.style.borderColor =
+            "rgba(244,63,94,0.7)";
+
+        result.textContent =
+            "Incorrect. Try again.";
+
+        result.style.color =
+            "#fb7185";
+
+    }
+
+}
+
+
+/* =========================================================
+   PRACTICE
+========================================================= */
+
+function openPractice() {
+
+    requirePremium(() => {
+
+        hideAllPages();
+
+        practicePage.classList.remove(
+            "hidden"
+        );
+
+        scrollTop();
+
+    });
+
+}
+
+
+/* =========================================================
+   EXAM
+========================================================= */
+
+function openExam() {
+
+    requirePremium(() => {
+
+        hideAllPages();
+
+        examPage.classList.remove(
+            "hidden"
+        );
+
+        scrollTop();
+
+    });
+
+}
+
+
+/* =========================================================
+   REVISION
+========================================================= */
+
+function openRevision() {
+
+    requirePremium(() => {
+
+        hideAllPages();
+
+        revisionPage.classList.remove(
+            "hidden"
+        );
+
+        scrollTop();
+
     });
 
 }
@@ -2640,18 +3169,23 @@ function backFromNotes() {
 
     hideAllPages();
 
-    if (
-        localStorage.getItem("premiumUnlocked")
-        === "true"
-    ) {
 
-        premiumPage.classList.remove("hidden");
+    if (isPremiumUser()) {
+
+        premiumPage.classList.remove(
+            "hidden"
+        );
 
     } else {
 
-        basicPage.classList.remove("hidden");
+        basicPage.classList.remove(
+            "hidden"
+        );
 
     }
+
+
+    scrollTop();
 
 }
 
@@ -2664,18 +3198,60 @@ function backFromTimer() {
 
     hideAllPages();
 
-    if (
-        localStorage.getItem("premiumUnlocked")
-        === "true"
-    ) {
 
-        premiumPage.classList.remove("hidden");
+    if (isPremiumUser()) {
+
+        premiumPage.classList.remove(
+            "hidden"
+        );
 
     } else {
 
-        basicPage.classList.remove("hidden");
+        basicPage.classList.remove(
+            "hidden"
+        );
 
     }
+
+
+    scrollTop();
+
+}
+
+
+/* =========================================================
+   BACK FROM PREMIUM FEATURE
+========================================================= */
+
+function backFromPremiumFeature() {
+
+    /*
+     * If the user somehow loses Premium,
+     * send them to Basic instead.
+     */
+
+    if (!isPremiumUser()) {
+
+        hideAllPages();
+
+        basicPage.classList.remove(
+            "hidden"
+        );
+
+        scrollTop();
+
+        return;
+
+    }
+
+
+    hideAllPages();
+
+    premiumPage.classList.remove(
+        "hidden"
+    );
+
+    scrollTop();
 
 }
 
@@ -2688,7 +3264,20 @@ function backToPlans() {
 
     hideAllPages();
 
-    plansPage.classList.remove("hidden");
+    plansPage.classList.remove(
+        "hidden"
+    );
+
+    scrollTop();
+
+}
+
+
+/* =========================================================
+   SCROLL TOP
+========================================================= */
+
+function scrollTop() {
 
     window.scrollTo({
         top: 0,
@@ -2699,7 +3288,7 @@ function backToPlans() {
 
 
 /* =========================================================
-   ENTER KEY FOR PREMIUM CODE
+   ENTER KEY FOR ACCESS CODE
 ========================================================= */
 
 document
@@ -2708,7 +3297,9 @@ document
         "keydown",
         function(event) {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter"
+            ) {
 
                 checkPremiumCode();
 
