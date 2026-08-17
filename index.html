@@ -1,2364 +1,2868 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>TakeYouToTask Academic Notes</title>
+<title>TakeYouToTask • Academic Portal</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap');
+<style>
 
-    :root {
-      --cyan: #00e5ff;
-      --blue: #3b82f6;
-      --purple: #8b5cf6;
-      --pink: #ec4899;
-      --magenta: #d946ef;
-      --orange: #f97316;
-      --yellow: #facc15;
-      --green: #22c55e;
+/* =========================================================
+   FONTS
+========================================================= */
 
-      --text: #f8fafc;
-      --muted: #a5b4fc;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-
-      background:
-        radial-gradient(
-          circle at 10% 15%,
-          rgba(0, 229, 255, 0.18),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 90% 15%,
-          rgba(236, 72, 153, 0.18),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 20% 90%,
-          rgba(139, 92, 246, 0.18),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 85%,
-          rgba(249, 115, 22, 0.12),
-          transparent 25%
-        ),
-        linear-gradient(
-          135deg,
-          #02010a,
-          #08051a 45%,
-          #10051c 75%,
-          #05020d
-        );
-
-      color: var(--text);
-
-      font-family: Arial, sans-serif;
-
-      overflow-x: hidden;
-
-      position: relative;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap');
 
 
-    /* =====================================================
-       GLOBAL GRID
-    ===================================================== */
+/* =========================================================
+   VARIABLES
+========================================================= */
 
-    body::before {
-      content: "";
+:root {
+  --cyan: #00e5ff;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
+  --magenta: #d946ef;
+  --orange: #f97316;
+  --yellow: #facc15;
+  --green: #22c55e;
 
-      position: fixed;
-      inset: 0;
+  --bg: #03020b;
+  --card: rgba(15, 23, 42, 0.78);
 
-      background-image:
-        linear-gradient(
-          rgba(0, 229, 255, 0.035) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(236, 72, 153, 0.035) 1px,
-          transparent 1px
-        );
+  --text: #f8fafc;
+  --muted: #94a3b8;
+}
 
-      background-size: 50px 50px;
 
-      mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  color: var(--text);
+
+  font-family: Arial, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(0,229,255,.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(236,72,153,.15),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 15% 90%,
+      rgba(139,92,246,.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(249,115,22,.12),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #02010a,
+      #09051a,
+      #10051c
+    );
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+body::before {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(0,229,255,.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(236,72,153,.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 50px 50px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent
+    );
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   ORBS
+========================================================= */
+
+.orb {
+  position: fixed;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  pointer-events: none;
+
+  opacity: .3;
+
+  z-index: 0;
+
+  animation: float 9s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 280px;
+  height: 280px;
+
+  background: var(--cyan);
+
+  top: -120px;
+  left: -100px;
+}
+
+.orb2 {
+  width: 330px;
+  height: 330px;
+
+  background: var(--purple);
+
+  right: -130px;
+  bottom: -150px;
+
+  animation-delay: -3s;
+}
+
+.orb3 {
+  width: 230px;
+  height: 230px;
+
+  background: var(--pink);
+
+  right: -100px;
+  top: 40%;
+
+  animation-delay: -5s;
+}
+
+.orb4 {
+  width: 180px;
+  height: 180px;
+
+  background: var(--orange);
+
+  left: -100px;
+  bottom: 15%;
+
+  animation-delay: -2s;
+}
+
+@keyframes float {
+
+  0%,100% {
+    transform: translate(0,0);
+  }
+
+  50% {
+    transform: translate(30px,-25px);
+  }
+
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles {
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 8px currentColor,
+    0 0 15px currentColor;
+
+  animation:
+    particleFloat
+    linear
+    infinite;
+}
+
+.particle:nth-child(1) {
+  left: 10%;
+  color: var(--cyan);
+  animation-duration: 8s;
+}
+
+.particle:nth-child(2) {
+  left: 20%;
+  color: var(--pink);
+  animation-duration: 11s;
+}
+
+.particle:nth-child(3) {
+  left: 30%;
+  color: var(--purple);
+  animation-duration: 9s;
+}
+
+.particle:nth-child(4) {
+  left: 40%;
+  color: var(--orange);
+  animation-duration: 12s;
+}
+
+.particle:nth-child(5) {
+  left: 50%;
+  color: var(--cyan);
+  animation-duration: 10s;
+}
+
+.particle:nth-child(6) {
+  left: 60%;
+  color: var(--pink);
+  animation-duration: 9s;
+}
+
+.particle:nth-child(7) {
+  left: 70%;
+  color: var(--purple);
+  animation-duration: 13s;
+}
+
+.particle:nth-child(8) {
+  left: 80%;
+  color: var(--orange);
+  animation-duration: 10s;
+}
+
+.particle:nth-child(9) {
+  left: 90%;
+  color: var(--cyan);
+  animation-duration: 12s;
+}
+
+@keyframes particleFloat {
+
+  0% {
+    transform:
+      translateY(110vh)
+      scale(0);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: .8;
+  }
+
+  50% {
+    transform:
+      translateY(50vh)
+      translateX(30px)
+      scale(1);
+  }
+
+  90% {
+    opacity: .7;
+  }
+
+  100% {
+    transform:
+      translateY(-10vh)
+      translateX(-20px)
+      scale(0);
+
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   GENERAL CONTAINER
+========================================================= */
+
+.page {
+  position: relative;
+
+  z-index: 3;
+
+  width: min(1000px, calc(100% - 30px));
+
+  margin: 30px auto;
+
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,23,42,.82),
+      rgba(20,10,40,.72)
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius: 24px;
+
+  backdrop-filter: blur(25px);
+
+  box-shadow:
+    0 0 30px rgba(0,229,255,.06),
+    0 0 50px rgba(139,92,246,.06),
+    0 25px 80px rgba(0,0,0,.6);
+
+  animation: pageIn .5s ease;
+}
+
+@keyframes pageIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px)
+      scale(.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#homeScreen {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 25px;
+
+  transition:
+    opacity .7s,
+    transform .7s,
+    visibility .7s;
+}
+
+#homeScreen.hide {
+
+  opacity: 0;
+
+  transform: scale(1.08);
+
+  visibility: hidden;
+}
+
+.home-content {
+
+  position: relative;
+
+  z-index: 4;
+
+  max-width: 850px;
+
+  animation:
+    homeAppear
+    1.2s ease;
+}
+
+@keyframes homeAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      scale(.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+.home-small {
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  letter-spacing: 5px;
+
+  font-size: 13px;
+
+  color: #cbd5e1;
+
+  margin-bottom: 20px;
+}
+
+.home-title {
+
+  margin: 0;
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  font-size:
+    clamp(55px,11vw,110px);
+
+  line-height: .95;
+
+  letter-spacing: -5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--purple),
+      var(--pink),
+      var(--orange),
+      var(--cyan)
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    gradientMove 6s linear infinite,
+    titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 300%;
+  }
+
+}
+
+@keyframes titleGlow {
+
+  0%,100% {
+    filter:
+      drop-shadow(
+        0 0 8px
+        rgba(0,229,255,.25)
       );
-
-      pointer-events: none;
-
-      z-index: 0;
-    }
-
-
-    /* =====================================================
-       GLOWING ORBS
-    ===================================================== */
-
-    .orb {
-      position: fixed;
-
-      border-radius: 50%;
-
-      filter: blur(90px);
-
-      pointer-events: none;
-
-      z-index: 0;
-
-      opacity: 0.35;
-
-      animation: float 9s ease-in-out infinite;
-    }
-
-    .orb1 {
-      width: 280px;
-      height: 280px;
-
-      background: var(--cyan);
-
-      top: -110px;
-      left: -100px;
-    }
-
-    .orb2 {
-      width: 320px;
-      height: 320px;
-
-      background: var(--purple);
-
-      bottom: -160px;
-      right: -100px;
-
-      animation-delay: -3s;
-    }
-
-    .orb3 {
-      width: 220px;
-      height: 220px;
-
-      background: var(--pink);
-
-      top: 40%;
-      right: -120px;
-
-      animation-delay: -6s;
-    }
-
-    .orb4 {
-      width: 180px;
-      height: 180px;
-
-      background: var(--orange);
-
-      bottom: 10%;
-      left: -100px;
-
-      animation-delay: -2s;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translate(0, 0);
-      }
-
-      50% {
-        transform: translate(30px, -25px);
-      }
-    }
-
-
-    /* =====================================================
-       PARTICLES
-    ===================================================== */
-
-    .particles {
-      position: fixed;
-      inset: 0;
-
-      pointer-events: none;
-
-      z-index: 1;
-
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-
-      width: 3px;
-      height: 3px;
-
-      border-radius: 50%;
-
-      background: white;
-
-      box-shadow:
-        0 0 8px currentColor,
-        0 0 15px currentColor;
-
-      opacity: 0;
-
-      animation:
-        particleFloat
-        linear
-        infinite;
-    }
-
-    .particle:nth-child(1) {
-      left: 10%;
-      color: var(--cyan);
-      animation-duration: 8s;
-      animation-delay: 0s;
-    }
-
-    .particle:nth-child(2) {
-      left: 20%;
-      color: var(--pink);
-      animation-duration: 11s;
-      animation-delay: 2s;
-    }
-
-    .particle:nth-child(3) {
-      left: 30%;
-      color: var(--purple);
-      animation-duration: 9s;
-      animation-delay: 1s;
-    }
-
-    .particle:nth-child(4) {
-      left: 40%;
-      color: var(--orange);
-      animation-duration: 12s;
-      animation-delay: 4s;
-    }
-
-    .particle:nth-child(5) {
-      left: 50%;
-      color: var(--cyan);
-      animation-duration: 10s;
-      animation-delay: 3s;
-    }
-
-    .particle:nth-child(6) {
-      left: 60%;
-      color: var(--pink);
-      animation-duration: 9s;
-      animation-delay: 5s;
-    }
-
-    .particle:nth-child(7) {
-      left: 70%;
-      color: var(--purple);
-      animation-duration: 13s;
-      animation-delay: 1s;
-    }
-
-    .particle:nth-child(8) {
-      left: 80%;
-      color: var(--orange);
-      animation-duration: 10s;
-      animation-delay: 6s;
-    }
-
-    .particle:nth-child(9) {
-      left: 90%;
-      color: var(--cyan);
-      animation-duration: 12s;
-      animation-delay: 2s;
-    }
-
-    .particle:nth-child(10) {
-      left: 15%;
-      color: var(--magenta);
-      animation-duration: 14s;
-      animation-delay: 7s;
-    }
-
-    .particle:nth-child(11) {
-      left: 55%;
-      color: var(--green);
-      animation-duration: 11s;
-      animation-delay: 4s;
-    }
-
-    .particle:nth-child(12) {
-      left: 85%;
-      color: var(--yellow);
-      animation-duration: 15s;
-      animation-delay: 8s;
-    }
-
-    @keyframes particleFloat {
-      0% {
-        transform:
-          translateY(110vh)
-          translateX(0)
-          scale(0);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 0.9;
-      }
-
-      50% {
-        transform:
-          translateY(50vh)
-          translateX(30px)
-          scale(1);
-      }
-
-      90% {
-        opacity: 0.8;
-      }
-
-      100% {
-        transform:
-          translateY(-10vh)
-          translateX(-20px)
-          scale(0);
-        opacity: 0;
-      }
-    }
-
-
-    /* =====================================================
-       HOME SCREEN
-    ===================================================== */
-
-    #homeScreen {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 10;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 30px;
-
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        visibility 0.7s ease;
-    }
-
-    #homeScreen.hide {
-      opacity: 0;
-
-      transform: scale(1.08);
-
-      visibility: hidden;
-    }
-
-    .home-content {
-      position: relative;
-
-      z-index: 3;
-
-      max-width: 800px;
-
-      width: 100%;
-
-      animation: homeAppear 1.2s ease;
-    }
-
-    @keyframes homeAppear {
-      from {
-        opacity: 0;
-
-        transform:
-          translateY(30px)
-          scale(0.95);
-      }
-
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0)
-          scale(1);
-      }
-    }
-
-
-    /* =====================================================
-       HOME LOGO
-    ===================================================== */
-
-    .home-logo-small {
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size: 14px;
-
-      font-weight: 700;
-
-      letter-spacing: 5px;
-
-      color: #cbd5e1;
-
-      margin-bottom: 22px;
-
-      animation:
-        fadeIn 1s ease 0.2s both;
-    }
-
-    .home-title {
-      margin: 0;
-
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size:
-        clamp(55px, 11vw, 110px);
-
-      font-weight: 700;
-
-      letter-spacing: -5px;
-
-      line-height: 0.95;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cyan),
-          var(--purple),
-          var(--pink),
-          var(--orange),
-          var(--cyan)
-        );
-
-      background-size: 300% auto;
-
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      animation:
-        logoGradient 7s linear infinite,
-        logoGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes logoGradient {
-      0% {
-        background-position: 0% center;
-      }
-
-      100% {
-        background-position: 300% center;
-      }
-    }
-
-    @keyframes logoGlow {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 8px rgba(0, 229, 255, 0.25));
-      }
-
-      50% {
-        filter:
-          drop-shadow(0 0 25px rgba(236, 72, 153, 0.35));
-      }
-    }
-
-    .home-title span {
-      display: inline-block;
-    }
-
-
-    /* =====================================================
-       HOME SUBTITLE
-    ===================================================== */
-
-    .home-subtitle {
-      margin-top: 25px;
-
-      color: #cbd5e1;
-
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size:
-        clamp(16px, 3vw, 21px);
-
-      letter-spacing: 1px;
-
-      animation:
-        fadeIn 1s ease 0.6s both;
-    }
-
-    .home-tagline {
-      margin-top: 10px;
-
-      color: #64748b;
-
-      font-size: 13px;
-
-      animation:
-        fadeIn 1s ease 0.8s both;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-
-    /* =====================================================
-       HOME GLOWING RINGS
-    ===================================================== */
-
-    .energy-ring {
-      position: absolute;
-
-      left: 50%;
-      top: 50%;
-
-      border-radius: 50%;
-
-      border: 1px solid;
-
-      transform:
-        translate(-50%, -50%);
-
-      pointer-events: none;
-
-      opacity: 0;
-
-      animation:
-        ringExpand
-        4s
-        ease-out
-        infinite;
-    }
-
-    .ring1 {
-      width: 300px;
-      height: 300px;
-
-      border-color:
-        rgba(0, 229, 255, 0.35);
-
-      animation-delay: 0s;
-    }
-
-    .ring2 {
-      width: 450px;
-      height: 450px;
-
-      border-color:
-        rgba(139, 92, 246, 0.25);
-
-      animation-delay: 1.2s;
-    }
-
-    .ring3 {
-      width: 600px;
-      height: 600px;
-
-      border-color:
-        rgba(236, 72, 153, 0.18);
-
-      animation-delay: 2.4s;
-    }
-
-    @keyframes ringExpand {
-      0% {
-        opacity: 0;
-
-        transform:
-          translate(-50%, -50%)
-          scale(0.5);
-      }
-
-      20% {
-        opacity: 0.7;
-      }
-
-      100% {
-        opacity: 0;
-
-        transform:
-          translate(-50%, -50%)
-          scale(1.15);
-      }
-    }
-
-
-    /* =====================================================
-       START BUTTON
-    ===================================================== */
-
-    .start-button {
-      position: relative;
-
-      width: auto;
-
-      min-width: 220px;
-
-      margin-top: 35px;
-
-      padding: 16px 32px;
-
-      border: 1px solid
-        rgba(255, 255, 255, 0.2);
-
-      border-radius: 50px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cyan),
-          var(--purple),
-          var(--pink)
-        );
-
-      background-size: 200% auto;
-
-      color: white;
-
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size: 16px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.5px;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 0 25px rgba(0, 229, 255, 0.2),
-        0 0 45px rgba(236, 72, 153, 0.12);
-
-      animation:
-        buttonGradient 5s ease infinite,
-        buttonPulse 2.5s ease-in-out infinite;
-
-      transition:
-        transform 0.25s,
-        box-shadow 0.25s;
-    }
-
-    .start-button:hover {
-      transform:
-        translateY(-4px)
-        scale(1.03);
-
-      box-shadow:
-        0 0 30px rgba(0, 229, 255, 0.35),
-        0 0 55px rgba(236, 72, 153, 0.25);
-    }
-
-    @keyframes buttonPulse {
-      0%, 100% {
-        box-shadow:
-          0 0 20px rgba(0, 229, 255, 0.2),
-          0 0 40px rgba(236, 72, 153, 0.1);
-      }
-
-      50% {
-        box-shadow:
-          0 0 35px rgba(0, 229, 255, 0.35),
-          0 0 55px rgba(236, 72, 153, 0.2);
-      }
-    }
-
-
-    /* =====================================================
-       LOADING SCREEN
-    ===================================================== */
-
-    #loadingScreen {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 20;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-      justify-content: center;
-
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(49, 18, 90, 0.45),
-          rgba(2, 1, 10, 0.98) 60%
-        );
-
-      opacity: 0;
-
-      visibility: hidden;
-
-      transition:
-        opacity 0.5s ease,
-        visibility 0.5s ease;
-    }
-
-    #loadingScreen.show {
-      opacity: 1;
-
-      visibility: visible;
-    }
-
-    .loader-logo {
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size:
-        clamp(35px, 7vw, 65px);
-
-      font-weight: 700;
-
-      letter-spacing: -2px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cyan),
-          var(--purple),
-          var(--pink),
-          var(--orange)
-        );
-
-      background-size: 250% auto;
-
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      animation:
-        logoGradient 3s linear infinite,
-        loaderLogoPulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes loaderLogoPulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.04);
-      }
-    }
-
-    .loader-text {
-      margin-top: 15px;
-
-      color: #94a3b8;
-
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size: 14px;
-
-      letter-spacing: 2px;
-
-      text-transform: uppercase;
-    }
-
-    .loader {
-      position: relative;
-
-      width: 70px;
-      height: 70px;
-
-      margin-top: 35px;
-    }
-
-    .loader::before,
-    .loader::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      border-radius: 50%;
-
-      border: 3px solid transparent;
-    }
-
-    .loader::before {
-      border-top-color: var(--cyan);
-
-      border-right-color: var(--purple);
-
-      animation:
-        spin 1s linear infinite;
-    }
-
-    .loader::after {
-      inset: 9px;
-
-      border-bottom-color: var(--pink);
-
-      border-left-color: var(--orange);
-
-      animation:
-        spinReverse 1.4s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spinReverse {
-      to {
-        transform: rotate(-360deg);
-      }
-    }
-
-    .loading-dots {
-      margin-top: 20px;
-
-      display: flex;
-
-      gap: 7px;
-    }
-
-    .loading-dots span {
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background: var(--cyan);
-
-      animation:
-        dotBounce 1s ease-in-out infinite;
-    }
-
-    .loading-dots span:nth-child(2) {
-      background: var(--purple);
-
-      animation-delay: 0.15s;
-    }
-
-    .loading-dots span:nth-child(3) {
-      background: var(--pink);
-
-      animation-delay: 0.3s;
-    }
-
-    .loading-dots span:nth-child(4) {
-      background: var(--orange);
-
-      animation-delay: 0.45s;
-    }
-
-    @keyframes dotBounce {
-      0%, 100% {
-        transform: translateY(0);
-
-        opacity: 0.5;
-      }
-
-      50% {
-        transform: translateY(-7px);
-
-        opacity: 1;
-      }
-    }
-
-
-    /* =====================================================
-       MAIN CONTAINER
-    ===================================================== */
-
-    .container {
-      position: relative;
-
-      z-index: 2;
-
-      width: min(440px, calc(100% - 30px));
-
-      max-height: 92vh;
-
-      margin: 4vh auto;
-
-      padding: 32px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(15, 23, 42, 0.82),
-          rgba(20, 10, 40, 0.72)
-        );
-
-      border: 1px solid
-        rgba(255, 255, 255, 0.12);
-
-      border-radius: 24px;
-
-      backdrop-filter: blur(25px);
-
-      -webkit-backdrop-filter: blur(25px);
-
-      box-shadow:
-        0 0 25px rgba(0, 229, 255, 0.08),
-        0 0 45px rgba(139, 92, 246, 0.08),
-        0 0 70px rgba(236, 72, 153, 0.05),
-        0 25px 80px rgba(0, 0, 0, 0.65);
-
-      text-align: center;
-
-      overflow-y: auto;
-
-      animation:
-        cardIn 0.55s ease;
-    }
-
-    @keyframes cardIn {
-      from {
-        opacity: 0;
-
-        transform:
-          translateY(15px)
-          scale(0.97);
-      }
-
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0)
-          scale(1);
-      }
-    }
-
-
-    /* =====================================================
-       BRAND
-    ===================================================== */
-
-    .brand {
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size: 14px;
-
-      font-weight: 700;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cyan),
-          var(--purple),
-          var(--pink),
-          var(--orange)
-        );
-
-      -webkit-background-clip: text;
-
-      -webkit-text-fill-color: transparent;
-
-      margin-bottom: 12px;
-    }
-
-
-    /* =====================================================
-       HEADINGS
-    ===================================================== */
-
-    h1,
-    h2,
-    h3,
-    .subtitle,
-    .step {
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-
-      font-size: 30px;
-
-      font-weight: 700;
-
-      letter-spacing: -0.5px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #ffffff,
-          var(--cyan),
-          #c4b5fd,
-          #f9a8d4
-        );
-
-      -webkit-background-clip: text;
-
-      -webkit-text-fill-color: transparent;
-
-      background-size: 200% auto;
-
-      animation:
-        gradientMove 5s linear infinite;
-    }
-
-    @keyframes gradientMove {
-      0% {
-        background-position: 0% center;
-      }
-
-      100% {
-        background-position: 200% center;
-      }
-    }
-
-    .subtitle {
-      color: #cbd5e1;
-
-      font-size: 16px;
-
-      margin-bottom: 25px;
-    }
-
-
-    /* =====================================================
-       STEP INDICATOR
-    ===================================================== */
-
-    .steps {
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      margin: 0 auto 25px;
-
-      gap: 8px;
-    }
-
-    .step {
-      display: flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      font-size: 12px;
-
-      color: #64748b;
-
-      transition: 0.3s;
-    }
-
-    .step.active {
-      color: var(--cyan);
-
-      text-shadow:
-        0 0 8px rgba(0, 229, 255, 0.8);
-    }
-
-    .step-number {
-      width: 25px;
-      height: 25px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      border-radius: 50%;
-
-      border: 1px solid #475569;
-
-      font-size: 11px;
-    }
-
-    .step.active .step-number {
-      border-color: var(--cyan);
-
-      color: white;
-
-      box-shadow:
-        0 0 10px rgba(0, 229, 255, 0.55),
-        inset 0 0 8px rgba(0, 229, 255, 0.15);
-    }
-
-    .step-line {
-      width: 25px;
-
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #334155,
-          #64748b,
-          #334155
-        );
-    }
-
-
-    /* =====================================================
-       INPUTS
-    ===================================================== */
-
-    input {
-      width: 100%;
-
-      padding: 13px 15px;
-
-      margin-bottom: 12px;
-
-      background:
-        rgba(2, 6, 23, 0.7);
-
-      border:
-        1px solid
-        rgba(148, 163, 184, 0.2);
-
-      border-radius: 11px;
-
-      color: white;
-
-      font-family: Arial, sans-serif;
-
-      font-size: 15px;
-
-      outline: none;
-
-      transition: 0.25s;
-    }
-
-    input::placeholder {
-      color: #64748b;
-    }
-
-    input:focus {
-      border-color: var(--purple);
-
-      box-shadow:
-        0 0 0 3px
-        rgba(139, 92, 246, 0.08),
-
-        0 0 20px
-        rgba(139, 92, 246, 0.2);
-    }
-
-
-    /* =====================================================
-       BUTTONS
-    ===================================================== */
-
-    button {
-      width: 100%;
-
-      padding: 13px 16px;
-
-      margin-top: 10px;
-
-      border: none;
-
-      border-radius: 11px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cyan),
-          var(--blue),
-          var(--purple),
-          var(--pink)
-        );
-
-      background-size: 250% 100%;
-
-      color: white;
-
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
-
-      font-size: 15px;
-
-      font-weight: 500;
-
-      cursor: pointer;
-
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        filter 0.2s;
-
-      box-shadow:
-        0 0 20px
-        rgba(139, 92, 246, 0.22);
-
-      animation:
-        buttonGradient 6s ease infinite;
-    }
-
-    @keyframes buttonGradient {
-      0% {
-        background-position: 0% center;
-      }
-
-      50% {
-        background-position: 100% center;
-      }
-
-      100% {
-        background-position: 0% center;
-      }
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-
-      filter: brightness(1.15);
-
-      box-shadow:
+  }
+
+  50% {
+    filter:
+      drop-shadow(
         0 0 25px
-        rgba(0, 229, 255, 0.25),
+        rgba(236,72,153,.35)
+      );
+  }
 
-        0 0 35px
-        rgba(236, 72, 153, 0.15);
-    }
+}
 
-    button:active {
-      transform: translateY(0);
-    }
+.home-subtitle {
 
+  margin-top: 25px;
 
-    /* =====================================================
-       ERROR
-    ===================================================== */
+  font-family:
+    "Product Sans",
+    Arial;
 
-    .error {
-      color: #fda4af;
+  font-size: 20px;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(244, 63, 94, 0.1),
-          rgba(236, 72, 153, 0.06)
-        );
+  color: #cbd5e1;
+}
 
-      border:
-        1px solid
-        rgba(244, 63, 94, 0.25);
+.home-description {
 
-      padding: 10px;
+  margin-top: 10px;
 
-      border-radius: 8px;
+  color: #64748b;
 
-      margin-top: 15px;
+  font-size: 14px;
+}
 
-      font-size: 13px;
 
-      display: none;
-    }
+/* =========================================================
+   START BUTTON
+========================================================= */
 
+.start-button {
 
-    /* =====================================================
-       RULES
-    ===================================================== */
+  width: auto;
 
-    .rules {
-      text-align: left;
+  min-width: 230px;
 
-      font-family: Arial, sans-serif;
+  margin-top: 35px;
 
-      font-size: 14px;
+  padding: 16px 32px;
 
-      line-height: 1.55;
+  border: 0;
 
-      color: #cbd5e1;
+  border-radius: 50px;
 
-      margin: 15px 0 20px;
-    }
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--purple),
+      var(--pink)
+    );
 
-    .rules ul {
-      padding-left: 20px;
+  background-size: 200%;
 
-      margin: 0;
-    }
+  color: white;
 
-    .rules li {
-      margin-bottom: 14px;
+  font-family:
+    "Product Sans",
+    Arial;
 
-      padding-left: 3px;
-    }
+  font-weight: 700;
 
-    .rules li::marker {
-      color: var(--pink);
-    }
+  font-size: 16px;
 
-    .rules b {
-      font-family:
-        "Product Sans",
-        Arial,
-        sans-serif;
+  cursor: pointer;
 
-      color: #f8fafc;
-    }
+  animation:
+    buttonGradient 5s ease infinite;
 
+  box-shadow:
+    0 0 25px
+    rgba(0,229,255,.2);
 
-    /* =====================================================
-       SUBJECT BUTTONS
-    ===================================================== */
+  transition: .25s;
+}
 
-    .subject-btn {
-      position: relative;
+.start-button:hover {
 
-      text-align: left;
+  transform:
+    translateY(-4px)
+    scale(1.04);
 
-      padding: 15px 18px;
+  box-shadow:
+    0 0 35px
+    rgba(0,229,255,.35),
+    0 0 50px
+    rgba(236,72,153,.2);
+}
 
-      border:
-        1px solid
-        rgba(255, 255, 255, 0.12);
+@keyframes buttonGradient {
 
-      box-shadow: none;
+  0% {
+    background-position: 0%;
+  }
 
-      margin-top: 10px;
+  50% {
+    background-position: 100%;
+  }
 
-      background-size: 200% 100%;
+  100% {
+    background-position: 0%;
+  }
 
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        border-color 0.2s;
-    }
+}
 
-    .subject-btn::after {
-      content: "→";
 
-      position: absolute;
+/* =========================================================
+   LOADING
+========================================================= */
 
-      right: 18px;
+#loadingScreen {
 
-      color: white;
+  position: fixed;
 
-      transition: 0.2s;
-    }
+  inset: 0;
 
-    .subject-btn:hover::after {
-      transform: translateX(5px);
-    }
+  z-index: 20;
 
+  display: flex;
 
-    /* HISTORY */
+  flex-direction: column;
 
-    .history {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(249, 115, 22, 0.25),
-          rgba(250, 204, 21, 0.12)
-        );
-    }
+  align-items: center;
 
-    .history:hover {
-      border-color: var(--orange);
+  justify-content: center;
 
-      box-shadow:
-        0 0 22px
-        rgba(249, 115, 22, 0.2);
-    }
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(50,15,90,.5),
+      #02010a 65%
+    );
 
+  opacity: 0;
 
-    /* LIFE SCIENCE */
+  visibility: hidden;
 
-    .lifescience {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(34, 197, 94, 0.23),
-          rgba(16, 185, 129, 0.1)
-        );
-    }
+  transition: .5s;
+}
 
-    .lifescience:hover {
-      border-color: var(--green);
+#loadingScreen.show {
 
-      box-shadow:
-        0 0 22px
-        rgba(34, 197, 94, 0.2);
-    }
+  opacity: 1;
 
+  visibility: visible;
+}
 
-    /* PHYSICAL SCIENCE */
+.loader-logo {
 
-    .pscience {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(139, 92, 246, 0.25),
-          rgba(217, 70, 239, 0.12)
-        );
-    }
+  font-family:
+    "Product Sans",
+    Arial;
 
-    .pscience:hover {
-      border-color: var(--purple);
+  font-size: 55px;
 
-      box-shadow:
-        0 0 22px
-        rgba(139, 92, 246, 0.22);
-    }
+  font-weight: 700;
 
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--purple),
+      var(--pink),
+      var(--orange)
+    );
 
-    /* GEOGRAPHY */
+  -webkit-background-clip: text;
 
-    .geography {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(0, 229, 255, 0.22),
-          rgba(236, 72, 153, 0.14)
-        );
-    }
+  -webkit-text-fill-color: transparent;
 
-    .geography:hover {
-      border-color: var(--cyan);
+  background-size: 250%;
 
-      box-shadow:
-        0 0 22px
-        rgba(0, 229, 255, 0.2);
-    }
+  animation:
+    gradientMove 3s linear infinite;
+}
 
+.loader-text {
 
-    /* =====================================================
-       PDF
-    ===================================================== */
+  margin-top: 15px;
 
-    iframe {
-      width: 100%;
+  color: #94a3b8;
 
-      height: 500px;
+  letter-spacing: 2px;
 
-      border:
-        1px solid
-        rgba(255, 255, 255, 0.15);
+  font-size: 13px;
 
-      border-radius: 12px;
+  text-transform: uppercase;
+}
 
-      margin-top: 20px;
+.loader {
 
-      background: #111827;
+  width: 70px;
 
-      box-shadow:
-        0 0 25px
-        rgba(139, 92, 246, 0.12),
+  height: 70px;
 
-        0 0 35px
-        rgba(0, 229, 255, 0.06);
-    }
+  margin-top: 30px;
 
+  border-radius: 50%;
 
-    /* =====================================================
-       DOWNLOAD
-    ===================================================== */
+  border:
+    3px solid transparent;
 
-    .download {
-      display: block;
+  border-top-color: var(--cyan);
 
-      margin-top: 10px;
-    }
+  border-right-color: var(--purple);
 
-    .download button {
-      background:
-        linear-gradient(
-          90deg,
-          #16a34a,
-          #0d9488,
-          #0891b2
-        );
+  border-bottom-color: var(--pink);
 
-      background-size: 200% 100%;
-    }
+  border-left-color: var(--orange);
 
+  animation:
+    spin 1s linear infinite;
+}
 
-    /* =====================================================
-       FOOTER
-    ===================================================== */
+@keyframes spin {
 
-    .footer-text {
-      margin-top: 20px;
+  to {
+    transform: rotate(360deg);
+  }
 
-      font-family: Arial, sans-serif;
+}
 
-      font-size: 12px;
 
-      color: #64748b;
-    }
+/* =========================================================
+   BRAND
+========================================================= */
 
+.brand {
 
-    /* =====================================================
-       HIDDEN
-    ===================================================== */
+  font-family:
+    "Product Sans",
+    Arial;
 
-    .hidden {
-      display: none !important;
-    }
+  font-size: 14px;
 
+  font-weight: 700;
 
-    /* =====================================================
-       MOBILE
-    ===================================================== */
+  letter-spacing: 3px;
 
-    @media (max-width: 500px) {
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--purple),
+      var(--pink),
+      var(--orange)
+    );
 
-      #homeScreen {
-        padding: 20px;
-      }
+  -webkit-background-clip: text;
 
-      .home-title {
-        font-size: 55px;
+  -webkit-text-fill-color: transparent;
 
-        letter-spacing: -3px;
-      }
+  margin-bottom: 10px;
+}
 
-      .home-subtitle {
-        font-size: 16px;
-      }
 
-      .energy-ring.ring3 {
-        display: none;
-      }
+/* =========================================================
+   HEADINGS
+========================================================= */
 
-      body {
-        align-items: flex-start;
+h1 {
 
-        padding-top: 25px;
-      }
+  margin: 0 0 10px;
 
-      .container {
-        padding: 24px 20px;
+  font-family:
+    "Product Sans",
+    Arial;
 
-        margin-top: 0;
-      }
+  font-size: 32px;
 
-      h1 {
-        font-size: 26px;
-      }
+  background:
+    linear-gradient(
+      90deg,
+      white,
+      var(--cyan),
+      #c4b5fd,
+      #f9a8d4
+    );
 
-      iframe {
-        height: 430px;
-      }
+  -webkit-background-clip: text;
 
-      .steps {
-        gap: 5px;
-      }
+  -webkit-text-fill-color: transparent;
+}
 
-      .step-line {
-        width: 15px;
-      }
-    }
-  </style>
+.subtitle {
+
+  color: var(--muted);
+
+  margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 25px;
+}
+
+.nav-button {
+
+  width: auto;
+
+  flex: 1;
+
+  min-width: 120px;
+
+  margin: 0;
+
+  padding: 10px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  box-shadow: none;
+
+  font-size: 13px;
+}
+
+.nav-button:hover {
+
+  background:
+    rgba(255,255,255,.1);
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-page {
+
+  max-width: 440px;
+
+  text-align: center;
+}
+
+input {
+
+  width: 100%;
+
+  padding: 14px;
+
+  margin-bottom: 12px;
+
+  background:
+    rgba(2,6,23,.75);
+
+  border:
+    1px solid
+    rgba(148,163,184,.2);
+
+  border-radius: 11px;
+
+  color: white;
+
+  outline: none;
+
+  font-size: 15px;
+
+  transition: .25s;
+}
+
+input:focus {
+
+  border-color:
+    var(--purple);
+
+  box-shadow:
+    0 0 20px
+    rgba(139,92,246,.18);
+}
+
+.main-button {
+
+  width: 100%;
+
+  padding: 13px;
+
+  margin-top: 8px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--purple),
+      var(--pink)
+    );
+
+  background-size: 200%;
+
+  color: white;
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  cursor: pointer;
+
+  animation:
+    buttonGradient 5s ease infinite;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error {
+
+  display: none;
+
+  color: #fda4af;
+
+  background:
+    rgba(244,63,94,.1);
+
+  border:
+    1px solid
+    rgba(244,63,94,.25);
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard {
+
+  text-align: left;
+}
+
+.welcome {
+
+  margin-bottom: 25px;
+}
+
+.welcome h1 {
+
+  margin-bottom: 5px;
+}
+
+.dashboard-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap: 15px;
+}
+
+.dashboard-card {
+
+  position: relative;
+
+  padding: 22px;
+
+  border-radius: 18px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition: .3s;
+}
+
+.dashboard-card:hover {
+
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 10px 35px
+    rgba(0,0,0,.35);
+}
+
+.dashboard-card::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+
+  height: 100px;
+
+  border-radius: 50%;
+
+  filter: blur(35px);
+
+  right: -30px;
+
+  bottom: -30px;
+
+  opacity: .3;
+}
+
+.card-notes {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,229,255,.18),
+      rgba(59,130,246,.08)
+    );
+}
+
+.card-notes::after {
+  background: var(--cyan);
+}
+
+.card-quiz {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236,72,153,.18),
+      rgba(217,70,239,.08)
+    );
+}
+
+.card-quiz::after {
+  background: var(--pink);
+}
+
+.card-focus {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(249,115,22,.18),
+      rgba(250,204,21,.08)
+    );
+}
+
+.card-focus::after {
+  background: var(--orange);
+}
+
+.card-progress {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34,197,94,.18),
+      rgba(16,185,129,.08)
+    );
+}
+
+.card-progress::after {
+  background: var(--green);
+}
+
+.card-icon {
+
+  font-size: 32px;
+
+  margin-bottom: 12px;
+}
+
+.card-title {
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+.card-description {
+
+  margin-top: 7px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+.subject {
+
+  width: 100%;
+
+  padding: 18px;
+
+  margin: 10px 0;
+
+  border-radius: 15px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  text-align: left;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  font-size: 16px;
+
+  transition: .25s;
+}
+
+.subject:hover {
+
+  transform:
+    translateX(5px);
+}
+
+.history {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(249,115,22,.22),
+      rgba(250,204,21,.08)
+    );
+}
+
+.life {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34,197,94,.22),
+      rgba(16,185,129,.08)
+    );
+}
+
+.physical {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,92,246,.22),
+      rgba(217,70,239,.08)
+    );
+}
+
+.geo {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,229,255,.22),
+      rgba(236,72,153,.08)
+    );
+}
+
+iframe {
+
+  width: 100%;
+
+  height: 600px;
+
+  margin-top: 20px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius: 12px;
+
+  background: #111827;
+}
+
+
+/* =========================================================
+   RULES
+========================================================= */
+
+.rules {
+
+  color: #cbd5e1;
+
+  line-height: 1.55;
+
+  text-align: left;
+}
+
+.rules li {
+
+  margin-bottom: 14px;
+}
+
+.rules li::marker {
+
+  color: var(--pink);
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-question {
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  font-size: 20px;
+
+  margin-bottom: 20px;
+}
+
+.answer {
+
+  width: 100%;
+
+  padding: 14px;
+
+  margin: 7px 0;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  background:
+    rgba(255,255,255,.05);
+
+  color: white;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition: .2s;
+}
+
+.answer:hover {
+
+  border-color:
+    var(--purple);
+
+  background:
+    rgba(139,92,246,.12);
+}
+
+.answer.correct {
+
+  background:
+    rgba(34,197,94,.2);
+
+  border-color:
+    var(--green);
+}
+
+.answer.wrong {
+
+  background:
+    rgba(244,63,94,.2);
+
+  border-color:
+    #f43f5e;
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer {
+
+  text-align: center;
+}
+
+.timer-display {
+
+  font-family:
+    "Product Sans",
+    Arial;
+
+  font-size:
+    clamp(65px,12vw,100px);
+
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--orange),
+      var(--yellow),
+      var(--pink)
+    );
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  margin: 30px 0;
+}
+
+.timer-buttons {
+
+  display: flex;
+
+  gap: 10px;
+}
+
+.timer-buttons button {
+
+  flex: 1;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-item {
+
+  margin: 22px 0;
+}
+
+.progress-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+
+  font-family:
+    "Product Sans",
+    Arial;
+}
+
+.progress-bar {
+
+  height: 12px;
+
+  background:
+    rgba(255,255,255,.08);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+
+  height: 100%;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--purple),
+      var(--pink)
+    );
+
+  background-size: 200%;
+
+  animation:
+    buttonGradient 5s linear infinite;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+  text-align: center;
+
+  margin-top: 25px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+
+  display: none !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px) {
+
+  .page {
+
+    width:
+      calc(100% - 20px);
+
+    padding: 22px;
+
+    margin: 10px auto;
+  }
+
+  .dashboard-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .home-title {
+
+    font-size: 55px;
+
+    letter-spacing: -3px;
+  }
+
+  .loader-logo {
+
+    font-size: 40px;
+  }
+
+  iframe {
+
+    height: 450px;
+  }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-  <!-- =====================================================
-       BACKGROUND
-  ===================================================== -->
+<!-- ========================================================
+     BACKGROUND
+========================================================= -->
 
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-  <div class="orb orb4"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div class="orb orb4"></div>
 
+<div class="particles">
 
-  <!-- =====================================================
-       FLOATING PARTICLES
-  ===================================================== -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
 
-  <div class="particles">
-
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-
-  </div>
+</div>
 
 
-  <!-- =====================================================
-       HOME SCREEN
-  ===================================================== -->
+<!-- ========================================================
+     HOME SCREEN
+========================================================= -->
 
-  <section id="homeScreen">
+<section id="homeScreen">
 
-    <!-- Expanding rings -->
+  <div class="home-content">
 
-    <div class="energy-ring ring1"></div>
-    <div class="energy-ring ring2"></div>
-    <div class="energy-ring ring3"></div>
-
-
-    <div class="home-content">
-
-      <div class="home-logo-small">
-        ACADEMIC RESOURCE PORTAL
-      </div>
-
-
-      <h1 class="home-title">
-        TakeYouToTask
-      </h1>
-
-
-      <div class="home-subtitle">
-        Study smarter. Learn faster. Stay ahead.
-      </div>
-
-
-      <div class="home-tagline">
-        Your personal academic notes portal
-      </div>
-
-
-      <button
-        class="start-button"
-        onclick="startPortal()"
-      >
-        🚀 Start Studying →
-      </button>
-
+    <div class="home-small">
+      ACADEMIC RESOURCE PORTAL
     </div>
 
-  </section>
-
-
-  <!-- =====================================================
-       LOADING SCREEN
-  ===================================================== -->
-
-  <section id="loadingScreen">
-
-    <div class="loader-logo">
+    <h1 class="home-title">
       TakeYouToTask
-    </div>
-
-    <div class="loader-text">
-      Preparing your study portal
-    </div>
-
-
-    <div class="loader"></div>
-
-
-    <div class="loading-dots">
-
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       STEP 1 — LOGIN
-  ===================================================== -->
-
-  <div
-    class="container hidden"
-    id="loginBox"
-  >
-
-    <div class="brand">
-      TAKEYOUTOTASK
-    </div>
-
-
-    <div class="steps">
-
-      <div class="step active">
-
-        <span class="step-number">
-          1
-        </span>
-
-        Login
-
-      </div>
-
-
-      <div class="step-line"></div>
-
-
-      <div class="step">
-
-        <span class="step-number">
-          2
-        </span>
-
-        Rules
-
-      </div>
-
-
-      <div class="step-line"></div>
-
-
-      <div class="step">
-
-        <span class="step-number">
-          3
-        </span>
-
-        Notes
-
-      </div>
-
-    </div>
-
-
-    <h1>
-      Academic Notes
     </h1>
 
+    <div class="home-subtitle">
+      Study smarter. Learn faster. Stay ahead.
+    </div>
 
-    <p class="subtitle">
-      Login to access your study materials.
-    </p>
+    <div class="home-description">
+      Your personal academic study portal.
+    </div>
 
-
-    <input
-      type="text"
-      id="usernameInput"
-      placeholder="Username"
-      autocomplete="username"
+    <button
+      class="start-button"
+      onclick="startPortal()"
     >
-
-
-    <input
-      type="password"
-      id="passwordInput"
-      placeholder="Password"
-      autocomplete="current-password"
-    >
-
-
-    <input
-      type="password"
-      id="codeInput"
-      placeholder="Access Code"
-    >
-
-
-    <button onclick="checkCode()">
-      Continue →
+      🚀 Start Studying →
     </button>
 
+  </div>
 
-    <p
-      class="error"
-      id="errorMsg"
-    >
-      Incorrect login details. Please try again.
-    </p>
+</section>
 
 
-    <div class="footer-text">
-      🔒 Private academic resource
+<!-- ========================================================
+     LOADING
+========================================================= -->
+
+<section id="loadingScreen">
+
+  <div class="loader-logo">
+    TakeYouToTask
+  </div>
+
+  <div class="loader-text">
+    Preparing your study portal
+  </div>
+
+  <div class="loader"></div>
+
+</section>
+
+
+<!-- ========================================================
+     LOGIN
+========================================================= -->
+
+<section
+  id="loginPage"
+  class="page login-page hidden"
+>
+
+  <div class="brand">
+    TAKEYOUTOTASK
+  </div>
+
+  <h1>
+    Welcome Back
+  </h1>
+
+  <p class="subtitle">
+    Login to access your academic resources.
+  </p>
+
+  <input
+    id="usernameInput"
+    type="text"
+    placeholder="Username"
+  >
+
+  <input
+    id="passwordInput"
+    type="password"
+    placeholder="Password"
+  >
+
+  <input
+    id="codeInput"
+    type="password"
+    placeholder="Access Code"
+  >
+
+  <button
+    class="main-button"
+    onclick="checkLogin()"
+  >
+    Continue →
+  </button>
+
+  <p
+    id="loginError"
+    class="error"
+  >
+    Incorrect login details. Please try again.
+  </p>
+
+  <div class="footer">
+    🔒 Private academic resource
+  </div>
+
+</section>
+
+
+<!-- ========================================================
+     RULES
+========================================================= -->
+
+<section
+  id="rulesPage"
+  class="page hidden"
+>
+
+  <div class="brand">
+    TAKEYOUTOTASK
+  </div>
+
+  <h1>
+    📜 Rules & Regulations
+  </h1>
+
+  <p class="subtitle">
+    Please read before entering the portal.
+  </p>
+
+  <div class="rules">
+
+    <ul>
+
+      <li>
+        <b>No Redistribution</b><br>
+        These notes are for personal study only.
+      </li>
+
+      <li>
+        <b>No Photocopying or Printing</b><br>
+        Do not photocopy, scan or print the notes.
+      </li>
+
+      <li>
+        <b>No Online Uploading</b><br>
+        Do not upload the notes to other platforms.
+      </li>
+
+      <li>
+        <b>No Claiming as Your Own Work</b><br>
+        Do not claim these notes as your own.
+      </li>
+
+      <li>
+        <b>No Unauthorised Editing</b><br>
+        Do not modify or redistribute modified versions.
+      </li>
+
+      <li>
+        <b>For Study Purposes Only</b><br>
+        These resources are intended for learning.
+      </li>
+
+    </ul>
+
+  </div>
+
+  <button
+    class="main-button"
+    onclick="showDashboard()"
+  >
+    I Understand — Enter Portal →
+  </button>
+
+</section>
+
+
+<!-- ========================================================
+     DASHBOARD
+========================================================= -->
+
+<section
+  id="dashboardPage"
+  class="page dashboard hidden"
+>
+
+  <div class="brand">
+    TAKEYOUTOTASK
+  </div>
+
+  <div class="welcome">
+
+    <h1>
+      👋 Welcome Back
+    </h1>
+
+    <div class="subtitle">
+      What would you like to do today?
     </div>
 
   </div>
 
 
-  <!-- =====================================================
-       STEP 2 — RULES
-  ===================================================== -->
-
-  <div
-    class="container hidden"
-    id="rulesBox"
-  >
-
-    <div class="brand">
-      TAKEYOUTOTASK
-    </div>
+  <div class="dashboard-grid">
 
 
-    <div class="steps">
+    <div
+      class="dashboard-card card-notes"
+      onclick="showPage('notesPage')"
+    >
 
-      <div class="step">
-
-        <span class="step-number">
-          1
-        </span>
-
-        Login
-
+      <div class="card-icon">
+        📚
       </div>
 
-
-      <div class="step-line"></div>
-
-
-      <div class="step active">
-
-        <span class="step-number">
-          2
-        </span>
-
-        Rules
-
+      <div class="card-title">
+        Notes Library
       </div>
 
-
-      <div class="step-line"></div>
-
-
-      <div class="step">
-
-        <span class="step-number">
-          3
-        </span>
-
-        Notes
-
+      <div class="card-description">
+        Access your History, Science and Geography notes.
       </div>
 
     </div>
 
 
-    <h1>
-      Rules & Regulations
-    </h1>
+    <div
+      class="dashboard-card card-quiz"
+      onclick="showPage('quizPage')"
+    >
 
-
-    <p class="subtitle">
-      Please read before accessing the notes.
-    </p>
-
-
-    <div class="rules">
-
-      <ul>
-
-        <li>
-
-          <b>No Redistribution</b><br>
-
-          These notes are for personal use only.
-          Do not send, forward, or share them.
-
-        </li>
-
-
-        <li>
-
-          <b>No Photocopying or Printing</b><br>
-
-          You are not allowed to photocopy,
-          scan, or print the notes.
-
-        </li>
-
-
-        <li>
-
-          <b>No Online Uploading</b><br>
-
-          Do not upload the notes to WhatsApp,
-          Google Drive, Telegram, or any other platform.
-
-        </li>
-
-
-        <li>
-
-          <b>No Claiming as Your Own Work</b><br>
-
-          Do not claim these notes as your own work.
-
-        </li>
-
-
-        <li>
-
-          <b>No Editing Without Permission</b><br>
-
-          Do not modify, rewrite, or redistribute
-          modified versions.
-
-        </li>
-
-
-        <li>
-
-          <b>For Study Purposes Only</b><br>
-
-          These notes are intended for personal learning.
-
-        </li>
-
-
-        <li>
-
-          <b>Respect the Effort</b><br>
-
-          Please respect the time and effort
-          put into creating these notes.
-
-        </li>
-
-
-        <li>
-
-          <b>Ask Before Sharing</b><br>
-
-          If someone wants access,
-          direct them to the owner.
-
-        </li>
-
-      </ul>
-
-    </div>
-
-
-    <button onclick="goToNotes()">
-      I Understand — Continue →
-    </button>
-
-  </div>
-
-
-  <!-- =====================================================
-       STEP 3 — NOTES
-  ===================================================== -->
-
-  <div
-    class="container hidden"
-    id="pdfBox"
-  >
-
-    <div class="brand">
-      TAKEYOUTOTASK
-    </div>
-
-
-    <div class="steps">
-
-      <div class="step">
-
-        <span class="step-number">
-          1
-        </span>
-
-        Login
-
+      <div class="card-icon">
+        🧠
       </div>
 
-
-      <div class="step-line"></div>
-
-
-      <div class="step">
-
-        <span class="step-number">
-          2
-        </span>
-
-        Rules
-
+      <div class="card-title">
+        Quick Quiz
       </div>
 
-
-      <div class="step-line"></div>
-
-
-      <div class="step active">
-
-        <span class="step-number">
-          3
-        </span>
-
-        Notes
-
+      <div class="card-description">
+        Test yourself with practice questions.
       </div>
 
     </div>
 
 
-    <h1>
-      Study Notes
-    </h1>
-
-
-    <p class="subtitle">
-      Select a subject to open your notes.
-    </p>
-
-
-    <!-- HISTORY -->
-
-    <button
-      class="subject-btn history"
-      onclick="openPDF('notes.pdf')"
-    >
-      📜 History
-    </button>
-
-
-    <!-- LIFE SCIENCE -->
-
-    <button
-      class="subject-btn lifescience"
-      onclick="openPDF('notes_lscience.pdf')"
-    >
-      🧬 Life Science
-    </button>
-
-
-    <!-- PHYSICAL SCIENCE -->
-
-    <button
-      class="subject-btn pscience"
-      onclick="openPDF('notes_pscience.pdf')"
-    >
-      ⚛️ Physical Science
-    </button>
-
-
-    <!-- GEOGRAPHY -->
-
-    <button
-      class="subject-btn geography"
-      onclick="openPDF('notes_geography.pdf')"
-    >
-      🌍 Geography
-    </button>
-
-
-    <!-- PDF VIEWER -->
-
-    <iframe
-      id="pdfViewer"
-      style="display: none;"
-      title="Study Notes PDF"
-    ></iframe>
-
-
-    <!-- DOWNLOAD -->
-
-    <a
-      id="downloadLink"
-      class="download"
-      target="_blank"
-      download
+    <div
+      class="dashboard-card card-focus"
+      onclick="showPage('timerPage')"
     >
 
-      <button
-        id="downloadBtn"
-        style="display: none;"
-      >
-        ↓ Download PDF
-      </button>
+      <div class="card-icon">
+        ⏱️
+      </div>
 
-    </a>
+      <div class="card-title">
+        Focus Mode
+      </div>
+
+      <div class="card-description">
+        Study using a distraction-free timer.
+      </div>
+
+    </div>
 
 
-    <div class="footer-text">
-      TakeYouToTask • Academic Resources
+    <div
+      class="dashboard-card card-progress"
+      onclick="showPage('progressPage')"
+    >
+
+      <div class="card-icon">
+        📊
+      </div>
+
+      <div class="card-title">
+        Progress
+      </div>
+
+      <div class="card-description">
+        See your study progress.
+      </div>
+
     </div>
 
   </div>
 
 
-  <!-- =====================================================
-       JAVASCRIPT
-  ===================================================== -->
+  <div class="footer">
+    TakeYouToTask • Academic Resources
+  </div>
 
-  <script>
-
-
-    /* =====================================================
-       LOGIN DETAILS
-    ===================================================== */
-
-    const SECRET_CODE =
-      "MeetMeAtTheLectureTheatre";
-
-    const USERNAME =
-      "student";
-
-    const PASSWORD =
-      "notes123";
+</section>
 
 
-    /* =====================================================
-       START PORTAL
-    ===================================================== */
+<!-- ========================================================
+     NOTES
+========================================================= -->
 
-    function startPortal() {
+<section
+  id="notesPage"
+  class="page hidden"
+>
 
-      const home =
-        document.getElementById("homeScreen");
+  <div class="navbar">
 
-      const loading =
-        document.getElementById("loadingScreen");
+    <button
+      class="nav-button"
+      onclick="showPage('dashboardPage')"
+    >
+      🏠 Home
+    </button>
 
+    <button
+      class="nav-button"
+      onclick="showPage('quizPage')"
+    >
+      🧠 Quiz
+    </button>
 
-      /* Hide home */
+    <button
+      class="nav-button"
+      onclick="showPage('timerPage')"
+    >
+      ⏱️ Focus
+    </button>
 
-      home.classList.add("hide");
-
-
-      /* Show loading */
-
-      setTimeout(function() {
-
-        loading.classList.add("show");
-
-      }, 350);
-
-
-      /* Move to login */
-
-      setTimeout(function() {
-
-        loading.classList.remove("show");
-
-
-        document
-          .getElementById("loginBox")
-          .classList
-          .remove("hidden");
+  </div>
 
 
-      }, 2400);
+  <div class="brand">
+    STUDY LIBRARY
+  </div>
+
+  <h1>
+    📚 Your Notes
+  </h1>
+
+  <p class="subtitle">
+    Select a subject to open your notes.
+  </p>
+
+
+  <button
+    class="subject history"
+    onclick="openPDF('notes.pdf')"
+  >
+    📜 History
+  </button>
+
+
+  <button
+    class="subject life"
+    onclick="openPDF('notes_lscience.pdf')"
+  >
+    🧬 Life Science
+  </button>
+
+
+  <button
+    class="subject physical"
+    onclick="openPDF('notes_pscience.pdf')"
+  >
+    ⚛️ Physical Science
+  </button>
+
+
+  <button
+    class="subject geo"
+    onclick="openPDF('notes_geography.pdf')"
+  >
+    🌍 Geography
+  </button>
+
+
+  <iframe
+    id="pdfViewer"
+    style="display:none"
+  ></iframe>
+
+
+  <div class="footer">
+    TakeYouToTask • Notes Library
+  </div>
+
+</section>
+
+
+<!-- ========================================================
+     QUIZ
+========================================================= -->
+
+<section
+  id="quizPage"
+  class="page hidden"
+>
+
+  <div class="navbar">
+
+    <button
+      class="nav-button"
+      onclick="showPage('dashboardPage')"
+    >
+      🏠 Home
+    </button>
+
+    <button
+      class="nav-button"
+      onclick="showPage('notesPage')"
+    >
+      📚 Notes
+    </button>
+
+  </div>
+
+
+  <div class="brand">
+    PRACTICE MODE
+  </div>
+
+  <h1>
+    🧠 Quick Quiz
+  </h1>
+
+  <p
+    id="quizProgress"
+    class="subtitle"
+  >
+    Question 1 of 5
+  </p>
+
+
+  <div
+    id="quizQuestion"
+    class="quiz-question"
+  ></div>
+
+
+  <div id="answers"></div>
+
+
+  <button
+    id="nextQuestion"
+    class="main-button hidden"
+    onclick="nextQuizQuestion()"
+  >
+    Next Question →
+  </button>
+
+
+  <div
+    id="quizResult"
+    class="hidden"
+  >
+
+    <h1>
+      🎉 Quiz Complete!
+    </h1>
+
+    <div
+      id="scoreText"
+      class="subtitle"
+    ></div>
+
+    <button
+      class="main-button"
+      onclick="startQuiz()"
+    >
+      🔄 Try Again
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================
+     TIMER
+========================================================= -->
+
+<section
+  id="timerPage"
+  class="page timer hidden"
+>
+
+  <div class="navbar">
+
+    <button
+      class="nav-button"
+      onclick="showPage('dashboardPage')"
+    >
+      🏠 Home
+    </button>
+
+    <button
+      class="nav-button"
+      onclick="showPage('notesPage')"
+    >
+      📚 Notes
+    </button>
+
+  </div>
+
+
+  <div class="brand">
+    FOCUS MODE
+  </div>
+
+  <h1>
+    ⏱️ Study Timer
+  </h1>
+
+  <p class="subtitle">
+    Choose your study session.
+  </p>
+
+
+  <div
+    id="timerDisplay"
+    class="timer-display"
+  >
+    25:00
+  </div>
+
+
+  <div class="timer-buttons">
+
+    <button
+      onclick="setTimer(25)"
+    >
+      25 min
+    </button>
+
+    <button
+      onclick="setTimer(45)"
+    >
+      45 min
+    </button>
+
+    <button
+      onclick="setTimer(60)"
+    >
+      60 min
+    </button>
+
+  </div>
+
+
+  <div class="timer-buttons">
+
+    <button
+      onclick="startTimer()"
+    >
+      ▶ Start
+    </button>
+
+    <button
+      onclick="pauseTimer()"
+    >
+      ⏸ Pause
+    </button>
+
+    <button
+      onclick="resetTimer()"
+    >
+      ↻ Reset
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ========================================================
+     PROGRESS
+========================================================= -->
+
+<section
+  id="progressPage"
+  class="page hidden"
+>
+
+  <div class="navbar">
+
+    <button
+      class="nav-button"
+      onclick="showPage('dashboardPage')"
+    >
+      🏠 Home
+    </button>
+
+    <button
+      class="nav-button"
+      onclick="showPage('notesPage')"
+    >
+      📚 Notes
+    </button>
+
+  </div>
+
+
+  <div class="brand">
+    YOUR PROGRESS
+  </div>
+
+  <h1>
+    📊 Study Progress
+  </h1>
+
+  <p class="subtitle">
+    Keep going — you're making progress.
+  </p>
+
+
+  <div class="progress-item">
+
+    <div class="progress-header">
+      <span>📜 History</span>
+      <span>80%</span>
+    </div>
+
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        style="width:80%"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="progress-item">
+
+    <div class="progress-header">
+      <span>🧬 Life Science</span>
+      <span>65%</span>
+    </div>
+
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        style="width:65%"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="progress-item">
+
+    <div class="progress-header">
+      <span>⚛️ Physical Science</span>
+      <span>55%</span>
+    </div>
+
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        style="width:55%"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="progress-item">
+
+    <div class="progress-header">
+      <span>🌍 Geography</span>
+      <span>70%</span>
+    </div>
+
+    <div class="progress-bar">
+
+      <div
+        class="progress-fill"
+        style="width:70%"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    Keep studying. Keep improving. 🚀
+  </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   LOGIN DETAILS
+========================================================= */
+
+const USERNAME = "student";
+
+const PASSWORD = "notes123";
+
+const SECRET_CODE =
+  "MeetMeAtTheLectureTheatre";
+
+
+/* =========================================================
+   START PORTAL
+========================================================= */
+
+function startPortal() {
+
+  const home =
+    document.getElementById("homeScreen");
+
+  const loading =
+    document.getElementById("loadingScreen");
+
+
+  home.classList.add("hide");
+
+  setTimeout(() => {
+
+    loading.classList.add("show");
+
+  },300);
+
+
+  setTimeout(() => {
+
+    loading.classList.remove("show");
+
+    document
+      .getElementById("loginPage")
+      .classList
+      .remove("hidden");
+
+  },2300);
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function checkLogin() {
+
+  const username =
+    document
+      .getElementById("usernameInput")
+      .value;
+
+  const password =
+    document
+      .getElementById("passwordInput")
+      .value;
+
+  const code =
+    document
+      .getElementById("codeInput")
+      .value;
+
+  const error =
+    document
+      .getElementById("loginError");
+
+
+  if (
+    username === USERNAME &&
+    password === PASSWORD &&
+    code === SECRET_CODE
+  ) {
+
+    error.style.display = "none";
+
+    document
+      .getElementById("loginPage")
+      .classList
+      .add("hidden");
+
+    document
+      .getElementById("rulesPage")
+      .classList
+      .remove("hidden");
+
+  }
+
+  else {
+
+    error.style.display = "block";
+
+  }
+
+}
+
+
+/* =========================================================
+   RULES → DASHBOARD
+========================================================= */
+
+function showDashboard() {
+
+  document
+    .getElementById("rulesPage")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("dashboardPage")
+    .classList
+    .remove("hidden");
+
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function showPage(pageID) {
+
+  const pages = [
+
+    "dashboardPage",
+    "notesPage",
+    "quizPage",
+    "timerPage",
+    "progressPage"
+
+  ];
+
+
+  pages.forEach(id => {
+
+    document
+      .getElementById(id)
+      .classList
+      .add("hidden");
+
+  });
+
+
+  document
+    .getElementById(pageID)
+    .classList
+    .remove("hidden");
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  if (pageID === "quizPage") {
+
+    startQuiz();
+
+  }
+
+}
+
+
+/* =========================================================
+   OPEN PDF
+========================================================= */
+
+function openPDF(filename) {
+
+  const viewer =
+    document
+      .getElementById("pdfViewer");
+
+
+  viewer.src =
+    "./" + filename;
+
+
+  viewer.style.display =
+    "block";
+
+
+  setTimeout(() => {
+
+    viewer.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  },100);
+
+}
+
+
+/* =========================================================
+   QUIZ DATA
+========================================================= */
+
+const quizQuestions = [
+
+  {
+    question:
+      "Which factor helped Singapore become an important trading centre?",
+
+    answers: [
+      "Strategic location",
+      "Cold climate",
+      "Mountainous terrain",
+      "Large forests"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "What is a tissue?",
+
+    answers: [
+      "A group of similar cells working together",
+      "A single organ",
+      "A group of organs",
+      "A single organism"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "Which process involves water changing from liquid to gas?",
+
+    answers: [
+      "Condensation",
+      "Evaporation",
+      "Freezing",
+      "Melting"
+    ],
+
+    correct: 1
+  },
+
+  {
+    question:
+      "What does density measure?",
+
+    answers: [
+      "Mass per unit volume",
+      "Volume per unit time",
+      "Distance per unit time",
+      "Force per unit area"
+    ],
+
+    correct: 0
+  },
+
+  {
+    question:
+      "Which is an example of a pull factor for migration?",
+
+    answers: [
+      "War",
+      "Famine",
+      "Better economic opportunities",
+      "Natural disasters"
+    ],
+
+    correct: 2
+  }
+
+];
+
+
+let currentQuestion = 0;
+
+let quizScore = 0;
+
+
+/* =========================================================
+   START QUIZ
+========================================================= */
+
+function startQuiz() {
+
+  currentQuestion = 0;
+
+  quizScore = 0;
+
+
+  document
+    .getElementById("quizResult")
+    .classList
+    .add("hidden");
+
+
+  document
+    .getElementById("nextQuestion")
+    .classList
+    .add("hidden");
+
+
+  showQuizQuestion();
+
+}
+
+
+/* =========================================================
+   SHOW QUESTION
+========================================================= */
+
+function showQuizQuestion() {
+
+  const q =
+    quizQuestions[currentQuestion];
+
+
+  document
+    .getElementById("quizProgress")
+    .textContent =
+      `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+
+
+  document
+    .getElementById("quizQuestion")
+    .textContent =
+      q.question;
+
+
+  const answers =
+    document
+      .getElementById("answers");
+
+
+  answers.innerHTML = "";
+
+
+  q.answers.forEach(
+    (answer,index) => {
+
+      const button =
+        document.createElement("button");
+
+
+      button.className =
+        "answer";
+
+
+      button.textContent =
+        answer;
+
+
+      button.onclick =
+        () => selectAnswer(button,index);
+
+
+      answers.appendChild(button);
 
     }
+  );
+
+}
 
 
-    /* =====================================================
-       CHECK LOGIN
-    ===================================================== */
+/* =========================================================
+   ANSWER
+========================================================= */
 
-    function checkCode() {
+function selectAnswer(button,index) {
 
-      const username =
-        document
-          .getElementById("usernameInput")
-          .value;
-
-      const password =
-        document
-          .getElementById("passwordInput")
-          .value;
-
-      const input =
-        document
-          .getElementById("codeInput")
-          .value;
-
-      const error =
-        document
-          .getElementById("errorMsg");
+  const q =
+    quizQuestions[currentQuestion];
 
 
-      if (
-        username === USERNAME &&
-        password === PASSWORD &&
-        input === SECRET_CODE
-      ) {
-
-        error.style.display =
-          "none";
+  const all =
+    document
+      .querySelectorAll(".answer");
 
 
-        document
-          .getElementById("loginBox")
-          .classList
-          .add("hidden");
+  all.forEach(btn => {
+
+    btn.disabled = true;
+
+  });
 
 
-        document
-          .getElementById("rulesBox")
-          .classList
-          .remove("hidden");
+  if(index === q.correct) {
 
-      }
+    button.classList.add("correct");
 
-      else {
+    quizScore++;
 
-        error.style.display =
-          "block";
+  }
 
-      }
+  else {
 
-    }
+    button.classList.add("wrong");
 
+    all[q.correct]
+      .classList
+      .add("correct");
 
-    /* =====================================================
-       GO TO NOTES
-    ===================================================== */
-
-    function goToNotes() {
-
-      document
-        .getElementById("rulesBox")
-        .classList
-        .add("hidden");
+  }
 
 
-      document
-        .getElementById("pdfBox")
-        .classList
-        .remove("hidden");
+  document
+    .getElementById("nextQuestion")
+    .classList
+    .remove("hidden");
 
-    }
-
-
-    /* =====================================================
-       OPEN PDF
-    ===================================================== */
-
-    function openPDF(filename) {
-
-      const viewer =
-        document
-          .getElementById("pdfViewer");
-
-      const link =
-        document
-          .getElementById("downloadLink");
-
-      const btn =
-        document
-          .getElementById("downloadBtn");
+}
 
 
-      viewer.src =
-        "./" + filename;
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
+
+function nextQuizQuestion() {
+
+  currentQuestion++;
 
 
-      viewer.style.display =
-        "block";
+  if(
+    currentQuestion >=
+    quizQuestions.length
+  ) {
+
+    finishQuiz();
+
+    return;
+
+  }
 
 
-      link.href =
-        "./" + filename;
+  document
+    .getElementById("nextQuestion")
+    .classList
+    .add("hidden");
 
 
-      btn.style.display =
-        "block";
+  showQuizQuestion();
+
+}
 
 
-      setTimeout(function() {
+/* =========================================================
+   FINISH QUIZ
+========================================================= */
 
-        viewer.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+function finishQuiz() {
 
-      }, 100);
-
-    }
-
-
-    /* =====================================================
-       ENTER KEY LOGIN
-    ===================================================== */
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (event.key === "Enter") {
-
-          const loginVisible =
-            !document
-              .getElementById("loginBox")
-              .classList
-              .contains("hidden");
+  document
+    .getElementById("quizQuestion")
+    .innerHTML = "";
 
 
-          if (loginVisible) {
+  document
+    .getElementById("answers")
+    .innerHTML = "";
 
-            checkCode();
 
-          }
+  document
+    .getElementById("nextQuestion")
+    .classList
+    .add("hidden");
 
-        }
 
-      }
+  document
+    .getElementById("quizResult")
+    .classList
+    .remove("hidden");
+
+
+  const percentage =
+    Math.round(
+      quizScore /
+      quizQuestions.length *
+      100
     );
 
 
-  </script>
+  document
+    .getElementById("scoreText")
+    .textContent =
+      `You scored ${quizScore}/${quizQuestions.length} — ${percentage}%`;
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+let timerSeconds = 25 * 60;
+
+let timerInterval = null;
+
+
+function updateTimerDisplay() {
+
+  const minutes =
+    Math.floor(
+      timerSeconds / 60
+    );
+
+  const seconds =
+    timerSeconds % 60;
+
+
+  document
+    .getElementById("timerDisplay")
+    .textContent =
+      `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+}
+
+
+function setTimer(minutes) {
+
+  clearInterval(timerInterval);
+
+  timerSeconds =
+    minutes * 60;
+
+  updateTimerDisplay();
+
+}
+
+
+function startTimer() {
+
+  if(timerInterval)
+    return;
+
+
+  timerInterval =
+    setInterval(() => {
+
+      if(timerSeconds <= 0) {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+
+        alert(
+          "🎉 Focus session complete!"
+        );
+
+        return;
+
+      }
+
+
+      timerSeconds--;
+
+      updateTimerDisplay();
+
+    },1000);
+
+}
+
+
+function pauseTimer() {
+
+  clearInterval(timerInterval);
+
+  timerInterval = null;
+
+}
+
+
+function resetTimer() {
+
+  pauseTimer();
+
+  timerSeconds =
+    25 * 60;
+
+  updateTimerDisplay();
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Enter" &&
+      !document
+        .getElementById("loginPage")
+        .classList
+        .contains("hidden")
+    ) {
+
+      checkLogin();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+updateTimerDisplay();
+
+</script>
 
 </body>
 </html>
