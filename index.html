@@ -19,8 +19,6 @@
       --yellow: #facc15;
       --green: #22c55e;
 
-      --dark-bg: #05030f;
-      --card-bg: rgba(12, 9, 30, 0.76);
       --text: #f8fafc;
       --muted: #a5b4fc;
     }
@@ -68,10 +66,6 @@
 
       color: var(--text);
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
       font-family: Arial, sans-serif;
 
       overflow-x: hidden;
@@ -80,9 +74,9 @@
     }
 
 
-    /* =================================
-       COLOURFUL GRID
-    ================================= */
+    /* =====================================================
+       GLOBAL GRID
+    ===================================================== */
 
     body::before {
       content: "";
@@ -115,9 +109,9 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        GLOWING ORBS
-    ================================= */
+    ===================================================== */
 
     .orb {
       position: fixed;
@@ -192,9 +186,734 @@
     }
 
 
-    /* =================================
+    /* =====================================================
+       PARTICLES
+    ===================================================== */
+
+    .particles {
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      z-index: 1;
+
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+
+      width: 3px;
+      height: 3px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      box-shadow:
+        0 0 8px currentColor,
+        0 0 15px currentColor;
+
+      opacity: 0;
+
+      animation:
+        particleFloat
+        linear
+        infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 10%;
+      color: var(--cyan);
+      animation-duration: 8s;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(2) {
+      left: 20%;
+      color: var(--pink);
+      animation-duration: 11s;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(3) {
+      left: 30%;
+      color: var(--purple);
+      animation-duration: 9s;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(4) {
+      left: 40%;
+      color: var(--orange);
+      animation-duration: 12s;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(5) {
+      left: 50%;
+      color: var(--cyan);
+      animation-duration: 10s;
+      animation-delay: 3s;
+    }
+
+    .particle:nth-child(6) {
+      left: 60%;
+      color: var(--pink);
+      animation-duration: 9s;
+      animation-delay: 5s;
+    }
+
+    .particle:nth-child(7) {
+      left: 70%;
+      color: var(--purple);
+      animation-duration: 13s;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(8) {
+      left: 80%;
+      color: var(--orange);
+      animation-duration: 10s;
+      animation-delay: 6s;
+    }
+
+    .particle:nth-child(9) {
+      left: 90%;
+      color: var(--cyan);
+      animation-duration: 12s;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(10) {
+      left: 15%;
+      color: var(--magenta);
+      animation-duration: 14s;
+      animation-delay: 7s;
+    }
+
+    .particle:nth-child(11) {
+      left: 55%;
+      color: var(--green);
+      animation-duration: 11s;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(12) {
+      left: 85%;
+      color: var(--yellow);
+      animation-duration: 15s;
+      animation-delay: 8s;
+    }
+
+    @keyframes particleFloat {
+      0% {
+        transform:
+          translateY(110vh)
+          translateX(0)
+          scale(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.9;
+      }
+
+      50% {
+        transform:
+          translateY(50vh)
+          translateX(30px)
+          scale(1);
+      }
+
+      90% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform:
+          translateY(-10vh)
+          translateX(-20px)
+          scale(0);
+        opacity: 0;
+      }
+    }
+
+
+    /* =====================================================
+       HOME SCREEN
+    ===================================================== */
+
+    #homeScreen {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 10;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s ease;
+    }
+
+    #homeScreen.hide {
+      opacity: 0;
+
+      transform: scale(1.08);
+
+      visibility: hidden;
+    }
+
+    .home-content {
+      position: relative;
+
+      z-index: 3;
+
+      max-width: 800px;
+
+      width: 100%;
+
+      animation: homeAppear 1.2s ease;
+    }
+
+    @keyframes homeAppear {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(30px)
+          scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+
+    /* =====================================================
+       HOME LOGO
+    ===================================================== */
+
+    .home-logo-small {
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      letter-spacing: 5px;
+
+      color: #cbd5e1;
+
+      margin-bottom: 22px;
+
+      animation:
+        fadeIn 1s ease 0.2s both;
+    }
+
+    .home-title {
+      margin: 0;
+
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(55px, 11vw, 110px);
+
+      font-weight: 700;
+
+      letter-spacing: -5px;
+
+      line-height: 0.95;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          var(--purple),
+          var(--pink),
+          var(--orange),
+          var(--cyan)
+        );
+
+      background-size: 300% auto;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation:
+        logoGradient 7s linear infinite,
+        logoGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes logoGradient {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 300% center;
+      }
+    }
+
+    @keyframes logoGlow {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 8px rgba(0, 229, 255, 0.25));
+      }
+
+      50% {
+        filter:
+          drop-shadow(0 0 25px rgba(236, 72, 153, 0.35));
+      }
+    }
+
+    .home-title span {
+      display: inline-block;
+    }
+
+
+    /* =====================================================
+       HOME SUBTITLE
+    ===================================================== */
+
+    .home-subtitle {
+      margin-top: 25px;
+
+      color: #cbd5e1;
+
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(16px, 3vw, 21px);
+
+      letter-spacing: 1px;
+
+      animation:
+        fadeIn 1s ease 0.6s both;
+    }
+
+    .home-tagline {
+      margin-top: 10px;
+
+      color: #64748b;
+
+      font-size: 13px;
+
+      animation:
+        fadeIn 1s ease 0.8s both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+
+    /* =====================================================
+       HOME GLOWING RINGS
+    ===================================================== */
+
+    .energy-ring {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      border-radius: 50%;
+
+      border: 1px solid;
+
+      transform:
+        translate(-50%, -50%);
+
+      pointer-events: none;
+
+      opacity: 0;
+
+      animation:
+        ringExpand
+        4s
+        ease-out
+        infinite;
+    }
+
+    .ring1 {
+      width: 300px;
+      height: 300px;
+
+      border-color:
+        rgba(0, 229, 255, 0.35);
+
+      animation-delay: 0s;
+    }
+
+    .ring2 {
+      width: 450px;
+      height: 450px;
+
+      border-color:
+        rgba(139, 92, 246, 0.25);
+
+      animation-delay: 1.2s;
+    }
+
+    .ring3 {
+      width: 600px;
+      height: 600px;
+
+      border-color:
+        rgba(236, 72, 153, 0.18);
+
+      animation-delay: 2.4s;
+    }
+
+    @keyframes ringExpand {
+      0% {
+        opacity: 0;
+
+        transform:
+          translate(-50%, -50%)
+          scale(0.5);
+      }
+
+      20% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translate(-50%, -50%)
+          scale(1.15);
+      }
+    }
+
+
+    /* =====================================================
+       START BUTTON
+    ===================================================== */
+
+    .start-button {
+      position: relative;
+
+      width: auto;
+
+      min-width: 220px;
+
+      margin-top: 35px;
+
+      padding: 16px 32px;
+
+      border: 1px solid
+        rgba(255, 255, 255, 0.2);
+
+      border-radius: 50px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          var(--purple),
+          var(--pink)
+        );
+
+      background-size: 200% auto;
+
+      color: white;
+
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+      font-size: 16px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.5px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 0 25px rgba(0, 229, 255, 0.2),
+        0 0 45px rgba(236, 72, 153, 0.12);
+
+      animation:
+        buttonGradient 5s ease infinite,
+        buttonPulse 2.5s ease-in-out infinite;
+
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+    }
+
+    .start-button:hover {
+      transform:
+        translateY(-4px)
+        scale(1.03);
+
+      box-shadow:
+        0 0 30px rgba(0, 229, 255, 0.35),
+        0 0 55px rgba(236, 72, 153, 0.25);
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 20px rgba(0, 229, 255, 0.2),
+          0 0 40px rgba(236, 72, 153, 0.1);
+      }
+
+      50% {
+        box-shadow:
+          0 0 35px rgba(0, 229, 255, 0.35),
+          0 0 55px rgba(236, 72, 153, 0.2);
+      }
+    }
+
+
+    /* =====================================================
+       LOADING SCREEN
+    ===================================================== */
+
+    #loadingScreen {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 20;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(49, 18, 90, 0.45),
+          rgba(2, 1, 10, 0.98) 60%
+        );
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+    }
+
+    #loadingScreen.show {
+      opacity: 1;
+
+      visibility: visible;
+    }
+
+    .loader-logo {
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(35px, 7vw, 65px);
+
+      font-weight: 700;
+
+      letter-spacing: -2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          var(--purple),
+          var(--pink),
+          var(--orange)
+        );
+
+      background-size: 250% auto;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation:
+        logoGradient 3s linear infinite,
+        loaderLogoPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes loaderLogoPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.04);
+      }
+    }
+
+    .loader-text {
+      margin-top: 15px;
+
+      color: #94a3b8;
+
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+      font-size: 14px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .loader {
+      position: relative;
+
+      width: 70px;
+      height: 70px;
+
+      margin-top: 35px;
+    }
+
+    .loader::before,
+    .loader::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      border-radius: 50%;
+
+      border: 3px solid transparent;
+    }
+
+    .loader::before {
+      border-top-color: var(--cyan);
+
+      border-right-color: var(--purple);
+
+      animation:
+        spin 1s linear infinite;
+    }
+
+    .loader::after {
+      inset: 9px;
+
+      border-bottom-color: var(--pink);
+
+      border-left-color: var(--orange);
+
+      animation:
+        spinReverse 1.4s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinReverse {
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    .loading-dots {
+      margin-top: 20px;
+
+      display: flex;
+
+      gap: 7px;
+    }
+
+    .loading-dots span {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--cyan);
+
+      animation:
+        dotBounce 1s ease-in-out infinite;
+    }
+
+    .loading-dots span:nth-child(2) {
+      background: var(--purple);
+
+      animation-delay: 0.15s;
+    }
+
+    .loading-dots span:nth-child(3) {
+      background: var(--pink);
+
+      animation-delay: 0.3s;
+    }
+
+    .loading-dots span:nth-child(4) {
+      background: var(--orange);
+
+      animation-delay: 0.45s;
+    }
+
+    @keyframes dotBounce {
+      0%, 100% {
+        transform: translateY(0);
+
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: translateY(-7px);
+
+        opacity: 1;
+      }
+    }
+
+
+    /* =====================================================
        MAIN CONTAINER
-    ================================= */
+    ===================================================== */
 
     .container {
       position: relative;
@@ -205,6 +924,8 @@
 
       max-height: 92vh;
 
+      margin: 4vh auto;
+
       padding: 32px;
 
       background:
@@ -214,11 +935,13 @@
           rgba(20, 10, 40, 0.72)
         );
 
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid
+        rgba(255, 255, 255, 0.12);
 
       border-radius: 24px;
 
       backdrop-filter: blur(25px);
+
       -webkit-backdrop-filter: blur(25px);
 
       box-shadow:
@@ -231,28 +954,38 @@
 
       overflow-y: auto;
 
-      animation: cardIn 0.55s ease;
+      animation:
+        cardIn 0.55s ease;
     }
 
     @keyframes cardIn {
       from {
         opacity: 0;
-        transform: translateY(15px) scale(0.97);
+
+        transform:
+          translateY(15px)
+          scale(0.97);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+          translateY(0)
+          scale(1);
       }
     }
 
 
-    /* =================================
-       TOP BRAND
-    ================================= */
+    /* =====================================================
+       BRAND
+    ===================================================== */
 
     .brand {
-      font-family: "Product Sans", Arial, sans-serif;
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
 
       font-size: 14px;
 
@@ -272,22 +1005,26 @@
         );
 
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
 
       margin-bottom: 12px;
     }
 
 
-    /* =================================
+    /* =====================================================
        HEADINGS
-    ================================= */
+    ===================================================== */
 
     h1,
     h2,
     h3,
     .subtitle,
     .step {
-      font-family: "Product Sans", Arial, sans-serif;
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
     }
 
     h1 {
@@ -309,11 +1046,13 @@
         );
 
       -webkit-background-clip: text;
+
       -webkit-text-fill-color: transparent;
 
       background-size: 200% auto;
 
-      animation: gradientMove 5s linear infinite;
+      animation:
+        gradientMove 5s linear infinite;
     }
 
     @keyframes gradientMove {
@@ -335,9 +1074,9 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        STEP INDICATOR
-    ================================= */
+    ===================================================== */
 
     .steps {
       display: flex;
@@ -387,8 +1126,6 @@
       border: 1px solid #475569;
 
       font-size: 11px;
-
-      transition: 0.3s;
     }
 
     .step.active .step-number {
@@ -416,9 +1153,9 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        INPUTS
-    ================================= */
+    ===================================================== */
 
     input {
       width: 100%;
@@ -427,9 +1164,12 @@
 
       margin-bottom: 12px;
 
-      background: rgba(2, 6, 23, 0.7);
+      background:
+        rgba(2, 6, 23, 0.7);
 
-      border: 1px solid rgba(148, 163, 184, 0.2);
+      border:
+        1px solid
+        rgba(148, 163, 184, 0.2);
 
       border-radius: 11px;
 
@@ -452,14 +1192,17 @@
       border-color: var(--purple);
 
       box-shadow:
-        0 0 0 3px rgba(139, 92, 246, 0.08),
-        0 0 20px rgba(139, 92, 246, 0.2);
+        0 0 0 3px
+        rgba(139, 92, 246, 0.08),
+
+        0 0 20px
+        rgba(139, 92, 246, 0.2);
     }
 
 
-    /* =================================
-       MAIN BUTTON
-    ================================= */
+    /* =====================================================
+       BUTTONS
+    ===================================================== */
 
     button {
       width: 100%;
@@ -485,7 +1228,10 @@
 
       color: white;
 
-      font-family: "Product Sans", Arial, sans-serif;
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
 
       font-size: 15px;
 
@@ -499,9 +1245,11 @@
         filter 0.2s;
 
       box-shadow:
-        0 0 20px rgba(139, 92, 246, 0.22);
+        0 0 20px
+        rgba(139, 92, 246, 0.22);
 
-      animation: buttonGradient 6s ease infinite;
+      animation:
+        buttonGradient 6s ease infinite;
     }
 
     @keyframes buttonGradient {
@@ -524,26 +1272,21 @@
       filter: brightness(1.15);
 
       box-shadow:
-        0 0 25px rgba(0, 229, 255, 0.25),
-        0 0 35px rgba(236, 72, 153, 0.15);
+        0 0 25px
+        rgba(0, 229, 255, 0.25),
+
+        0 0 35px
+        rgba(236, 72, 153, 0.15);
     }
 
     button:active {
       transform: translateY(0);
     }
 
-    button:disabled {
-      background: #334155;
 
-      cursor: not-allowed;
-
-      box-shadow: none;
-    }
-
-
-    /* =================================
+    /* =====================================================
        ERROR
-    ================================= */
+    ===================================================== */
 
     .error {
       color: #fda4af;
@@ -555,7 +1298,9 @@
           rgba(236, 72, 153, 0.06)
         );
 
-      border: 1px solid rgba(244, 63, 94, 0.25);
+      border:
+        1px solid
+        rgba(244, 63, 94, 0.25);
 
       padding: 10px;
 
@@ -569,9 +1314,9 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        RULES
-    ================================= */
+    ===================================================== */
 
     .rules {
       text-align: left;
@@ -604,15 +1349,18 @@
     }
 
     .rules b {
-      font-family: "Product Sans", Arial, sans-serif;
+      font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
 
       color: #f8fafc;
     }
 
 
-    /* =================================
+    /* =====================================================
        SUBJECT BUTTONS
-    ================================= */
+    ===================================================== */
 
     .subject-btn {
       position: relative;
@@ -621,7 +1369,9 @@
 
       padding: 15px 18px;
 
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
 
       box-shadow: none;
 
@@ -654,7 +1404,7 @@
 
     /* HISTORY */
 
-    .subject-btn.history {
+    .history {
       background:
         linear-gradient(
           135deg,
@@ -663,17 +1413,18 @@
         );
     }
 
-    .subject-btn.history:hover {
+    .history:hover {
       border-color: var(--orange);
 
       box-shadow:
-        0 0 22px rgba(249, 115, 22, 0.2);
+        0 0 22px
+        rgba(249, 115, 22, 0.2);
     }
 
 
     /* LIFE SCIENCE */
 
-    .subject-btn.lifescience {
+    .lifescience {
       background:
         linear-gradient(
           135deg,
@@ -682,17 +1433,18 @@
         );
     }
 
-    .subject-btn.lifescience:hover {
+    .lifescience:hover {
       border-color: var(--green);
 
       box-shadow:
-        0 0 22px rgba(34, 197, 94, 0.2);
+        0 0 22px
+        rgba(34, 197, 94, 0.2);
     }
 
 
     /* PHYSICAL SCIENCE */
 
-    .subject-btn.pscience {
+    .pscience {
       background:
         linear-gradient(
           135deg,
@@ -701,17 +1453,18 @@
         );
     }
 
-    .subject-btn.pscience:hover {
+    .pscience:hover {
       border-color: var(--purple);
 
       box-shadow:
-        0 0 22px rgba(139, 92, 246, 0.22);
+        0 0 22px
+        rgba(139, 92, 246, 0.22);
     }
 
 
     /* GEOGRAPHY */
 
-    .subject-btn.geography {
+    .geography {
       background:
         linear-gradient(
           135deg,
@@ -720,24 +1473,27 @@
         );
     }
 
-    .subject-btn.geography:hover {
+    .geography:hover {
       border-color: var(--cyan);
 
       box-shadow:
-        0 0 22px rgba(0, 229, 255, 0.2);
+        0 0 22px
+        rgba(0, 229, 255, 0.2);
     }
 
 
-    /* =================================
-       PDF VIEWER
-    ================================= */
+    /* =====================================================
+       PDF
+    ===================================================== */
 
     iframe {
       width: 100%;
 
       height: 500px;
 
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
 
       border-radius: 12px;
 
@@ -746,14 +1502,17 @@
       background: #111827;
 
       box-shadow:
-        0 0 25px rgba(139, 92, 246, 0.12),
-        0 0 35px rgba(0, 229, 255, 0.06);
+        0 0 25px
+        rgba(139, 92, 246, 0.12),
+
+        0 0 35px
+        rgba(0, 229, 255, 0.06);
     }
 
 
-    /* =================================
+    /* =====================================================
        DOWNLOAD
-    ================================= */
+    ===================================================== */
 
     .download {
       display: block;
@@ -774,9 +1533,9 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        FOOTER
-    ================================= */
+    ===================================================== */
 
     .footer-text {
       margin-top: 20px;
@@ -789,20 +1548,38 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        HIDDEN
-    ================================= */
+    ===================================================== */
 
     .hidden {
       display: none !important;
     }
 
 
-    /* =================================
+    /* =====================================================
        MOBILE
-    ================================= */
+    ===================================================== */
 
     @media (max-width: 500px) {
+
+      #homeScreen {
+        padding: 20px;
+      }
+
+      .home-title {
+        font-size: 55px;
+
+        letter-spacing: -3px;
+      }
+
+      .home-subtitle {
+        font-size: 16px;
+      }
+
+      .energy-ring.ring3 {
+        display: none;
+      }
 
       body {
         align-items: flex-start;
@@ -812,6 +1589,8 @@
 
       .container {
         padding: 24px 20px;
+
+        margin-top: 0;
       }
 
       h1 {
@@ -836,9 +1615,10 @@
 
 <body>
 
-  <!-- =================================
-       BACKGROUND EFFECTS
-  ================================= -->
+
+  <!-- =====================================================
+       BACKGROUND
+  ===================================================== -->
 
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
@@ -846,35 +1626,157 @@
   <div class="orb orb4"></div>
 
 
-  <!-- =================================
-       STEP 1 — LOGIN
-  ================================= -->
+  <!-- =====================================================
+       FLOATING PARTICLES
+  ===================================================== -->
 
-  <div class="container" id="loginBox">
+  <div class="particles">
+
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       HOME SCREEN
+  ===================================================== -->
+
+  <section id="homeScreen">
+
+    <!-- Expanding rings -->
+
+    <div class="energy-ring ring1"></div>
+    <div class="energy-ring ring2"></div>
+    <div class="energy-ring ring3"></div>
+
+
+    <div class="home-content">
+
+      <div class="home-logo-small">
+        ACADEMIC RESOURCE PORTAL
+      </div>
+
+
+      <h1 class="home-title">
+        TakeYouToTask
+      </h1>
+
+
+      <div class="home-subtitle">
+        Study smarter. Learn faster. Stay ahead.
+      </div>
+
+
+      <div class="home-tagline">
+        Your personal academic notes portal
+      </div>
+
+
+      <button
+        class="start-button"
+        onclick="startPortal()"
+      >
+        🚀 Start Studying →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       LOADING SCREEN
+  ===================================================== -->
+
+  <section id="loadingScreen">
+
+    <div class="loader-logo">
+      TakeYouToTask
+    </div>
+
+    <div class="loader-text">
+      Preparing your study portal
+    </div>
+
+
+    <div class="loader"></div>
+
+
+    <div class="loading-dots">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       STEP 1 — LOGIN
+  ===================================================== -->
+
+  <div
+    class="container hidden"
+    id="loginBox"
+  >
 
     <div class="brand">
       TAKEYOUTOTASK
     </div>
 
+
     <div class="steps">
 
       <div class="step active">
-        <span class="step-number">1</span>
+
+        <span class="step-number">
+          1
+        </span>
+
         Login
+
       </div>
+
 
       <div class="step-line"></div>
 
+
       <div class="step">
-        <span class="step-number">2</span>
+
+        <span class="step-number">
+          2
+        </span>
+
         Rules
+
       </div>
+
 
       <div class="step-line"></div>
 
+
       <div class="step">
-        <span class="step-number">3</span>
+
+        <span class="step-number">
+          3
+        </span>
+
         Notes
+
       </div>
 
     </div>
@@ -883,6 +1785,7 @@
     <h1>
       Academic Notes
     </h1>
+
 
     <p class="subtitle">
       Login to access your study materials.
@@ -896,12 +1799,14 @@
       autocomplete="username"
     >
 
+
     <input
       type="password"
       id="passwordInput"
       placeholder="Password"
       autocomplete="current-password"
     >
+
 
     <input
       type="password"
@@ -915,7 +1820,10 @@
     </button>
 
 
-    <p class="error" id="errorMsg">
+    <p
+      class="error"
+      id="errorMsg"
+    >
       Incorrect login details. Please try again.
     </p>
 
@@ -927,11 +1835,14 @@
   </div>
 
 
-  <!-- =================================
+  <!-- =====================================================
        STEP 2 — RULES
-  ================================= -->
+  ===================================================== -->
 
-  <div class="container hidden" id="rulesBox">
+  <div
+    class="container hidden"
+    id="rulesBox"
+  >
 
     <div class="brand">
       TAKEYOUTOTASK
@@ -941,22 +1852,41 @@
     <div class="steps">
 
       <div class="step">
-        <span class="step-number">1</span>
+
+        <span class="step-number">
+          1
+        </span>
+
         Login
+
       </div>
 
+
       <div class="step-line"></div>
+
 
       <div class="step active">
-        <span class="step-number">2</span>
+
+        <span class="step-number">
+          2
+        </span>
+
         Rules
+
       </div>
+
 
       <div class="step-line"></div>
 
+
       <div class="step">
-        <span class="step-number">3</span>
+
+        <span class="step-number">
+          3
+        </span>
+
         Notes
+
       </div>
 
     </div>
@@ -965,6 +1895,7 @@
     <h1>
       Rules & Regulations
     </h1>
+
 
     <p class="subtitle">
       Please read before accessing the notes.
@@ -976,49 +1907,80 @@
       <ul>
 
         <li>
+
           <b>No Redistribution</b><br>
+
           These notes are for personal use only.
           Do not send, forward, or share them.
+
         </li>
 
+
         <li>
+
           <b>No Photocopying or Printing</b><br>
-          You are not allowed to photocopy, scan,
-          or print the notes.
+
+          You are not allowed to photocopy,
+          scan, or print the notes.
+
         </li>
 
+
         <li>
+
           <b>No Online Uploading</b><br>
+
           Do not upload the notes to WhatsApp,
           Google Drive, Telegram, or any other platform.
+
         </li>
 
+
         <li>
+
           <b>No Claiming as Your Own Work</b><br>
+
           Do not claim these notes as your own work.
+
         </li>
 
+
         <li>
+
           <b>No Editing Without Permission</b><br>
+
           Do not modify, rewrite, or redistribute
           modified versions.
+
         </li>
 
+
         <li>
+
           <b>For Study Purposes Only</b><br>
+
           These notes are intended for personal learning.
+
         </li>
 
+
         <li>
+
           <b>Respect the Effort</b><br>
-          Please respect the time and effort put
-          into creating these notes.
+
+          Please respect the time and effort
+          put into creating these notes.
+
         </li>
 
+
         <li>
+
           <b>Ask Before Sharing</b><br>
-          If someone wants access, direct them
-          to the owner.
+
+          If someone wants access,
+          direct them to the owner.
+
         </li>
 
       </ul>
@@ -1033,11 +1995,14 @@
   </div>
 
 
-  <!-- =================================
+  <!-- =====================================================
        STEP 3 — NOTES
-  ================================= -->
+  ===================================================== -->
 
-  <div class="container hidden" id="pdfBox">
+  <div
+    class="container hidden"
+    id="pdfBox"
+  >
 
     <div class="brand">
       TAKEYOUTOTASK
@@ -1047,22 +2012,41 @@
     <div class="steps">
 
       <div class="step">
-        <span class="step-number">1</span>
+
+        <span class="step-number">
+          1
+        </span>
+
         Login
+
       </div>
 
+
       <div class="step-line"></div>
+
 
       <div class="step">
-        <span class="step-number">2</span>
+
+        <span class="step-number">
+          2
+        </span>
+
         Rules
+
       </div>
+
 
       <div class="step-line"></div>
 
+
       <div class="step active">
-        <span class="step-number">3</span>
+
+        <span class="step-number">
+          3
+        </span>
+
         Notes
+
       </div>
 
     </div>
@@ -1072,14 +2056,13 @@
       Study Notes
     </h1>
 
+
     <p class="subtitle">
       Select a subject to open your notes.
     </p>
 
 
-    <!-- =================================
-         HISTORY
-    ================================= -->
+    <!-- HISTORY -->
 
     <button
       class="subject-btn history"
@@ -1089,9 +2072,7 @@
     </button>
 
 
-    <!-- =================================
-         LIFE SCIENCE
-    ================================= -->
+    <!-- LIFE SCIENCE -->
 
     <button
       class="subject-btn lifescience"
@@ -1101,9 +2082,7 @@
     </button>
 
 
-    <!-- =================================
-         PHYSICAL SCIENCE
-    ================================= -->
+    <!-- PHYSICAL SCIENCE -->
 
     <button
       class="subject-btn pscience"
@@ -1113,9 +2092,7 @@
     </button>
 
 
-    <!-- =================================
-         GEOGRAPHY
-    ================================= -->
+    <!-- GEOGRAPHY -->
 
     <button
       class="subject-btn geography"
@@ -1125,9 +2102,7 @@
     </button>
 
 
-    <!-- =================================
-         PDF VIEWER
-    ================================= -->
+    <!-- PDF VIEWER -->
 
     <iframe
       id="pdfViewer"
@@ -1136,9 +2111,7 @@
     ></iframe>
 
 
-    <!-- =================================
-         DOWNLOAD
-    ================================= -->
+    <!-- DOWNLOAD -->
 
     <a
       id="downloadLink"
@@ -1164,15 +2137,16 @@
   </div>
 
 
-  <!-- =================================
+  <!-- =====================================================
        JAVASCRIPT
-  ================================= -->
+  ===================================================== -->
 
   <script>
 
-    /* =================================
+
+    /* =====================================================
        LOGIN DETAILS
-    ================================= */
+    ===================================================== */
 
     const SECRET_CODE =
       "MeetMeAtTheLectureTheatre";
@@ -1184,23 +2158,75 @@
       "notes123";
 
 
-    /* =================================
+    /* =====================================================
+       START PORTAL
+    ===================================================== */
+
+    function startPortal() {
+
+      const home =
+        document.getElementById("homeScreen");
+
+      const loading =
+        document.getElementById("loadingScreen");
+
+
+      /* Hide home */
+
+      home.classList.add("hide");
+
+
+      /* Show loading */
+
+      setTimeout(function() {
+
+        loading.classList.add("show");
+
+      }, 350);
+
+
+      /* Move to login */
+
+      setTimeout(function() {
+
+        loading.classList.remove("show");
+
+
+        document
+          .getElementById("loginBox")
+          .classList
+          .remove("hidden");
+
+
+      }, 2400);
+
+    }
+
+
+    /* =====================================================
        CHECK LOGIN
-    ================================= */
+    ===================================================== */
 
     function checkCode() {
 
       const username =
-        document.getElementById("usernameInput").value;
+        document
+          .getElementById("usernameInput")
+          .value;
 
       const password =
-        document.getElementById("passwordInput").value;
+        document
+          .getElementById("passwordInput")
+          .value;
 
       const input =
-        document.getElementById("codeInput").value;
+        document
+          .getElementById("codeInput")
+          .value;
 
       const error =
-        document.getElementById("errorMsg");
+        document
+          .getElementById("errorMsg");
 
 
       if (
@@ -1209,7 +2235,8 @@
         input === SECRET_CODE
       ) {
 
-        error.style.display = "none";
+        error.style.display =
+          "none";
 
 
         document
@@ -1227,16 +2254,17 @@
 
       else {
 
-        error.style.display = "block";
+        error.style.display =
+          "block";
 
       }
 
     }
 
 
-    /* =================================
+    /* =====================================================
        GO TO NOTES
-    ================================= */
+    ===================================================== */
 
     function goToNotes() {
 
@@ -1254,24 +2282,28 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        OPEN PDF
-    ================================= */
+    ===================================================== */
 
     function openPDF(filename) {
 
       const viewer =
-        document.getElementById("pdfViewer");
+        document
+          .getElementById("pdfViewer");
 
       const link =
-        document.getElementById("downloadLink");
+        document
+          .getElementById("downloadLink");
 
       const btn =
-        document.getElementById("downloadBtn");
+        document
+          .getElementById("downloadBtn");
 
 
       viewer.src =
         "./" + filename;
+
 
       viewer.style.display =
         "block";
@@ -1279,6 +2311,7 @@
 
       link.href =
         "./" + filename;
+
 
       btn.style.display =
         "block";
@@ -1296,9 +2329,9 @@
     }
 
 
-    /* =================================
+    /* =====================================================
        ENTER KEY LOGIN
-    ================================= */
+    ===================================================== */
 
     document.addEventListener(
       "keydown",
@@ -1323,6 +2356,7 @@
 
       }
     );
+
 
   </script>
 
