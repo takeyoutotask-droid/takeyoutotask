@@ -1,44 +1,70 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>TakeYouToTask Academic Notes</title>
 
   <style>
-    /* ================================
-       FONTS
-    ================================= */
     @import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap');
 
     :root {
-      --neon-blue: #00d9ff;
-      --neon-purple: #8b5cf6;
-      --neon-pink: #ec4899;
-      --dark-bg: #050816;
-      --card-bg: rgba(10, 16, 35, 0.72);
-      --border: rgba(0, 217, 255, 0.25);
-      --text: #f1f5f9;
-      --muted: #94a3b8;
+      --cyan: #00e5ff;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --magenta: #d946ef;
+      --orange: #f97316;
+      --yellow: #facc15;
+      --green: #22c55e;
+
+      --dark-bg: #05030f;
+      --card-bg: rgba(12, 9, 30, 0.76);
+      --text: #f8fafc;
+      --muted: #a5b4fc;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    /* ================================
-       BODY
-    ================================= */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
 
       background:
-        radial-gradient(circle at 15% 20%, rgba(0, 217, 255, 0.12), transparent 30%),
-        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.15), transparent 30%),
-        linear-gradient(135deg, #030712, #080b1a 50%, #050816);
+        radial-gradient(
+          circle at 10% 15%,
+          rgba(0, 229, 255, 0.18),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(236, 72, 153, 0.18),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 20% 90%,
+          rgba(139, 92, 246, 0.18),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 85%,
+          rgba(249, 115, 22, 0.12),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #02010a,
+          #08051a 45%,
+          #10051c 75%,
+          #05020d
+        );
 
       color: var(--text);
 
@@ -49,56 +75,110 @@
       font-family: Arial, sans-serif;
 
       overflow-x: hidden;
+
       position: relative;
     }
 
-    /* ================================
-       NEON GRID BACKGROUND
+
+    /* =================================
+       COLOURFUL GRID
     ================================= */
+
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
 
       background-image:
-        linear-gradient(rgba(0, 217, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 217, 255, 0.035) 1px, transparent 1px);
+        linear-gradient(
+          rgba(0, 229, 255, 0.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(236, 72, 153, 0.035) 1px,
+          transparent 1px
+        );
 
       background-size: 50px 50px;
 
-      mask-image: linear-gradient(to bottom, black, transparent);
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent
+      );
+
       pointer-events: none;
+
       z-index: 0;
     }
 
-    /* ================================
+
+    /* =================================
        GLOWING ORBS
     ================================= */
+
     .orb {
       position: fixed;
+
       border-radius: 50%;
-      filter: blur(80px);
+
+      filter: blur(90px);
+
       pointer-events: none;
+
       z-index: 0;
+
       opacity: 0.35;
-      animation: float 8s ease-in-out infinite;
+
+      animation: float 9s ease-in-out infinite;
     }
 
     .orb1 {
-      width: 250px;
-      height: 250px;
-      background: var(--neon-blue);
-      top: -100px;
+      width: 280px;
+      height: 280px;
+
+      background: var(--cyan);
+
+      top: -110px;
       left: -100px;
     }
 
     .orb2 {
-      width: 300px;
-      height: 300px;
-      background: var(--neon-purple);
-      bottom: -150px;
+      width: 320px;
+      height: 320px;
+
+      background: var(--purple);
+
+      bottom: -160px;
       right: -100px;
-      animation-delay: -4s;
+
+      animation-delay: -3s;
+    }
+
+    .orb3 {
+      width: 220px;
+      height: 220px;
+
+      background: var(--pink);
+
+      top: 40%;
+      right: -120px;
+
+      animation-delay: -6s;
+    }
+
+    .orb4 {
+      width: 180px;
+      height: 180px;
+
+      background: var(--orange);
+
+      bottom: 10%;
+      left: -100px;
+
+      animation-delay: -2s;
     }
 
     @keyframes float {
@@ -111,41 +191,53 @@
       }
     }
 
-    /* ================================
-       CONTAINER
+
+    /* =================================
+       MAIN CONTAINER
     ================================= */
+
     .container {
       position: relative;
+
       z-index: 2;
 
       width: min(440px, calc(100% - 30px));
+
       max-height: 92vh;
 
       padding: 32px;
 
-      background: var(--card-bg);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15, 23, 42, 0.82),
+          rgba(20, 10, 40, 0.72)
+        );
 
-      border: 1px solid var(--border);
-      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
 
       box-shadow:
-        0 0 40px rgba(0, 217, 255, 0.08),
-        0 25px 70px rgba(0, 0, 0, 0.55);
+        0 0 25px rgba(0, 229, 255, 0.08),
+        0 0 45px rgba(139, 92, 246, 0.08),
+        0 0 70px rgba(236, 72, 153, 0.05),
+        0 25px 80px rgba(0, 0, 0, 0.65);
 
       text-align: center;
 
       overflow-y: auto;
 
-      animation: cardIn 0.5s ease;
+      animation: cardIn 0.55s ease;
     }
 
     @keyframes cardIn {
       from {
         opacity: 0;
-        transform: translateY(15px) scale(0.98);
+        transform: translateY(15px) scale(0.97);
       }
 
       to {
@@ -154,34 +246,47 @@
       }
     }
 
-    /* ================================
-       LOGO / BRAND
+
+    /* =================================
+       TOP BRAND
     ================================= */
+
     .brand {
       font-family: "Product Sans", Arial, sans-serif;
 
       font-size: 14px;
+
       font-weight: 700;
 
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+
       text-transform: uppercase;
 
-      color: var(--neon-blue);
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          var(--purple),
+          var(--pink),
+          var(--orange)
+        );
 
-      margin-bottom: 10px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 
-      text-shadow:
-        0 0 10px rgba(0, 217, 255, 0.8);
+      margin-bottom: 12px;
     }
 
-    /* ================================
+
+    /* =================================
        HEADINGS
     ================================= */
+
     h1,
     h2,
     h3,
     .subtitle,
-    .step-text {
+    .step {
       font-family: "Product Sans", Arial, sans-serif;
     }
 
@@ -189,36 +294,56 @@
       margin: 0 0 10px;
 
       font-size: 30px;
+
       font-weight: 700;
 
       letter-spacing: -0.5px;
 
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        #8be9ff,
-        #a78bfa
-      );
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          var(--cyan),
+          #c4b5fd,
+          #f9a8d4
+        );
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 
-      text-shadow:
-        0 0 25px rgba(0, 217, 255, 0.15);
+      background-size: 200% auto;
+
+      animation: gradientMove 5s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
     }
 
     .subtitle {
-      color: var(--muted);
+      color: #cbd5e1;
+
       font-size: 16px;
+
       margin-bottom: 25px;
     }
 
-    /* ================================
+
+    /* =================================
        STEP INDICATOR
     ================================= */
+
     .steps {
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       margin: 0 auto 25px;
@@ -228,20 +353,23 @@
 
     .step {
       display: flex;
+
       align-items: center;
+
       gap: 6px;
 
-      font-family: "Product Sans", Arial, sans-serif;
-
       font-size: 12px;
+
       color: #64748b;
+
+      transition: 0.3s;
     }
 
     .step.active {
-      color: var(--neon-blue);
+      color: var(--cyan);
 
       text-shadow:
-        0 0 8px rgba(0, 217, 255, 0.7);
+        0 0 8px rgba(0, 229, 255, 0.8);
     }
 
     .step-number {
@@ -249,32 +377,49 @@
       height: 25px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       border-radius: 50%;
 
-      border: 1px solid #334155;
+      border: 1px solid #475569;
 
       font-size: 11px;
+
+      transition: 0.3s;
     }
 
     .step.active .step-number {
-      border-color: var(--neon-blue);
+      border-color: var(--cyan);
+
+      color: white;
 
       box-shadow:
-        0 0 10px rgba(0, 217, 255, 0.5);
+        0 0 10px rgba(0, 229, 255, 0.55),
+        inset 0 0 8px rgba(0, 229, 255, 0.15);
     }
 
     .step-line {
       width: 25px;
+
       height: 1px;
-      background: #334155;
+
+      background:
+        linear-gradient(
+          90deg,
+          #334155,
+          #64748b,
+          #334155
+        );
     }
 
-    /* ================================
+
+    /* =================================
        INPUTS
     ================================= */
+
     input {
       width: 100%;
 
@@ -284,12 +429,14 @@
 
       background: rgba(2, 6, 23, 0.7);
 
-      border: 1px solid #26354d;
-      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+
+      border-radius: 11px;
 
       color: white;
 
       font-family: Arial, sans-serif;
+
       font-size: 15px;
 
       outline: none;
@@ -302,16 +449,18 @@
     }
 
     input:focus {
-      border-color: var(--neon-blue);
+      border-color: var(--purple);
 
       box-shadow:
-        0 0 0 3px rgba(0, 217, 255, 0.08),
-        0 0 18px rgba(0, 217, 255, 0.15);
+        0 0 0 3px rgba(139, 92, 246, 0.08),
+        0 0 20px rgba(139, 92, 246, 0.2);
     }
 
-    /* ================================
-       BUTTONS
+
+    /* =================================
+       MAIN BUTTON
     ================================= */
+
     button {
       width: 100%;
 
@@ -320,19 +469,26 @@
       margin-top: 10px;
 
       border: none;
-      border-radius: 10px;
 
-      background: linear-gradient(
-        90deg,
-        #0891b2,
-        #2563eb
-      );
+      border-radius: 11px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          var(--blue),
+          var(--purple),
+          var(--pink)
+        );
+
+      background-size: 250% 100%;
 
       color: white;
 
       font-family: "Product Sans", Arial, sans-serif;
 
       font-size: 15px;
+
       font-weight: 500;
 
       cursor: pointer;
@@ -343,7 +499,23 @@
         filter 0.2s;
 
       box-shadow:
-        0 0 18px rgba(0, 217, 255, 0.15);
+        0 0 20px rgba(139, 92, 246, 0.22);
+
+      animation: buttonGradient 6s ease infinite;
+    }
+
+    @keyframes buttonGradient {
+      0% {
+        background-position: 0% center;
+      }
+
+      50% {
+        background-position: 100% center;
+      }
+
+      100% {
+        background-position: 0% center;
+      }
     }
 
     button:hover {
@@ -352,7 +524,8 @@
       filter: brightness(1.15);
 
       box-shadow:
-        0 0 25px rgba(0, 217, 255, 0.35);
+        0 0 25px rgba(0, 229, 255, 0.25),
+        0 0 35px rgba(236, 72, 153, 0.15);
     }
 
     button:active {
@@ -361,19 +534,28 @@
 
     button:disabled {
       background: #334155;
+
       cursor: not-allowed;
+
       box-shadow: none;
     }
 
-    /* ================================
+
+    /* =================================
        ERROR
     ================================= */
+
     .error {
-      color: #fb7185;
+      color: #fda4af;
 
-      background: rgba(244, 63, 94, 0.08);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(244, 63, 94, 0.1),
+          rgba(236, 72, 153, 0.06)
+        );
 
-      border: 1px solid rgba(244, 63, 94, 0.2);
+      border: 1px solid rgba(244, 63, 94, 0.25);
 
       padding: 10px;
 
@@ -386,15 +568,18 @@
       display: none;
     }
 
-    /* ================================
+
+    /* =================================
        RULES
     ================================= */
+
     .rules {
       text-align: left;
 
       font-family: Arial, sans-serif;
 
       font-size: 14px;
+
       line-height: 1.55;
 
       color: #cbd5e1;
@@ -404,26 +589,31 @@
 
     .rules ul {
       padding-left: 20px;
+
       margin: 0;
     }
 
     .rules li {
       margin-bottom: 14px;
+
       padding-left: 3px;
     }
 
     .rules li::marker {
-      color: var(--neon-blue);
+      color: var(--pink);
     }
 
     .rules b {
       font-family: "Product Sans", Arial, sans-serif;
+
       color: #f8fafc;
     }
 
-    /* ================================
-       PDF SUBJECT BUTTONS
+
+    /* =================================
+       SUBJECT BUTTONS
     ================================= */
+
     .subject-btn {
       position: relative;
 
@@ -431,27 +621,28 @@
 
       padding: 15px 18px;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(14, 165, 233, 0.12),
-          rgba(139, 92, 246, 0.1)
-        );
-
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.12);
 
       box-shadow: none;
 
       margin-top: 10px;
+
+      background-size: 200% 100%;
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
     }
 
     .subject-btn::after {
       content: "→";
 
       position: absolute;
+
       right: 18px;
 
-      color: var(--neon-blue);
+      color: white;
 
       transition: 0.2s;
     }
@@ -460,14 +651,93 @@
       transform: translateX(5px);
     }
 
-    /* ================================
+
+    /* HISTORY */
+
+    .subject-btn.history {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(249, 115, 22, 0.25),
+          rgba(250, 204, 21, 0.12)
+        );
+    }
+
+    .subject-btn.history:hover {
+      border-color: var(--orange);
+
+      box-shadow:
+        0 0 22px rgba(249, 115, 22, 0.2);
+    }
+
+
+    /* LIFE SCIENCE */
+
+    .subject-btn.lifescience {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(34, 197, 94, 0.23),
+          rgba(16, 185, 129, 0.1)
+        );
+    }
+
+    .subject-btn.lifescience:hover {
+      border-color: var(--green);
+
+      box-shadow:
+        0 0 22px rgba(34, 197, 94, 0.2);
+    }
+
+
+    /* PHYSICAL SCIENCE */
+
+    .subject-btn.pscience {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.25),
+          rgba(217, 70, 239, 0.12)
+        );
+    }
+
+    .subject-btn.pscience:hover {
+      border-color: var(--purple);
+
+      box-shadow:
+        0 0 22px rgba(139, 92, 246, 0.22);
+    }
+
+
+    /* GEOGRAPHY */
+
+    .subject-btn.geography {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 229, 255, 0.22),
+          rgba(236, 72, 153, 0.14)
+        );
+    }
+
+    .subject-btn.geography:hover {
+      border-color: var(--cyan);
+
+      box-shadow:
+        0 0 22px rgba(0, 229, 255, 0.2);
+    }
+
+
+    /* =================================
        PDF VIEWER
     ================================= */
+
     iframe {
       width: 100%;
+
       height: 500px;
 
-      border: 1px solid rgba(0, 217, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.15);
 
       border-radius: 12px;
 
@@ -476,20 +746,38 @@
       background: #111827;
 
       box-shadow:
-        0 0 25px rgba(0, 217, 255, 0.08);
+        0 0 25px rgba(139, 92, 246, 0.12),
+        0 0 35px rgba(0, 229, 255, 0.06);
     }
 
-    /* ================================
+
+    /* =================================
        DOWNLOAD
     ================================= */
+
     .download {
       display: block;
+
       margin-top: 10px;
     }
 
-    /* ================================
-       SMALL TEXT
+    .download button {
+      background:
+        linear-gradient(
+          90deg,
+          #16a34a,
+          #0d9488,
+          #0891b2
+        );
+
+      background-size: 200% 100%;
+    }
+
+
+    /* =================================
+       FOOTER
     ================================= */
+
     .footer-text {
       margin-top: 20px;
 
@@ -500,19 +788,25 @@
       color: #64748b;
     }
 
-    /* ================================
+
+    /* =================================
        HIDDEN
     ================================= */
+
     .hidden {
       display: none !important;
     }
 
-    /* ================================
+
+    /* =================================
        MOBILE
     ================================= */
+
     @media (max-width: 500px) {
+
       body {
         align-items: flex-start;
+
         padding-top: 25px;
       }
 
@@ -539,16 +833,22 @@
   </style>
 </head>
 
+
 <body>
 
-  <!-- BACKGROUND EFFECTS -->
+  <!-- =================================
+       BACKGROUND EFFECTS
+  ================================= -->
+
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
 
 
-  <!-- =========================================
+  <!-- =================================
        STEP 1 — LOGIN
-  ========================================== -->
+  ================================= -->
 
   <div class="container" id="loginBox">
 
@@ -557,6 +857,7 @@
     </div>
 
     <div class="steps">
+
       <div class="step active">
         <span class="step-number">1</span>
         Login
@@ -575,41 +876,49 @@
         <span class="step-number">3</span>
         Notes
       </div>
+
     </div>
 
-    <h1>Academic Notes</h1>
+
+    <h1>
+      Academic Notes
+    </h1>
 
     <p class="subtitle">
       Login to access your study materials.
     </p>
+
 
     <input
       type="text"
       id="usernameInput"
       placeholder="Username"
       autocomplete="username"
-    />
+    >
 
     <input
       type="password"
       id="passwordInput"
       placeholder="Password"
       autocomplete="current-password"
-    />
+    >
 
     <input
       type="password"
       id="codeInput"
       placeholder="Access Code"
-    />
+    >
+
 
     <button onclick="checkCode()">
       Continue →
     </button>
 
+
     <p class="error" id="errorMsg">
       Incorrect login details. Please try again.
     </p>
+
 
     <div class="footer-text">
       🔒 Private academic resource
@@ -618,9 +927,9 @@
   </div>
 
 
-  <!-- =========================================
+  <!-- =================================
        STEP 2 — RULES
-  ========================================== -->
+  ================================= -->
 
   <div class="container hidden" id="rulesBox">
 
@@ -628,7 +937,9 @@
       TAKEYOUTOTASK
     </div>
 
+
     <div class="steps">
+
       <div class="step">
         <span class="step-number">1</span>
         Login
@@ -647,32 +958,39 @@
         <span class="step-number">3</span>
         Notes
       </div>
+
     </div>
 
-    <h1>Rules & Regulations</h1>
+
+    <h1>
+      Rules & Regulations
+    </h1>
 
     <p class="subtitle">
       Please read before accessing the notes.
     </p>
 
+
     <div class="rules">
+
       <ul>
 
         <li>
           <b>No Redistribution</b><br>
-          These notes are for personal use only. Do not send,
-          forward, or share them.
+          These notes are for personal use only.
+          Do not send, forward, or share them.
         </li>
 
         <li>
           <b>No Photocopying or Printing</b><br>
-          You are not allowed to photocopy, scan, or print the notes.
+          You are not allowed to photocopy, scan,
+          or print the notes.
         </li>
 
         <li>
           <b>No Online Uploading</b><br>
-          Do not upload the notes to WhatsApp, Google Drive,
-          Telegram, or any other platform.
+          Do not upload the notes to WhatsApp,
+          Google Drive, Telegram, or any other platform.
         </li>
 
         <li>
@@ -682,7 +1000,8 @@
 
         <li>
           <b>No Editing Without Permission</b><br>
-          Do not modify, rewrite, or redistribute modified versions.
+          Do not modify, rewrite, or redistribute
+          modified versions.
         </li>
 
         <li>
@@ -692,16 +1011,20 @@
 
         <li>
           <b>Respect the Effort</b><br>
-          Please respect the time and effort put into creating these notes.
+          Please respect the time and effort put
+          into creating these notes.
         </li>
 
         <li>
           <b>Ask Before Sharing</b><br>
-          If someone wants access, direct them to the owner.
+          If someone wants access, direct them
+          to the owner.
         </li>
 
       </ul>
+
     </div>
+
 
     <button onclick="goToNotes()">
       I Understand — Continue →
@@ -710,9 +1033,9 @@
   </div>
 
 
-  <!-- =========================================
+  <!-- =================================
        STEP 3 — NOTES
-  ========================================== -->
+  ================================= -->
 
   <div class="container hidden" id="pdfBox">
 
@@ -720,7 +1043,9 @@
       TAKEYOUTOTASK
     </div>
 
+
     <div class="steps">
+
       <div class="step">
         <span class="step-number">1</span>
         Login
@@ -739,53 +1064,81 @@
         <span class="step-number">3</span>
         Notes
       </div>
+
     </div>
 
-    <h1>Study Notes</h1>
+
+    <h1>
+      Study Notes
+    </h1>
 
     <p class="subtitle">
       Select a subject to open your notes.
     </p>
 
 
+    <!-- =================================
+         HISTORY
+    ================================= -->
+
     <button
-      class="subject-btn"
+      class="subject-btn history"
       onclick="openPDF('notes.pdf')"
     >
       📜 History
     </button>
 
+
+    <!-- =================================
+         LIFE SCIENCE
+    ================================= -->
+
     <button
-      class="subject-btn"
+      class="subject-btn lifescience"
       onclick="openPDF('notes_lscience.pdf')"
     >
       🧬 Life Science
     </button>
 
+
+    <!-- =================================
+         PHYSICAL SCIENCE
+    ================================= -->
+
     <button
-      class="subject-btn"
+      class="subject-btn pscience"
       onclick="openPDF('notes_pscience.pdf')"
     >
       ⚛️ Physical Science
     </button>
 
+
+    <!-- =================================
+         GEOGRAPHY
+    ================================= -->
+
     <button
-      class="subject-btn"
+      class="subject-btn geography"
       onclick="openPDF('notes_geography.pdf')"
     >
       🌍 Geography
     </button>
 
 
-    <!-- PDF VIEWER -->
+    <!-- =================================
+         PDF VIEWER
+    ================================= -->
 
     <iframe
       id="pdfViewer"
-      style="display:none;"
+      style="display: none;"
+      title="Study Notes PDF"
     ></iframe>
 
 
-    <!-- DOWNLOAD -->
+    <!-- =================================
+         DOWNLOAD
+    ================================= -->
 
     <a
       id="downloadLink"
@@ -793,13 +1146,16 @@
       target="_blank"
       download
     >
+
       <button
         id="downloadBtn"
-        style="display:none;"
+        style="display: none;"
       >
         ↓ Download PDF
       </button>
+
     </a>
+
 
     <div class="footer-text">
       TakeYouToTask • Academic Resources
@@ -808,24 +1164,27 @@
   </div>
 
 
-  <!-- =========================================
+  <!-- =================================
        JAVASCRIPT
-  ========================================== -->
+  ================================= -->
 
   <script>
 
-    /* ================================
+    /* =================================
        LOGIN DETAILS
     ================================= */
 
-    const SECRET_CODE = "MeetMeAtTheLectureTheatre";
+    const SECRET_CODE =
+      "MeetMeAtTheLectureTheatre";
 
-    const USERNAME = "student";
+    const USERNAME =
+      "student";
 
-    const PASSWORD = "notes123";
+    const PASSWORD =
+      "notes123";
 
 
-    /* ================================
+    /* =================================
        CHECK LOGIN
     ================================= */
 
@@ -852,15 +1211,21 @@
 
         error.style.display = "none";
 
+
         document
           .getElementById("loginBox")
-          .classList.add("hidden");
+          .classList
+          .add("hidden");
+
 
         document
           .getElementById("rulesBox")
-          .classList.remove("hidden");
+          .classList
+          .remove("hidden");
 
-      } else {
+      }
+
+      else {
 
         error.style.display = "block";
 
@@ -869,7 +1234,7 @@
     }
 
 
-    /* ================================
+    /* =================================
        GO TO NOTES
     ================================= */
 
@@ -877,16 +1242,19 @@
 
       document
         .getElementById("rulesBox")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
+
 
       document
         .getElementById("pdfBox")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
     }
 
 
-    /* ================================
+    /* =================================
        OPEN PDF
     ================================= */
 
@@ -902,19 +1270,21 @@
         document.getElementById("downloadBtn");
 
 
-      viewer.src = "./" + filename;
+      viewer.src =
+        "./" + filename;
 
-      viewer.style.display = "block";
-
-
-      link.href = "./" + filename;
-
-      btn.style.display = "block";
+      viewer.style.display =
+        "block";
 
 
-      /* Scroll to PDF */
+      link.href =
+        "./" + filename;
 
-      setTimeout(() => {
+      btn.style.display =
+        "block";
+
+
+      setTimeout(function() {
 
         viewer.scrollIntoView({
           behavior: "smooth",
@@ -926,30 +1296,35 @@
     }
 
 
-    /* ================================
+    /* =================================
        ENTER KEY LOGIN
     ================================= */
 
-    document.addEventListener("keydown", function(event) {
+    document.addEventListener(
+      "keydown",
+      function(event) {
 
-      if (event.key === "Enter") {
+        if (event.key === "Enter") {
 
-        const loginVisible =
-          !document
-            .getElementById("loginBox")
-            .classList
-            .contains("hidden");
+          const loginVisible =
+            !document
+              .getElementById("loginBox")
+              .classList
+              .contains("hidden");
 
-        if (loginVisible) {
-          checkCode();
+
+          if (loginVisible) {
+
+            checkCode();
+
+          }
+
         }
 
       }
-
-    });
+    );
 
   </script>
 
 </body>
 </html>
-```
