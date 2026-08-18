@@ -4,24 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TakeYouToTask</title>
+<title>TakeYouToTask — Student Accelerator</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap');
 
 :root {
     --cyan: #00d9ff;
+    --blue: #3b82f6;
     --purple: #8b5cf6;
+    --violet: #a855f7;
     --pink: #ec4899;
-    --violet: #6366f1;
     --green: #34d399;
     --yellow: #facc15;
 
-    --bg: #050816;
-    --card: rgba(10,16,35,.78);
+    --bg: #0b1020;
+    --bg2: #11182d;
+
+    --card: rgba(24, 32, 58, 0.78);
+    --card-bright: rgba(31, 41, 72, 0.82);
+
     --text: #f8fafc;
-    --muted: #94a3b8;
-    --border: rgba(255,255,255,.10);
+    --muted: #a8b4c7;
+
+    --border: rgba(255,255,255,.14);
 }
 
 * {
@@ -37,50 +43,90 @@ body {
     min-height: 100vh;
 
     background:
-        radial-gradient(circle at 15% 20%, rgba(0,217,255,.13), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(236,72,153,.13), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(139,92,246,.15), transparent 35%),
-        linear-gradient(135deg,#030712,#080b1a 50%,#050816);
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0,217,255,.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(236,72,153,.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(139,92,246,.18),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #080d1c,
+            #11182d 50%,
+            #0a1020
+        );
 
     color: var(--text);
-    font-family: "Outfit", Arial, sans-serif;
+
+    font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
 
     overflow-x: hidden;
 }
 
 body::before {
     content: "";
+
     position: fixed;
+
     inset: 0;
 
     background-image:
-        linear-gradient(rgba(0,217,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,217,255,.035) 1px,transparent 1px);
+        linear-gradient(
+            rgba(0,217,255,.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,217,255,.045) 1px,
+            transparent 1px
+        );
 
     background-size: 50px 50px;
 
-    mask-image: linear-gradient(to bottom,black,transparent);
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent
+        );
 
     pointer-events: none;
+
     z-index: 0;
 }
 
+
 /* =====================================================
-   BACKGROUND ORBS
+   GLOWING ORBS
 ===================================================== */
 
 .orb {
     position: fixed;
+
     border-radius: 50%;
 
     filter: blur(85px);
 
     pointer-events: none;
+
     z-index: 0;
 
-    opacity: .32;
+    opacity: .30;
 
-    animation: float 8s ease-in-out infinite;
+    animation:
+        float 8s ease-in-out infinite;
 }
 
 .orb1 {
@@ -118,14 +164,17 @@ body::before {
 }
 
 @keyframes float {
-    0%,100% {
+
+    0%, 100% {
         transform: translate(0,0);
     }
 
     50% {
         transform: translate(30px,-25px);
     }
+
 }
+
 
 /* =====================================================
    START SCREEN
@@ -133,21 +182,23 @@ body::before {
 
 .start-screen {
     position: fixed;
+
     inset: 0;
 
     z-index: 1000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(139,92,246,.16),
-            transparent 35%
+            rgba(139,92,246,.18),
+            transparent 38%
         ),
-        #050816;
+        #080d1c;
 
     transition:
         opacity .8s ease,
@@ -156,6 +207,7 @@ body::before {
 
 .start-screen.hide {
     opacity: 0;
+
     visibility: hidden;
 }
 
@@ -167,8 +219,10 @@ body::before {
 }
 
 @keyframes startAnimation {
+
     0% {
         opacity: 0;
+
         transform:
             translateY(25px)
             scale(.94);
@@ -176,14 +230,22 @@ body::before {
 
     100% {
         opacity: 1;
+
         transform:
             translateY(0)
             scale(1);
     }
+
 }
 
 .start-brand {
+    font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
     font-size: 13px;
+
     font-weight: 700;
 
     letter-spacing: 5px;
@@ -198,32 +260,44 @@ body::before {
 }
 
 .start-title {
-    font-size: clamp(48px,9vw,85px);
+    font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
 
-    font-weight: 800;
+    font-size:
+        clamp(45px, 9vw, 82px);
 
-    letter-spacing: -4px;
+    font-weight: 700;
+
+    letter-spacing: -3px;
 
     background:
         linear-gradient(
             90deg,
-            #fff,
+            #ffffff,
             #8be9ff,
             #a78bfa,
             #f472b6,
-            #fff
+            #ffffff
         );
 
     background-size: 300%;
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 
     animation:
         gradientFlow 5s ease infinite;
 }
 
+.start-subtitle {
+    display: none;
+}
+
 @keyframes gradientFlow {
+
     0% {
         background-position: 0%;
     }
@@ -235,17 +309,9 @@ body::before {
     100% {
         background-position: 0%;
     }
+
 }
 
-.start-subtitle {
-    color: var(--muted);
-
-    margin-top: 12px;
-
-    font-size: 15px;
-
-    letter-spacing: .5px;
-}
 
 /* =====================================================
    LOADING SCREEN
@@ -253,6 +319,7 @@ body::before {
 
 .loading-screen {
     position: fixed;
+
     inset: 0;
 
     width: 100vw;
@@ -268,10 +335,10 @@ body::before {
     background:
         radial-gradient(
             circle at center,
-            rgba(0,217,255,.08),
+            rgba(0,217,255,.10),
             transparent 35%
         ),
-        #050816;
+        #080d1c;
 }
 
 .loading-content {
@@ -288,7 +355,14 @@ body::before {
 }
 
 .loading-logo {
-    font-size: 14px;
+    font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
 
     letter-spacing: 4px;
 
@@ -301,18 +375,21 @@ body::before {
 }
 
 .loading-ring {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+
+    height: 60px;
 
     flex-shrink: 0;
 
     border-radius: 50%;
 
     border:
-        2px solid rgba(255,255,255,.08);
+        3px solid rgba(255,255,255,.10);
 
     border-top-color: var(--cyan);
+
     border-right-color: var(--purple);
+
     border-bottom-color: var(--pink);
 
     animation:
@@ -324,6 +401,11 @@ body::before {
 }
 
 .loading-text {
+    font-family:
+        "Product Sans",
+        Arial,
+        sans-serif;
+
     margin-top: 20px;
 
     color: var(--muted);
@@ -334,10 +416,13 @@ body::before {
 }
 
 @keyframes loadingSpin {
+
     to {
         transform: rotate(360deg);
     }
+
 }
+
 
 /* =====================================================
    MAIN APP
@@ -345,13 +430,20 @@ body::before {
 
 .app {
     position: relative;
+
     z-index: 2;
 
-    width: min(1100px,calc(100% - 30px));
+    width:
+        min(
+            1100px,
+            calc(100% - 30px)
+        );
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
-    padding: 22px 0 60px;
+    padding:
+        22px 0 60px;
 
     display: none;
 }
@@ -360,34 +452,42 @@ body::before {
     display: block;
 }
 
+
 /* =====================================================
    NAVBAR
 ===================================================== */
 
 .navbar {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    padding: 12px 15px;
+    padding:
+        12px 15px;
 
     border-radius: 22px;
 
-    background: rgba(10,16,35,.72);
+    background:
+        rgba(25,34,61,.82);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.30);
+        0 20px 60px rgba(0,0,0,.25);
 
     margin-bottom: 25px;
 }
 
 .nav-logo {
     font-size: 18px;
-    font-weight: 800;
+
+    font-weight: 700;
 
     background:
         linear-gradient(
@@ -398,11 +498,13 @@ body::before {
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 }
 
 .nav-buttons {
     display: flex;
+
     gap: 5px;
 }
 
@@ -411,13 +513,16 @@ body::before {
 
     margin: 0;
 
-    padding: 9px 13px;
+    padding:
+        9px 13px;
 
-    border: 1px solid transparent;
+    border:
+        1px solid transparent;
 
     border-radius: 12px;
 
-    background: transparent;
+    background:
+        transparent;
 
     color: var(--muted);
 
@@ -431,20 +536,23 @@ body::before {
 .nav-btn:hover {
     color: white;
 
-    background: rgba(255,255,255,.06);
+    background:
+        rgba(255,255,255,.07);
 
     border-color:
         rgba(255,255,255,.10);
 }
 
+
 /* =====================================================
-   PAGES
+   PAGE
 ===================================================== */
 
 .page {
     display: none;
 
-    animation: pageIn .35s ease;
+    animation:
+        pageIn .35s ease;
 }
 
 .page.active {
@@ -452,23 +560,86 @@ body::before {
 }
 
 @keyframes pageIn {
+
     from {
         opacity: 0;
-        transform: translateY(12px);
+
+        transform:
+            translateY(12px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
+
 }
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    padding:
+        9px 13px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    background:
+        rgba(255,255,255,.045);
+
+    color: var(--muted);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.back-button:hover {
+    color: white;
+
+    transform:
+        translateX(-3px);
+
+    background:
+        rgba(255,255,255,.08);
+
+    border-color:
+        rgba(0,217,255,.25);
+}
+
+.back-arrow {
+    font-size: 18px;
+
+    line-height: 1;
+}
+
 
 /* =====================================================
    HERO
 ===================================================== */
 
 .hero {
-    padding: 35px 5px;
+    padding:
+        25px 5px 35px;
 }
 
 .hero-label {
@@ -482,9 +653,15 @@ body::before {
 }
 
 .hero h1 {
-    margin: 12px 0;
+    margin:
+        12px 0;
 
-    font-size: clamp(40px,7vw,68px);
+    font-size:
+        clamp(
+            40px,
+            7vw,
+            68px
+        );
 
     line-height: 1;
 
@@ -501,6 +678,7 @@ body::before {
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 }
 
@@ -513,6 +691,7 @@ body::before {
 
     line-height: 1.6;
 }
+
 
 /* =====================================================
    CARDS
@@ -537,14 +716,15 @@ body::before {
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.025)
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.035)
         );
 
     border:
         1px solid var(--border);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(18px);
 
     overflow: hidden;
 
@@ -552,13 +732,14 @@ body::before {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
 
     border-color:
-        rgba(255,255,255,.18);
+        rgba(255,255,255,.20);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.30);
+        0 20px 60px rgba(0,0,0,.25);
 }
 
 .card h2 {
@@ -575,6 +756,7 @@ body::before {
     min-height: 50px;
 }
 
+
 /* =====================================================
    BUTTONS
 ===================================================== */
@@ -582,7 +764,8 @@ body::before {
 .primary-btn {
     width: 100%;
 
-    padding: 13px 17px;
+    padding:
+        13px 17px;
 
     border: none;
 
@@ -610,7 +793,8 @@ body::before {
     background-size: 250%;
 
     box-shadow:
-        0 8px 25px rgba(99,102,241,.16);
+        0 8px 25px
+        rgba(99,102,241,.16);
 
     transition:
         transform .2s,
@@ -619,12 +803,15 @@ body::before {
 }
 
 .primary-btn:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
-    background-position: 100%;
+    background-position:
+        100%;
 
     box-shadow:
-        0 10px 30px rgba(236,72,153,.20);
+        0 10px 30px
+        rgba(236,72,153,.20);
 }
 
 .secondary-btn {
@@ -635,10 +822,10 @@ body::before {
     border-radius: 13px;
 
     border:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(255,255,255,.13);
 
     background:
-        rgba(255,255,255,.04);
+        rgba(255,255,255,.055);
 
     color: white;
 
@@ -651,8 +838,9 @@ body::before {
 
 .secondary-btn:hover {
     background:
-        rgba(255,255,255,.08);
+        rgba(255,255,255,.10);
 }
+
 
 /* =====================================================
    PLANS
@@ -673,20 +861,22 @@ body::before {
     border-radius: 27px;
 
     background:
-        rgba(10,8,25,.78);
+        rgba(25,32,57,.84);
 
     border:
         1px solid var(--border);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 }
 
 .plan.premium {
     border-color:
-        rgba(236,72,153,.30);
+        rgba(236,72,153,.35);
 
     box-shadow:
-        0 0 50px rgba(236,72,153,.07);
+        0 0 50px
+        rgba(236,72,153,.08);
 }
 
 .plan h2 {
@@ -696,11 +886,12 @@ body::before {
 .plan-price {
     font-size: 58px;
 
-    font-weight: 800;
+    font-weight: 700;
 
     letter-spacing: -3px;
 
-    margin: 15px 0 20px;
+    margin:
+        15px 0 20px;
 
     background:
         linear-gradient(
@@ -711,6 +902,7 @@ body::before {
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 }
 
@@ -721,6 +913,82 @@ body::before {
 
     margin-bottom: 25px;
 }
+
+
+/* =====================================================
+   PREMIUM OPTIONS
+===================================================== */
+
+.premium-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 14px;
+
+    margin-top: 20px;
+}
+
+.premium-option {
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+}
+
+.premium-option h3 {
+    margin-top: 0;
+
+    font-size: 17px;
+}
+
+.premium-option p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.paylah-qr {
+    display: block;
+
+    width: 180px;
+    height: 180px;
+
+    object-fit: contain;
+
+    margin:
+        15px auto;
+
+    padding: 8px;
+
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow:
+        0 0 30px
+        rgba(255,255,255,.12);
+}
+
+.price-note {
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 10px;
+}
+
 
 /* =====================================================
    NOTES
@@ -745,14 +1013,14 @@ body::before {
     border-radius: 20px;
 
     border:
-        1px solid rgba(255,255,255,.10);
+        1px solid rgba(255,255,255,.12);
 
     background:
         linear-gradient(
             135deg,
-            rgba(0,217,255,.08),
-            rgba(139,92,246,.08),
-            rgba(236,72,153,.07)
+            rgba(0,217,255,.10),
+            rgba(139,92,246,.10),
+            rgba(236,72,153,.08)
         );
 
     color: white;
@@ -765,13 +1033,15 @@ body::before {
 }
 
 .subject:hover {
-    transform: translateY(-4px);
+    transform:
+        translateY(-4px);
 
     border-color:
         rgba(0,217,255,.35);
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,.20);
+        0 15px 40px
+        rgba(0,0,0,.20);
 }
 
 .subject-title {
@@ -794,18 +1064,22 @@ body::before {
 
 iframe {
     width: 100%;
+
     height: 600px;
 
     border-radius: 20px;
 
     border:
-        1px solid rgba(0,217,255,.18);
+        1px solid
+        rgba(0,217,255,.18);
 
     background: #111827;
 
     box-shadow:
-        0 0 30px rgba(0,217,255,.07);
+        0 0 30px
+        rgba(0,217,255,.07);
 }
+
 
 /* =====================================================
    TIMER
@@ -814,7 +1088,8 @@ iframe {
 .timer-card {
     max-width: 650px;
 
-    margin: 25px auto;
+    margin:
+        25px auto;
 
     padding: 40px;
 
@@ -825,23 +1100,29 @@ iframe {
     background:
         linear-gradient(
             145deg,
-            rgba(0,217,255,.07),
-            rgba(139,92,246,.10),
-            rgba(236,72,153,.07)
+            rgba(0,217,255,.09),
+            rgba(139,92,246,.12),
+            rgba(236,72,153,.09)
         );
 
     border:
-        1px solid rgba(255,255,255,.10);
+        1px solid
+        rgba(255,255,255,.12);
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.30);
+        0 30px 80px
+        rgba(0,0,0,.25);
 }
 
 .timer-display {
     font-size:
-        clamp(65px,12vw,110px);
+        clamp(
+            65px,
+            12vw,
+            110px
+        );
 
-    font-weight: 800;
+    font-weight: 700;
 
     letter-spacing: -5px;
 
@@ -856,6 +1137,7 @@ iframe {
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 }
 
@@ -868,6 +1150,7 @@ iframe {
     gap: 10px;
 }
 
+
 /* =====================================================
    QUIZ
 ===================================================== */
@@ -875,19 +1158,21 @@ iframe {
 .quiz-card {
     max-width: 750px;
 
-    margin: 20px auto;
+    margin:
+        20px auto;
 
     padding: 30px;
 
     border-radius: 27px;
 
     background:
-        rgba(12,10,25,.80);
+        rgba(25,20,45,.84);
 
     border:
         1px solid var(--border);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 }
 
 .quiz-option {
@@ -902,10 +1187,11 @@ iframe {
     border-radius: 14px;
 
     border:
-        1px solid rgba(255,255,255,.10);
+        1px solid
+        rgba(255,255,255,.10);
 
     background:
-        rgba(255,255,255,.04);
+        rgba(255,255,255,.05);
 
     color: white;
 
@@ -917,12 +1203,14 @@ iframe {
 }
 
 .quiz-option:hover {
-    border-color: var(--purple);
+    border-color:
+        var(--purple);
 
     background:
-        rgba(139,92,246,.10);
+        rgba(139,92,246,.12);
 
-    transform: translateX(3px);
+    transform:
+        translateX(3px);
 }
 
 .quiz-result {
@@ -931,6 +1219,7 @@ iframe {
     color: var(--muted);
 }
 
+
 /* =====================================================
    PROFILE
 ===================================================== */
@@ -938,7 +1227,8 @@ iframe {
 .profile-wrapper {
     max-width: 750px;
 
-    margin: 20px auto;
+    margin:
+        20px auto;
 }
 
 .profile-card {
@@ -949,17 +1239,20 @@ iframe {
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.025)
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.035)
         );
 
     border:
-        1px solid rgba(255,255,255,.12);
+        1px solid
+        rgba(255,255,255,.13);
 
-    backdrop-filter: blur(25px);
+    backdrop-filter:
+        blur(25px);
 
     box-shadow:
-        0 30px 90px rgba(0,0,0,.35);
+        0 30px 90px
+        rgba(0,0,0,.30);
 }
 
 .profile-top {
@@ -978,6 +1271,7 @@ iframe {
 
 .profile-picture {
     width: 110px;
+
     height: 110px;
 
     border-radius: 50%;
@@ -988,25 +1282,31 @@ iframe {
         3px solid transparent;
 
     background:
-        linear-gradient(#111,#111) padding-box,
+        linear-gradient(#111,#111)
+        padding-box,
+
         linear-gradient(
             135deg,
             var(--cyan),
             var(--purple),
             var(--pink)
-        ) border-box;
+        )
+        border-box;
 
     box-shadow:
-        0 0 30px rgba(139,92,246,.25);
+        0 0 30px
+        rgba(139,92,246,.25);
 }
 
 .profile-upload {
     position: absolute;
 
     right: 2px;
+
     bottom: 2px;
 
     width: 32px;
+
     height: 32px;
 
     display: flex;
@@ -1024,7 +1324,7 @@ iframe {
         );
 
     border:
-        2px solid #08070f;
+        2px solid #10101a;
 
     cursor: pointer;
 
@@ -1044,7 +1344,8 @@ iframe {
 
     margin-top: 7px;
 
-    padding: 5px 11px;
+    padding:
+        5px 11px;
 
     border-radius: 20px;
 
@@ -1079,7 +1380,8 @@ iframe {
     border-radius: 14px;
 
     border:
-        1px solid rgba(255,255,255,.10);
+        1px solid
+        rgba(255,255,255,.10);
 
     background:
         rgba(0,0,0,.25);
@@ -1099,10 +1401,12 @@ iframe {
 
 .profile-field input:focus,
 .profile-field textarea:focus {
-    border-color: var(--purple);
+    border-color:
+        var(--purple);
 
     box-shadow:
-        0 0 0 3px rgba(139,92,246,.08);
+        0 0 0 3px
+        rgba(139,92,246,.08);
 }
 
 .status {
@@ -1120,15 +1424,17 @@ iframe {
         rgba(52,211,153,.06);
 
     border:
-        1px solid rgba(52,211,153,.15);
+        1px solid
+        rgba(52,211,153,.15);
 }
 
 .status.show {
     display: block;
 }
 
+
 /* =====================================================
-   PREMIUM MODAL
+   MODAL
 ===================================================== */
 
 .modal {
@@ -1146,9 +1452,10 @@ iframe {
     padding: 20px;
 
     background:
-        rgba(0,0,0,.70);
+        rgba(0,0,0,.65);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter:
+        blur(12px);
 }
 
 .modal.show {
@@ -1156,7 +1463,11 @@ iframe {
 }
 
 .modal-box {
-    width: min(470px,100%);
+    width:
+        min(
+            470px,
+            100%
+        );
 
     padding: 32px;
 
@@ -1165,29 +1476,40 @@ iframe {
     background:
         linear-gradient(
             145deg,
-            #151027,
-            #0c0a17
+            #202040,
+            #121525
         );
 
     border:
-        1px solid rgba(255,255,255,.12);
+        1px solid
+        rgba(255,255,255,.14);
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.55);
+        0 30px 100px
+        rgba(0,0,0,.50);
 
-    animation: modalIn .25s ease;
+    animation:
+        modalIn .25s ease;
 }
 
 @keyframes modalIn {
+
     from {
         opacity: 0;
-        transform: scale(.95) translateY(10px);
+
+        transform:
+            scale(.95)
+            translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
     }
+
 }
 
 .modal-box h2 {
@@ -1207,12 +1529,14 @@ iframe {
 
     padding: 14px;
 
-    margin: 12px 0;
+    margin:
+        12px 0;
 
     border-radius: 14px;
 
     border:
-        1px solid rgba(255,255,255,.10);
+        1px solid
+        rgba(255,255,255,.10);
 
     background:
         rgba(0,0,0,.30);
@@ -1234,6 +1558,7 @@ iframe {
     font-size: 13px;
 }
 
+
 /* =====================================================
    MOBILE
 ===================================================== */
@@ -1241,7 +1566,8 @@ iframe {
 @media(max-width:700px) {
 
     .app {
-        width: calc(100% - 20px);
+        width:
+            calc(100% - 20px);
     }
 
     .navbar {
@@ -1260,7 +1586,8 @@ iframe {
 
     .card-grid,
     .plan-grid,
-    .subject-grid {
+    .subject-grid,
+    .premium-options {
         grid-template-columns: 1fr;
     }
 
@@ -1275,17 +1602,26 @@ iframe {
     }
 
     .hero {
-        padding-top: 20px;
+        padding-top: 15px;
     }
 
     iframe {
         height: 500px;
+    }
+
+    .start-title {
+        font-size: 50px;
     }
 }
 </style>
 </head>
 
 <body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
@@ -1305,11 +1641,7 @@ iframe {
         </div>
 
         <div class="start-title">
-            TakeYouToTask
-        </div>
-
-        <div class="start-subtitle">
-            Your academic workspace
+            STUDENT ACCELERATOR
         </div>
 
     </div>
@@ -1326,7 +1658,7 @@ iframe {
     <div class="loading-content">
 
         <div class="loading-logo">
-            TAKEYOUTOTASK
+            STUDENT ACCELERATOR
         </div>
 
         <div class="loading-ring"></div>
@@ -1346,6 +1678,11 @@ iframe {
 
 <div class="app" id="app">
 
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
 <nav class="navbar">
 
     <div class="nav-logo">
@@ -1354,28 +1691,39 @@ iframe {
 
     <div class="nav-buttons">
 
-        <button class="nav-btn"
-                onclick="showPage('home')">
+        <button
+            class="nav-btn"
+            onclick="showPage('home')">
             Home
         </button>
 
-        <button class="nav-btn"
-                onclick="showPage('notes')">
+        <button
+            class="nav-btn"
+            onclick="showPage('notes')">
             Notes
         </button>
 
-        <button class="nav-btn"
-                onclick="showPage('quiz')">
+        <button
+            class="nav-btn"
+            onclick="showPage('quiz')">
             Quiz
         </button>
 
-        <button class="nav-btn"
-                onclick="showPage('timer')">
+        <button
+            class="nav-btn"
+            onclick="showPage('timer')">
             Timer
         </button>
 
-        <button class="nav-btn"
-                onclick="showPage('profile')">
+        <button
+            class="nav-btn"
+            onclick="showPage('plans')">
+            Plans
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showPage('profile')">
             Profile
         </button>
 
@@ -1384,14 +1732,16 @@ iframe {
 </nav>
 
 
-<!-- HOME -->
+<!-- =====================================================
+     HOME
+===================================================== -->
 
 <section class="page active" id="home">
 
     <div class="hero">
 
         <div class="hero-label">
-            YOUR ACADEMIC WORKSPACE
+            STUDENT ACCELERATOR
         </div>
 
         <h1>
@@ -1400,13 +1750,14 @@ iframe {
 
         <p>
             Notes, quizzes and focused study tools
-            built for your revision.
+            built to help you revise better.
         </p>
 
     </div>
 
 
     <div class="card-grid">
+
 
         <div class="card">
 
@@ -1419,8 +1770,9 @@ iframe {
                 by subject.
             </p>
 
-            <button class="primary-btn"
-                    onclick="showPage('notes')">
+            <button
+                class="primary-btn"
+                onclick="showPage('notes')">
                 Open Notes
             </button>
 
@@ -1434,12 +1786,13 @@ iframe {
             </h2>
 
             <p>
-                Stay focused with a clean
+                Stay focused with a clean,
                 distraction-free timer.
             </p>
 
-            <button class="primary-btn"
-                    onclick="showPage('timer')">
+            <button
+                class="primary-btn"
+                onclick="showPage('timer')">
                 Start Timer
             </button>
 
@@ -1457,8 +1810,9 @@ iframe {
                 interactive revision questions.
             </p>
 
-            <button class="primary-btn"
-                    onclick="showPage('quiz')">
+            <button
+                class="primary-btn"
+                onclick="showPage('quiz')">
                 Open Quiz
             </button>
 
@@ -1468,17 +1822,18 @@ iframe {
         <div class="card">
 
             <h2>
-                My Profile
+                Premium
             </h2>
 
             <p>
-                Add your profile picture,
-                username and personal information.
+                Unlock additional revision
+                resources and quizzes.
             </p>
 
-            <button class="primary-btn"
-                    onclick="showPage('profile')">
-                Open Profile
+            <button
+                class="primary-btn"
+                onclick="showPage('plans')">
+                View Plans
             </button>
 
         </div>
@@ -1488,9 +1843,24 @@ iframe {
 </section>
 
 
-<!-- PLANS -->
+<!-- =====================================================
+     PLANS
+===================================================== -->
 
 <section class="page" id="plans">
+
+    <button
+        class="back-button"
+        onclick="goBack()">
+
+        <span class="back-arrow">
+            ←
+        </span>
+
+        Back
+
+    </button>
+
 
     <div class="hero">
 
@@ -1503,14 +1873,18 @@ iframe {
         </h1>
 
         <p>
-            Basic is free. Premium unlocks
-            additional study features.
+            Start with Basic for free,
+            or unlock Premium for additional
+            study features.
         </p>
 
     </div>
 
 
     <div class="plan-grid">
+
+
+        <!-- BASIC -->
 
         <div class="plan">
 
@@ -1523,19 +1897,38 @@ iframe {
             </div>
 
             <ul>
-                <li>Study notes</li>
-                <li>Subject resources</li>
-                <li>Focus timer</li>
-                <li>Personal profile</li>
+
+                <li>
+                    Study notes
+                </li>
+
+                <li>
+                    Subject resources
+                </li>
+
+                <li>
+                    Focus timer
+                </li>
+
+                <li>
+                    Personal profile
+                </li>
+
             </ul>
 
-            <button class="primary-btn"
-                    onclick="showPage('notes')">
+
+            <button
+                class="primary-btn"
+                onclick="goBack()">
+
                 Continue with Basic
+
             </button>
 
         </div>
 
+
+        <!-- PREMIUM -->
 
         <div class="plan premium">
 
@@ -1548,16 +1941,82 @@ iframe {
             </div>
 
             <ul>
-                <li>Everything in Basic</li>
-                <li>Interactive quizzes</li>
-                <li>Premium revision tools</li>
-                <li>Additional study features</li>
+
+                <li>
+                    Everything in Basic
+                </li>
+
+                <li>
+                    Interactive quizzes
+                </li>
+
+                <li>
+                    Premium revision tools
+                </li>
+
+                <li>
+                    Additional study features
+                </li>
+
             </ul>
 
-            <button class="primary-btn"
-                    onclick="openPremiumModal()">
-                Unlock Premium
-            </button>
+
+            <div class="premium-options">
+
+
+                <!-- PAYLAH -->
+
+                <div class="premium-option">
+
+                    <h3>
+                        PayLah
+                    </h3>
+
+                    <p>
+                        Scan the QR code to
+                        purchase Premium.
+                    </p>
+
+
+                    <img
+                        class="paylah-qr"
+                        src="paylah-qr.png"
+                        alt="PayLah QR Code">
+
+
+                    <div class="price-note">
+                        Premium — $9.90
+                    </div>
+
+                </div>
+
+
+                <!-- ACCESS CODE -->
+
+                <div class="premium-option">
+
+                    <h3>
+                        Access Code
+                    </h3>
+
+                    <p>
+                        Already purchased Premium?
+                        Enter your access code.
+                    </p>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="openPremiumModal()">
+
+                        Enter Code
+
+                    </button>
+
+                </div>
+
+
+            </div>
 
         </div>
 
@@ -1566,9 +2025,24 @@ iframe {
 </section>
 
 
-<!-- NOTES -->
+<!-- =====================================================
+     NOTES
+===================================================== -->
 
 <section class="page" id="notes">
+
+    <button
+        class="back-button"
+        onclick="goBack()">
+
+        <span class="back-arrow">
+            ←
+        </span>
+
+        Back
+
+    </button>
+
 
     <div class="hero">
 
@@ -1589,8 +2063,10 @@ iframe {
 
     <div class="subject-grid">
 
-        <button class="subject"
-                onclick="openPDF('notes.pdf')">
+
+        <button
+            class="subject"
+            onclick="openPDF('notes.pdf')">
 
             <div class="subject-title">
                 History
@@ -1603,8 +2079,9 @@ iframe {
         </button>
 
 
-        <button class="subject"
-                onclick="openPDF('notes_lscience.pdf')">
+        <button
+            class="subject"
+            onclick="openPDF('notes_lscience.pdf')">
 
             <div class="subject-title">
                 Life Science
@@ -1617,8 +2094,9 @@ iframe {
         </button>
 
 
-        <button class="subject"
-                onclick="openPDF('notes_pscience.pdf')">
+        <button
+            class="subject"
+            onclick="openPDF('notes_pscience.pdf')">
 
             <div class="subject-title">
                 Physical Science
@@ -1631,8 +2109,9 @@ iframe {
         </button>
 
 
-        <button class="subject"
-                onclick="openPDF('notes_geography.pdf')">
+        <button
+            class="subject"
+            onclick="openPDF('notes_geography.pdf')">
 
             <div class="subject-title">
                 Geography
@@ -1649,8 +2128,9 @@ iframe {
 
     <div class="pdf-container">
 
-        <iframe id="pdfViewer"
-                style="display:none;">
+        <iframe
+            id="pdfViewer"
+            style="display:none;">
         </iframe>
 
     </div>
@@ -1658,9 +2138,24 @@ iframe {
 </section>
 
 
-<!-- QUIZ -->
+<!-- =====================================================
+     QUIZ
+===================================================== -->
 
 <section class="page" id="quiz">
+
+    <button
+        class="back-button"
+        onclick="goBack()">
+
+        <span class="back-arrow">
+            ←
+        </span>
+
+        Back
+
+    </button>
+
 
     <div class="hero">
 
@@ -1687,8 +2182,9 @@ iframe {
 
         <div id="options"></div>
 
-        <div class="quiz-result"
-             id="quizResult">
+        <div
+            class="quiz-result"
+            id="quizResult">
         </div>
 
     </div>
@@ -1696,9 +2192,24 @@ iframe {
 </section>
 
 
-<!-- TIMER -->
+<!-- =====================================================
+     TIMER
+===================================================== -->
 
 <section class="page" id="timer">
+
+    <button
+        class="back-button"
+        onclick="goBack()">
+
+        <span class="back-arrow">
+            ←
+        </span>
+
+        Back
+
+    </button>
+
 
     <div class="hero">
 
@@ -1719,26 +2230,30 @@ iframe {
 
     <div class="timer-card">
 
-        <div class="timer-display"
-             id="timerDisplay">
+        <div
+            class="timer-display"
+            id="timerDisplay">
             25:00
         </div>
 
 
         <div class="timer-controls">
 
-            <button class="primary-btn"
-                    onclick="startTimer()">
+            <button
+                class="primary-btn"
+                onclick="startTimer()">
                 Start
             </button>
 
-            <button class="secondary-btn"
-                    onclick="pauseTimer()">
+            <button
+                class="secondary-btn"
+                onclick="pauseTimer()">
                 Pause
             </button>
 
-            <button class="secondary-btn"
-                    onclick="resetTimer()">
+            <button
+                class="secondary-btn"
+                onclick="resetTimer()">
                 Reset
             </button>
 
@@ -1749,50 +2264,76 @@ iframe {
 </section>
 
 
-<!-- PROFILE -->
+<!-- =====================================================
+     PROFILE
+===================================================== -->
 
 <section class="page" id="profile">
+
+    <button
+        class="back-button"
+        onclick="goBack()">
+
+        <span class="back-arrow">
+            ←
+        </span>
+
+        Back
+
+    </button>
+
 
     <div class="profile-wrapper">
 
         <div class="profile-card">
 
+
             <div class="profile-top">
+
 
                 <div class="profile-picture-wrapper">
 
                     <img
                         id="profilePicture"
                         class="profile-picture"
-                        alt="Profile picture"
-                    >
+                        alt="Profile picture">
+
 
                     <label
                         class="profile-upload"
                         for="profileImageInput">
+
                         +
+
                     </label>
+
 
                     <input
                         type="file"
                         id="profileImageInput"
                         accept="image/*"
-                        style="display:none;"
-                    >
+                        style="display:none;">
 
                 </div>
 
 
                 <div>
 
-                    <div class="profile-name"
-                         id="profilePreviewName">
+                    <div
+                        class="profile-name"
+                        id="profilePreviewName">
+
                         Student
+
                     </div>
 
-                    <div class="profile-plan"
-                         id="profilePlan">
+
+                    <div
+                        class="profile-plan"
+                        id="profilePlan">
+
                         Basic Plan
+
                     </div>
 
                 </div>
@@ -1800,9 +2341,12 @@ iframe {
             </div>
 
 
-            <div class="status"
-                 id="profileStatus">
+            <div
+                class="status"
+                id="profileStatus">
+
                 Profile saved successfully.
+
             </div>
 
 
@@ -1815,8 +2359,7 @@ iframe {
                 <input
                     id="username"
                     type="text"
-                    placeholder="Choose a username"
-                >
+                    placeholder="Choose a username">
 
             </div>
 
@@ -1830,8 +2373,7 @@ iframe {
                 <input
                     id="displayName"
                     type="text"
-                    placeholder="Your display name"
-                >
+                    placeholder="Your display name">
 
             </div>
 
@@ -1849,9 +2391,12 @@ iframe {
             </div>
 
 
-            <button class="primary-btn"
-                    onclick="saveProfile()">
+            <button
+                class="primary-btn"
+                onclick="saveProfile()">
+
                 Save Profile
+
             </button>
 
         </div>
@@ -1860,54 +2405,76 @@ iframe {
 
 </section>
 
+
 </div>
 
 
-<!-- PREMIUM MODAL -->
+<!-- =====================================================
+     PREMIUM CODE MODAL
+===================================================== -->
 
-<div class="modal"
-     id="premiumModal">
+<div
+    class="modal"
+    id="premiumModal">
 
     <div class="modal-box">
+
 
         <h2>
             Unlock Premium
         </h2>
 
+
         <p>
-            Premium gives you access to quizzes
-            and other premium study features.
+            Already purchased Premium?
+            Enter your access code below.
         </p>
+
 
         <input
             type="password"
             id="premiumCode"
-            placeholder="Enter Premium access code"
-        >
+            placeholder="Enter Premium access code">
 
-        <button class="primary-btn"
-                onclick="activatePremium()">
+
+        <button
+            class="primary-btn"
+            onclick="activatePremium()">
+
             Activate Premium
+
         </button>
 
-        <button class="secondary-btn"
-                style="margin-top:10px;"
-                onclick="closePremiumModal()">
+
+        <button
+            class="secondary-btn"
+            style="margin-top:10px;"
+            onclick="closePremiumModal()">
+
             Cancel
+
         </button>
 
-        <div class="modal-error"
-             id="premiumError">
+
+        <div
+            class="modal-error"
+            id="premiumError">
+
             Incorrect access code.
+
         </div>
 
-        <p style="
-            text-align:center;
-            font-size:12px;
-            margin-top:20px;
-        ">
+
+        <p
+            style="
+                text-align:center;
+                font-size:12px;
+                margin-top:20px;
+            ">
+
             For Premium purchase information,
             contact 85133766.
+
         </p>
 
     </div>
@@ -1916,6 +2483,7 @@ iframe {
 
 
 <script>
+
 
 /* =====================================================
    PREMIUM
@@ -1935,75 +2503,68 @@ function isPremium() {
 
 
 /* =====================================================
-   START + LOADING
+   PAGE HISTORY
 ===================================================== */
 
-window.addEventListener("load", function() {
+let currentPage = "home";
 
-    setTimeout(function() {
+let previousPage = "home";
 
-        document
-            .getElementById("startScreen")
-            .classList.add("hide");
-
-        document
-            .getElementById("loadingScreen")
-            .style.display = "flex";
-
-        setTimeout(function() {
-
-            document
-                .getElementById("loadingScreen")
-                .style.display = "none";
-
-            document
-                .getElementById("app")
-                .classList.add("show");
-
-            loadProfile();
-
-        },1400);
-
-    },2300);
-
-});
-
-
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
 
 function showPage(pageName) {
 
-    if (pageName === "quiz") {
 
-        if (!isPremium()) {
+    if (
+        pageName === "quiz" &&
+        !isPremium()
+    ) {
 
-            openPremiumModal();
+        openPremiumModal();
 
-            return;
-        }
+        return;
+
+    }
+
+
+    if (
+        pageName !== currentPage
+    ) {
+
+        previousPage =
+            currentPage;
 
     }
 
 
     document
         .querySelectorAll(".page")
-        .forEach(function(page) {
+        .forEach(
+            function(page) {
 
-            page.classList.remove("active");
+                page.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     const page =
-        document.getElementById(pageName);
+        document.getElementById(
+            pageName
+        );
 
 
     if (!page) return;
 
 
-    page.classList.add("active");
+    page.classList.add(
+        "active"
+    );
+
+
+    currentPage =
+        pageName;
 
 
     window.scrollTo({
@@ -2015,14 +2576,138 @@ function showPage(pageName) {
 
 
 /* =====================================================
+   BACK BUTTON
+===================================================== */
+
+function goBack() {
+
+
+    const destination =
+        previousPage || "home";
+
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            function(page) {
+
+                page.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            destination
+        )
+        .classList.add(
+            "active"
+        );
+
+
+    const oldCurrent =
+        currentPage;
+
+
+    currentPage =
+        destination;
+
+
+    previousPage =
+        "home";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   START + LOADING
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function() {
+
+
+        setTimeout(
+            function() {
+
+
+                document
+                    .getElementById(
+                        "startScreen"
+                    )
+                    .classList.add(
+                        "hide"
+                    );
+
+
+                document
+                    .getElementById(
+                        "loadingScreen"
+                    )
+                    .style.display =
+                    "flex";
+
+
+                setTimeout(
+                    function() {
+
+
+                        document
+                            .getElementById(
+                                "loadingScreen"
+                            )
+                            .style.display =
+                            "none";
+
+
+                        document
+                            .getElementById(
+                                "app"
+                            )
+                            .classList.add(
+                                "show"
+                            );
+
+
+                        loadProfile();
+
+
+                    },
+                    1400
+                );
+
+
+            },
+            2300
+        );
+
+    }
+);
+
+
+/* =====================================================
    PREMIUM MODAL
 ===================================================== */
 
 function openPremiumModal() {
 
     document
-        .getElementById("premiumModal")
-        .classList.add("show");
+        .getElementById(
+            "premiumModal"
+        )
+        .classList.add(
+            "show"
+        );
 
 }
 
@@ -2030,12 +2715,20 @@ function openPremiumModal() {
 function closePremiumModal() {
 
     document
-        .getElementById("premiumModal")
-        .classList.remove("show");
+        .getElementById(
+            "premiumModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
 
     document
-        .getElementById("premiumError")
-        .style.display = "none";
+        .getElementById(
+            "premiumError"
+        )
+        .style.display =
+        "none";
 
 }
 
@@ -2046,39 +2739,60 @@ function closePremiumModal() {
 
 function activatePremium() {
 
+
     const code =
         document
-            .getElementById("premiumCode")
+            .getElementById(
+                "premiumCode"
+            )
             .value
             .trim();
 
 
-    if (code === PREMIUM_CODE) {
+    if (
+        code === PREMIUM_CODE
+    ) {
+
 
         localStorage.setItem(
             "premiumUser",
             "true"
         );
 
+
         document
-            .getElementById("premiumCode")
-            .value = "";
+            .getElementById(
+                "premiumCode"
+            )
+            .value =
+            "";
+
 
         closePremiumModal();
 
+
         updateProfilePlan();
+
 
         alert(
             "Premium activated successfully."
         );
 
-        showPage("home");
+
+        showPage(
+            "home"
+        );
+
 
     } else {
 
+
         document
-            .getElementById("premiumError")
-            .style.display = "block";
+            .getElementById(
+                "premiumError"
+            )
+            .style.display =
+            "block";
 
     }
 
@@ -2091,30 +2805,40 @@ function activatePremium() {
 
 function updateProfilePlan() {
 
+
     const element =
         document.getElementById(
             "profilePlan"
         );
 
 
-    if (isPremium()) {
+    if (
+        isPremium()
+    ) {
+
 
         element.textContent =
             "Premium Plan";
 
+
         element.style.color =
             "var(--pink)";
+
 
         element.style.background =
             "rgba(236,72,153,.10)";
 
+
     } else {
+
 
         element.textContent =
             "Basic Plan";
 
+
         element.style.color =
             "var(--cyan)";
+
 
         element.style.background =
             "rgba(0,217,255,.10)";
@@ -2130,15 +2854,18 @@ function updateProfilePlan() {
 
 function loadProfile() {
 
+
     const username =
         localStorage.getItem(
             "username"
         ) || "";
 
+
     const displayName =
         localStorage.getItem(
             "displayName"
         ) || "Student";
+
 
     const bio =
         localStorage.getItem(
@@ -2147,18 +2874,27 @@ function loadProfile() {
 
 
     document
-        .getElementById("username")
-        .value = username;
+        .getElementById(
+            "username"
+        )
+        .value =
+        username;
 
 
     document
-        .getElementById("displayName")
-        .value = displayName;
+        .getElementById(
+            "displayName"
+        )
+        .value =
+        displayName;
 
 
     document
-        .getElementById("bio")
-        .value = bio;
+        .getElementById(
+            "bio"
+        )
+        .value =
+        bio;
 
 
     document
@@ -2166,7 +2902,8 @@ function loadProfile() {
             "profilePreviewName"
         )
         .textContent =
-        displayName || "Student";
+        displayName ||
+        "Student";
 
 
     const savedPicture =
@@ -2175,15 +2912,21 @@ function loadProfile() {
         );
 
 
-    if (savedPicture) {
+    if (
+        savedPicture
+    ) {
+
 
         document
             .getElementById(
                 "profilePicture"
             )
-            .src = savedPicture;
+            .src =
+            savedPicture;
+
 
     } else {
+
 
         createDefaultPicture();
 
@@ -2195,25 +2938,36 @@ function loadProfile() {
 }
 
 
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
+
 function saveProfile() {
+
 
     const username =
         document
-            .getElementById("username")
+            .getElementById(
+                "username"
+            )
             .value
             .trim();
 
 
     const displayName =
         document
-            .getElementById("displayName")
+            .getElementById(
+                "displayName"
+            )
             .value
             .trim();
 
 
     const bio =
         document
-            .getElementById("bio")
+            .getElementById(
+                "bio"
+            )
             .value
             .trim();
 
@@ -2241,7 +2995,8 @@ function saveProfile() {
             "profilePreviewName"
         )
         .textContent =
-        displayName || "Student";
+        displayName ||
+        "Student";
 
 
     const status =
@@ -2250,16 +3005,21 @@ function saveProfile() {
         );
 
 
-    status.classList.add("show");
+    status.classList.add(
+        "show"
+    );
 
 
-    setTimeout(function() {
+    setTimeout(
+        function() {
 
-        status.classList.remove(
-            "show"
-        );
+            status.classList.remove(
+                "show"
+            );
 
-    },2500);
+        },
+        2500
+    );
 
 }
 
@@ -2270,22 +3030,32 @@ function saveProfile() {
 
 function createDefaultPicture() {
 
+
     const canvas =
         document.createElement(
             "canvas"
         );
 
-    canvas.width = 200;
-    canvas.height = 200;
+
+    canvas.width =
+        200;
+
+    canvas.height =
+        200;
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     const gradient =
         ctx.createLinearGradient(
-            0,0,200,200
+            0,
+            0,
+            200,
+            200
         );
 
 
@@ -2294,10 +3064,12 @@ function createDefaultPicture() {
         "#00d9ff"
     );
 
+
     gradient.addColorStop(
         .5,
         "#8b5cf6"
     );
+
 
     gradient.addColorStop(
         1,
@@ -2305,7 +3077,9 @@ function createDefaultPicture() {
     );
 
 
-    ctx.fillStyle = gradient;
+    ctx.fillStyle =
+        gradient;
+
 
     ctx.fillRect(
         0,
@@ -2321,6 +3095,7 @@ function createDefaultPicture() {
 
     ctx.beginPath();
 
+
     ctx.arc(
         100,
         75,
@@ -2329,10 +3104,12 @@ function createDefaultPicture() {
         Math.PI * 2
     );
 
+
     ctx.fill();
 
 
     ctx.beginPath();
+
 
     ctx.arc(
         100,
@@ -2341,6 +3118,7 @@ function createDefaultPicture() {
         Math.PI,
         0
     );
+
 
     ctx.fill();
 
@@ -2358,7 +3136,7 @@ function createDefaultPicture() {
 
 
 /* =====================================================
-   PROFILE IMAGE UPLOAD
+   PROFILE IMAGE
 ===================================================== */
 
 document
@@ -2369,11 +3147,13 @@ document
         "change",
         function(event) {
 
+
             const file =
                 event.target.files[0];
 
 
-            if (!file) return;
+            if (!file)
+                return;
 
 
             const reader =
@@ -2383,6 +3163,7 @@ document
             reader.onload =
                 function(e) {
 
+
                     const image =
                         e.target.result;
 
@@ -2391,7 +3172,8 @@ document
                         .getElementById(
                             "profilePicture"
                         )
-                        .src = image;
+                        .src =
+                        image;
 
 
                     localStorage.setItem(
@@ -2411,21 +3193,25 @@ document
 
 
 /* =====================================================
-   DISPLAY NAME PREVIEW
+   DISPLAY NAME
 ===================================================== */
 
 document
-    .getElementById("displayName")
+    .getElementById(
+        "displayName"
+    )
     .addEventListener(
         "input",
         function() {
+
 
             document
                 .getElementById(
                     "profilePreviewName"
                 )
                 .textContent =
-                this.value || "Student";
+                this.value ||
+                "Student";
 
         }
     );
@@ -2435,30 +3221,43 @@ document
    PDF
 ===================================================== */
 
-function openPDF(filename) {
+function openPDF(
+    filename
+) {
+
 
     const viewer =
-        document.getElementById(
-            "pdfViewer"
-        );
+        document
+            .getElementById(
+                "pdfViewer"
+            );
 
 
     viewer.src =
-        "./" + filename;
+        "./" +
+        filename;
 
 
     viewer.style.display =
         "block";
 
 
-    setTimeout(function() {
+    setTimeout(
+        function() {
 
-        viewer.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
 
-    },100);
+            viewer.scrollIntoView({
+                behavior:
+                    "smooth",
+
+                block:
+                    "start"
+            });
+
+
+        },
+        100
+    );
 
 }
 
@@ -2476,14 +3275,17 @@ let timerInterval =
 
 function updateTimerDisplay() {
 
+
     const minutes =
         Math.floor(
-            timerSeconds / 60
+            timerSeconds /
+            60
         );
 
 
     const seconds =
-        timerSeconds % 60;
+        timerSeconds %
+        60;
 
 
     document
@@ -2491,59 +3293,93 @@ function updateTimerDisplay() {
             "timerDisplay"
         )
         .textContent =
-        String(minutes)
-            .padStart(2,"0")
+
+        String(
+            minutes
+        ).padStart(
+            2,
+            "0"
+        )
+
         +
+
         ":"
+
         +
-        String(seconds)
-            .padStart(2,"0");
+
+        String(
+            seconds
+        ).padStart(
+            2,
+            "0"
+        );
 
 }
 
 
 function startTimer() {
 
-    if (timerInterval) return;
+
+    if (
+        timerInterval
+    )
+        return;
 
 
     timerInterval =
-        setInterval(function() {
+        setInterval(
+            function() {
 
-            if (timerSeconds > 0) {
 
-                timerSeconds--;
+                if (
+                    timerSeconds >
+                    0
+                ) {
 
-                updateTimerDisplay();
 
-            } else {
+                    timerSeconds--;
 
-                pauseTimer();
+                    updateTimerDisplay();
 
-            }
 
-        },1000);
+                } else {
+
+
+                    pauseTimer();
+
+                }
+
+
+            },
+            1000
+        );
 
 }
 
 
 function pauseTimer() {
 
+
     clearInterval(
         timerInterval
     );
 
-    timerInterval = null;
+
+    timerInterval =
+        null;
 
 }
 
 
 function resetTimer() {
 
+
     pauseTimer();
+
 
     timerSeconds =
         25 * 60;
+
 
     updateTimerDisplay();
 
@@ -2559,6 +3395,7 @@ updateTimerDisplay();
 
 const questions = [
 
+
     {
         question:
             "Which factor helped Singapore develop as a trading centre?",
@@ -2573,6 +3410,7 @@ const questions = [
         answer: 0
     },
 
+
     {
         question:
             "What did Singapore's free port status encourage?",
@@ -2586,6 +3424,7 @@ const questions = [
 
         answer: 1
     },
+
 
     {
         question:
@@ -2604,14 +3443,20 @@ const questions = [
 ];
 
 
-let currentQuestion = 0;
-let quizScore = 0;
+let currentQuestion =
+    0;
+
+let quizScore =
+    0;
 
 
 function loadQuestion() {
 
+
     const question =
-        questions[currentQuestion];
+        questions[
+            currentQuestion
+        ];
 
 
     document
@@ -2623,16 +3468,22 @@ function loadQuestion() {
 
 
     const options =
-        document.getElementById(
-            "options"
-        );
+        document
+            .getElementById(
+                "options"
+            );
 
 
-    options.innerHTML = "";
+    options.innerHTML =
+        "";
 
 
     question.options.forEach(
-        function(option,index) {
+        function(
+            option,
+            index
+        ) {
+
 
             const button =
                 document.createElement(
@@ -2651,7 +3502,9 @@ function loadQuestion() {
             button.onclick =
                 function() {
 
-                    answerQuestion(index);
+                    answerQuestion(
+                        index
+                    );
 
                 };
 
@@ -2669,25 +3522,35 @@ function loadQuestion() {
             "quizResult"
         )
         .textContent =
-        "Question "
-        +
-        (currentQuestion + 1)
-        +
-        " of "
-        +
+
+        "Question " +
+
+        (
+            currentQuestion +
+            1
+        ) +
+
+        " of " +
+
         questions.length;
 
 }
 
 
-function answerQuestion(index) {
+function answerQuestion(
+    index
+) {
+
 
     const question =
-        questions[currentQuestion];
+        questions[
+            currentQuestion
+        ];
 
 
     if (
-        index === question.answer
+        index ===
+        question.answer
     ) {
 
         quizScore++;
@@ -2703,6 +3566,7 @@ function answerQuestion(index) {
         questions.length
     ) {
 
+
         document
             .getElementById(
                 "question"
@@ -2715,7 +3579,8 @@ function answerQuestion(index) {
             .getElementById(
                 "options"
             )
-            .innerHTML = "";
+            .innerHTML =
+            "";
 
 
         document
@@ -2723,26 +3588,38 @@ function answerQuestion(index) {
                 "quizResult"
             )
             .textContent =
-            "Score: "
-            +
-            quizScore
-            +
-            " / "
-            +
+
+            "Score: " +
+
+            quizScore +
+
+            " / " +
+
             questions.length;
 
 
-        setTimeout(function() {
+        setTimeout(
+            function() {
 
-            currentQuestion = 0;
 
-            quizScore = 0;
+                currentQuestion =
+                    0;
 
-            loadQuestion();
 
-        },3000);
+                quizScore =
+                    0;
+
+
+                loadQuestion();
+
+
+            },
+            3000
+        );
+
 
     } else {
+
 
         loadQuestion();
 
@@ -2755,16 +3632,19 @@ loadQuestion();
 
 
 /* =====================================================
-   ESCAPE
+   ESCAPE CLOSES MODAL
 ===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
+
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
+
 
             closePremiumModal();
 
